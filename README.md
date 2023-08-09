@@ -12,14 +12,14 @@ The Product Detail page displays specific information about products in our cata
     npm install
     ```
 
-2. **Start the development server (auto build)**:
+2. **Start the development server**:
     ```bash
-    npm run start
+    npm run server-dev
     ```
 
-3. **For production build**:
+3. **Auto build for client**:
     ```bash
-    npm run build
+    npm run client-dev
     ```
 
 4. **Access the application**:
