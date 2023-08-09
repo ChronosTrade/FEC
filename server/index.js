@@ -1,6 +1,6 @@
-require("dotenv").config();
-const express = require('express');
+require('dotenv').config();
 const path = require('path');
+const express = require('express');
 
 const app = express();
 
@@ -8,8 +8,8 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(express.json());
 
-
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`);
+  // eslint-disable-next-line no-console
+  console.log(`Server is listening on port ${PORT}`);
 });
