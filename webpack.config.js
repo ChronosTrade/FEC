@@ -3,9 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
-    entry: path.join(__dirname, 'src', 'index.jsx'),
+    entry: path.join(__dirname, 'client', 'src', 'index.jsx'),
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: path.join(__dirname, 'client', 'dist'),
         filename: 'bundle.js',
     },
     resolve: {
@@ -31,15 +31,13 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'dist', 'index.html'),
-            favicon: './src/assets/favicon.png',
+            title: "Piraeus",
+            favicon: './client/src/assets/favicon.png',
         }),
+        // new webpack.DefinePlugin({
+        //     "process.env": {
+        //         AUTH_SECRET: JSON.stringify(process.env.AUTH_SECRET),
+        //     },
+        // }),
     ],
-    devServer: {
-        static: path.join(__dirname, 'dist'),
-        compress: true,
-        port: 3000,
-        open: true,
-        historyApiFallback: true, 
-    },
 };
