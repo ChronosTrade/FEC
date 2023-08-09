@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/App';
+import React from "react";
+// import "./assets/styles.css";
+import { render } from "react-dom";
+import App from "./components/App.jsx";
 
-const root = document.createElement('div');
-root.setAttribute('id', 'root');
+const root = document.createElement("div");
+root.setAttribute("id", "root");
 document.body.appendChild(root);
 
-const appRoot = ReactDOM.createRoot(root);
-appRoot.render(<App />);
+render(<App />, root);
