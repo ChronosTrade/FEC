@@ -4,21 +4,59 @@ export const CardWrapper = styled.div`
   border: 0.75px solid;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  width: 200px;
-  height: 300px;
+  width: 220px;
+  height: 350px;
   border-radius: 5px;
   box-shadow: 0 0 20px rgba(0, 0, 0, .05), 0 0px 40px rgba(0, 0, 0, .08);
+  box-sizing: border-box;
 `;
 
-export const ProductName = styled.h3`
-  color: blue;
+export const ProductContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 35%;
 `;
 
-export const ProductCategory = styled.h4`
-  color: green;
+export const ProductName = styled.h4`
+  box-sizing: border-box;
+  height: 0px;
+  margin-bottom: 5px
 `;
 
-export const ProductPrice = styled.h4`
-  color: purple;
+export const ProductCategory = styled.p`
+  height: 0px;
+  margin-bottom: 0px
+`;
+
+export const ProductPrice = styled.p`
+  height: 0px;
+  margin-bottom: 35px
+`;
+
+export const ProductRating = styled.div`
+
+`;
+
+export const ImageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 65%
+`;
+
+export const ProductImage = styled.img`
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+
+`;
+
+export const ActionButton = styled.button`
+  color: #000000;
+  position: absolute;
+  left: 200px;
+  background: none;
+  border: none;
+  &:hover {
+    color: #F5CB50;
+  }
 `;
