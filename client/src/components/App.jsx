@@ -13,6 +13,7 @@ function App() {
 
   return (
     <AppContext.Provider value={contextValue}>
+      <OverviewMain />
       <ReviewMain />
       <RelatedProductsMain />
     </AppContext.Provider>
