@@ -6,12 +6,12 @@ import AppContext from '../AppContext';
 
 function RelatedProductsMain() {
   const { totalRatings, setTotalRatings } = useContext(AppContext);
+  const { currentProduct, setCurrentProduct } = useContext(AppContext)
 
   return (
     <div>
       <ProductList />
       {/* <Outfit /> */}
-      {/* <Card /> */}
     </div>
   );
 }

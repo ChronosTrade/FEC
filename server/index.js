@@ -13,6 +13,9 @@ app.get('/styles', (req, res) => {
   controllers.getStyles(req, res);
 });
 
+app.get('/product/:id', controllers.getProduct)
+app.get('/related', controllers.getRelated)
+
 app.post('/cart', (req, res) => {
   controllers.saveCart(req, res);
 });

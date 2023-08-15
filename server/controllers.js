@@ -31,3 +31,7 @@ exports.saveCart = (req, res) => {
       console.log(err);
     });
 };
+
+exports.getRelated = (req, res) => {
+
+}
