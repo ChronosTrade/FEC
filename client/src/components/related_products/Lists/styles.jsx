@@ -5,6 +5,7 @@ export const ListWrapper = styled.div`
   // flex-direction: column;
   width: 1000px;
   height: 350px;
+  // border: solid;
   ::-webkit-scrollbar {
     display: none;
   }
@@ -12,14 +13,10 @@ export const ListWrapper = styled.div`
 
 export const ListCarousel = styled.div`
   display: flex;
-  border: solid;
   width: 100%;
   height: 100%;
   justify-content: space-between;
   overflow-x: auto;
-  // ::-webkit-scrollbar {
-  //   display: none;
-  // }
 `;
 
 export const CardContainer = styled.div`
