@@ -41,6 +41,7 @@ export const ProductRating = styled.div`
 export const ImageContainer = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
   height: 65%
 `;
 
