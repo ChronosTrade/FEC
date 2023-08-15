@@ -1,6 +1,12 @@
 const axios = require('axios');
 require('dotenv').config();
 
+const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
+
+const headers = {
+  Authorization: process.env.AUTH,
+};
+
 exports.getStyles = (req, res) => {
   const config = {
     headers: {
@@ -29,5 +35,33 @@ exports.saveCart = (req, res) => {
     })
     .catch((err) => {
       console.log(err);
+    });
+};
+
+// get reviews
+exports.getReviews = (req, res) => {
+  const ProductId = req.query.product_id;
+
+  axios
+    .get(`${baseURL}/reviews?product_id=${ProductId}`, { headers })
+    .then((response) => {
+      res.json(response.data);
+    })
+    .catch((err) => {
+      res.status(500).send(err.message);
+    });
+};
+
+// get reviews details
+exports.reviewsMeta = (req, res) => {
+  const ProductId = req.query.product_id;
+
+  axios
+    .get(`${baseURL}/reviews/meta?product_id=${ProductId}`, { headers })
+    .then((response) => {
+      res.json(response.data);
+    })
+    .catch((err) => {
+      res.status(500).send(err.message);
     });
 };
