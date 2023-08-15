@@ -10,7 +10,7 @@ function RelatedProductsMain() {
   return (
     <div>
       <ProductList />
-      <Outfit />
+      {/* <Outfit /> */}
       {/* <Card /> */}
     </div>
   );
