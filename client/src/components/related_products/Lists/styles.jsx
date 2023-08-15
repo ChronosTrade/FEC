@@ -1,23 +1,50 @@
 import styled from 'styled-components';
 
 export const ListWrapper = styled.div`
-  display: block;
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  height: 350px;
 `;
 
-export const ListContainer = styled.div`
+export const ListCarousel = styled.div`
+  display: flex;
+  border: solid;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+export const CardContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  gap: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  max-width: 1000px;
-  max-height: 350px;
-  border: solid;
-  position: relative;
+  overflow-x: auto;
+
 `;
 
 export const RightButton = styled.button`
   background: none;
   border: none;
-  position: relative
+  cursor: pointer;
+  &:hover {
+
+  }
+ `;
+
+export const LeftButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  &:hover {
+
+  }
  `;
 
 export const ListTitle = styled.p`

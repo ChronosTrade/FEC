@@ -4,7 +4,7 @@ export const CardWrapper = styled.div`
   border: 0.75px solid;
   display: flex;
   flex-direction: column;
-  width: 220px;
+  flex: 0 0 220px;
   height: 350px;
   border-radius: 5px;
   box-shadow: 0 0 20px rgba(0, 0, 0, .05), 0 0px 40px rgba(0, 0, 0, .08);
@@ -14,6 +14,7 @@ export const CardWrapper = styled.div`
 export const ProductContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   height: 35%;
 `;
 
@@ -53,7 +54,7 @@ export const ProductImage = styled.img`
 export const ActionButton = styled.button`
   color: #000000;
   position: absolute;
-  left: 200px;
+  align-self: flex-end;
   background: none;
   border: none;
   &:hover {
