@@ -12,10 +12,7 @@ export default function Size({
   // The skusArray allows us to map each sku(size) to dropdown list options.
   // Because the skusObject is an object, we need to convert the sizes to an array.
   const [skusArray, setSkus] = useState([]);
-  // The sizeMap object was created in order to have an object with the format: {size: sku_id}
-  // We need to pass the selected Sku {setSelSku} (which implies the size) to OverviewMn.
-  // Since the optionsState object & associated dropdown target value is listed in sizes (S, M...)
-  // I needed a way to grab the sku @ a given size.
+  // The sizeMap object was created in order to check for duplicate sizes (bad data) from API
   const [sizeMap, setSizeMap] = useState({});
 
   useEffect(() => {
@@ -24,19 +21,30 @@ export default function Size({
     if (Object.keys(selStyle).length !== 0) {
       setSizeOptions(selStyle.skus);
       setSkus(Object.keys(selStyle.skus));
-      const sizes = {};
+      const tempSizeMap = {};
+      const tempSizeArr = [];
+      const set = {};
       Object.keys(selStyle.skus).forEach((key) => {
-        sizes[selStyle.skus[key].size] = {
-          sku_id: key,
-          quantity: selStyle.skus[key].quantity,
-        };
+        if (!set[selStyle.skus[key].size]) {
+          tempSizeArr.push(key);
+          tempSizeMap[selStyle.skus[key].size] = {
+            sku_id: key,
+            quantity: selStyle.skus[key].quantity,
+          };
+        }
+        set[selStyle.skus[key].size] = true;
       });
-      setSizeMap(sizes);
+      setSizeMap(tempSizeMap);
+      setSkus(tempSizeArr);
     }
   }, [selStyle]);
   const handleChange = function (event) {
     setOptionsState(event.target.value);
-    setSelSku(sizeMap[event.target.value]);
+    const tempSkuObj = {
+      sku_id: event.target.value,
+      quantity: skusObject[event.target.value].quantity
+    }
+    setSelSku(tempSkuObj);
   };
   return (
     <div>
@@ -51,6 +59,7 @@ export default function Size({
             <option value="default">Select Size</option>
             {skusArray.map((sku) => (
               <option
+                value={sku}
                 disabled={skusObject[sku].quantity === 0 ? true : null}
                 key={sku}
               >
@@ -60,6 +69,5 @@ export default function Size({
           </select>
         ) : <h2>Out of Stock</h2>}
     </div>
-
   );
 }
