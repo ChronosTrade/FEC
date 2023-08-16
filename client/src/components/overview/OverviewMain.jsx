@@ -13,7 +13,7 @@ const OverviewMain = function () {
   // const { totalRatings, setTotalRatings } = useContext(AppContext);
   const [selStyle, setSelStyle] = useState({}); // Need data from API and set default style.
   const [selQuantity, setSelQuantity] = useState('-');
-  const [selSku, setSelSku] = useState(null);
+  const [selSku, setSelSku] = useState({});
   const [styles, setSelStyles] = useState([]); // DELETE LATER
   const [totalStyleQuantity, setStyleQuantity] = useState(true);
   const { productID } = useContext(AppContext);
@@ -65,10 +65,10 @@ const OverviewMain = function () {
         setSelQuantity={setSelQuantity}
       />
       {/* <Price selStyle = {selStyle}/> */}
-      {/* <Add
+      <Add
         selSku={selSku}
         selQuantity={selQuantity}
-      /> */}
+      />
     </section>
   );
 };

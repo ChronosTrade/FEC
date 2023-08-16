@@ -8,17 +8,13 @@ const headers = {
 };
 
 exports.getStyles = (req, res) => {
-  const config = {
-    headers: {
-      Authorization: process.env.AUTH,
-    },
-  };
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${req.query.ID}/styles`, config)
+  axios.get(`${baseURL}/products/${req.query.ID}/styles`, { headers })
     .then((response) => {
       res.send(response.data);
     })
     .catch((err) => {
       console.log(err);
+      res.status(500)
     });
 };
 
@@ -28,13 +24,14 @@ exports.saveCart = (req, res) => {
     Type: req.data.quantity,
     Description: req.data.ID,
   };
-  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart', data)
+  axios.post(`${baseURL}/cart`, data)
     .then(() => {
       console.log('Success');
-      res.sendStatus(201);
+      res.status(201)
     })
     .catch((err) => {
       console.log(err);
+      res.status(500)
     });
 };
 
