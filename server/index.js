@@ -19,9 +19,12 @@ app.post('/cart', (req, res) => {
 
 app.get('/reviews', controllers.getReviews);
 app.get('/reviews/meta', controllers.reviewsMeta);
+app.post('/reviews', controllers.postReview);
+app.put('/reviews/:reviewId/helpful', controllers.markReviewAsHelpful);
+app.put('/reviews/:reviewId/report', controllers.reportReview);
 
-app.get('/products/:id', controllers.getProduct)
-app.get('/products/:id/related', controllers.getRelated)
+app.get('/products/:id', controllers.getProduct);
+app.get('/products/:id/related', controllers.getRelated);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

@@ -11,10 +11,13 @@ export default function Quantity({
   useEffect(() => {
     if (selSku) {
       const quantity = selSku.quantity;
+      let tempQuantityArr = [];
       if (quantity > 15) {
-        setQuantityArray(Array.from(new Array(15).keys(), (x, i) => i));
+        tempQuantityArr = Array.from(new Array(15).keys(), (x, i) => i + 1)
+        setQuantityArray(tempQuantityArr);
       } else {
-        setQuantityArray(Array.from(new Array(quantity).keys(), (x, i) => i));
+        tempQuantityArr = Array.from(new Array(quantity).keys(), (x, i) => i + 1)
+        setQuantityArray(tempQuantityArr);
       }
       if (selQuantity === '-') {
         setShowOptions(true);
@@ -43,7 +46,7 @@ export default function Quantity({
             onChange={handleChange}
           >
             {quantityArray.map((index) => (
-              <option key={index}>{quantityArray[index]}</option>
+              <option key={index}>{quantityArray[index-1]}</option>
             ))}
           </select>
         ) : <option>-</option>}

@@ -8,17 +8,14 @@ const headers = {
 };
 
 exports.getStyles = (req, res) => {
-  const config = {
-    headers: {
-      Authorization: process.env.AUTH,
-    },
-  };
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${req.query.ID}/styles`, config)
+  axios
+    .get(`${baseURL}/products/${req.query.ID}/styles`, { headers })
     .then((response) => {
       res.send(response.data);
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
+      res.status(500);
     });
 };
 
@@ -28,90 +25,134 @@ exports.saveCart = (req, res) => {
     Type: req.data.quantity,
     Description: req.data.ID,
   };
-  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart', data)
+  axios
+    .post(`${baseURL}/cart`, data)
     .then(() => {
       console.log('Success');
-      res.sendStatus(201);
+      res.status(201);
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
+      res.status(500);
     });
 };
 
-// get reviews
 exports.getReviews = (req, res) => {
-  const ProductId = req.query.product_id;
+  const productId = req.query.product_id;
 
   axios
-    .get(`${baseURL}/reviews?product_id=${ProductId}`, { headers })
+    .get(`${baseURL}/reviews?product_id=${productId}`, { headers })
     .then((response) => {
       res.json(response.data);
     })
     .catch((err) => {
-      res.status(500).send(err.message);
+      console.error(err);
+      res.status(500);
     });
 };
 
-// get reviews details
 exports.reviewsMeta = (req, res) => {
-  const ProductId = req.query.product_id;
+  const productId = req.query.product_id;
 
   axios
-    .get(`${baseURL}/reviews/meta?product_id=${ProductId}`, { headers })
+    .get(`${baseURL}/reviews/meta?product_id=${productId}`, { headers })
     .then((response) => {
       res.json(response.data);
     })
     .catch((err) => {
-      res.status(500).send(err.message);
+      console.error(err);
+      res.status(500);
     });
 };
 
-// get reviews
-exports.getReviews = (req, res) => {
-  const ProductId = req.query.product_id;
+exports.postReview = (req, res) => {
+  const {
+    productId,
+    rating,
+    summary,
+    body,
+    recommend,
+    name,
+    email,
+    photos,
+    characteristics,
+  } = req.body;
 
   axios
-    .get(`${baseURL}/reviews?product_id=${ProductId}`, { headers })
+    .post(
+      `${baseURL}/reviews`,
+      {
+        productId,
+        rating,
+        summary,
+        body,
+        recommend,
+        name,
+        email,
+        photos,
+        characteristics,
+      },
+      { headers },
+    )
     .then((response) => {
-      res.json(response.data);
+      res.status(201).send(response.data);
     })
     .catch((err) => {
-      res.status(500).send(err.message);
+      console.error(err);
+      res.status(500);
     });
 };
 
-// get reviews details
-exports.reviewsMeta = (req, res) => {
-  const ProductId = req.query.product_id;
+exports.markReviewAsHelpful = (req, res) => {
+  const { reviewId } = req.params;
 
   axios
-    .get(`${baseURL}/reviews/meta?product_id=${ProductId}`, { headers })
-    .then((response) => {
-      res.json(response.data);
+    .put(`${baseURL}/reviews/${reviewId}/helpful`, null, { headers })
+    .then(() => {
+      res.status(204).send();
     })
     .catch((err) => {
-      res.status(500).send(err.message);
+      console.error(err);
+      res.status(500);
+    });
+};
+
+exports.reportReview = (req, res) => {
+  const { reviewId } = req.params;
+
+  axios
+    .put(`${baseURL}/reviews/${reviewId}/report`, null, { headers })
+    .then(() => {
+      res.status(204).send();
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500);
     });
 };
 
 exports.getProduct = (req, res) => {
-  const ProductId = req.params.id;
-  axios.get(`${baseURL}/products/${ProductId}`, {headers})
+  const productId = req.params.id;
+  axios
+    .get(`${baseURL}/products/${productId}`, { headers })
     .then((response) => {
       res.status(200).send(response.data);
     })
     .catch((err) => {
-      res.status(500)
-    })
-}
+      console.error(err);
+      res.status(500);
+    });
+};
 
 exports.getRelated = (req, res) => {
-  const ProductId = req.params.id
-  axios.get(`${baseURL}/products/${ProductId}/related`, {headers})
+  const productId = req.params.id;
+  axios
+    .get(`${baseURL}/products/${productId}/related`, { headers })
     .then((response) => {
       res.status(200).send(response.data);
     })
     .catch((err) => {
-      res.status(500)
-    })
-}
+      console.error(err);
+      res.status(500);
+    });
+};
