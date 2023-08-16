@@ -1,9 +1,8 @@
 import React, {useState, useEffect, useContext, useRef} from 'react';
-import axios from 'axios';
 import { ListWrapper, ListCarousel, CardContainer, LeftButton, RightButton, ListTitle } from './styles';
 import Card from '../ProductCard/Card';
 
-function ProductList() {
+function ProductList({ products }) {
   const cardWidth = 220;
   const gap = 20;
   const divRef = useRef(null);
@@ -22,14 +21,7 @@ function ProductList() {
       {scrollValue > 0 && <LeftButton onClick={() => { handleArrowClick('left'); }}>&#10094;</LeftButton>}
       <ListCarousel ref={divRef}>
         <CardContainer >
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {products.map((product) => <Card key={product.id} product={product}/>)}
         </CardContainer>
       </ListCarousel>
       {scrollValue < 1000 && <RightButton onClick={() => { handleArrowClick('right'); }}>&#10095;</RightButton>}

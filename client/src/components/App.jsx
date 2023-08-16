@@ -19,8 +19,8 @@ function App() {
   );
   return (
     <AppContext.Provider value={contextValue}>
-      <OverviewMain />
-      <ReviewMain />
+      {/* <OverviewMain />
+      <ReviewMain /> */}
       <RelatedProductsMain />
     </AppContext.Provider>
   );
