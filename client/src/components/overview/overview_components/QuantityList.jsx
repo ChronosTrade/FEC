@@ -1,38 +1,35 @@
 import React, { useState, useEffect } from 'react';
 
 export default function Quantity({
-  skusArray,
-  skusObject,
   selQuantity,
-  selSize,
   selSku,
-  setSelQuantity,
+  setSelQuantity
 }) {
   const [optionsState, setOptionsState] = useState('-');
   const [showOptions, setShowOptions] = useState(false);
   const [quantityArray, setQuantityArray] = useState([]);
   useEffect(() => {
-    console.log(selSku);
     if (selSku) {
-      const [quantity] = selSku.quantity;
+      const quantity = selSku.quantity;
       if (quantity > 15) {
-        setQuantityArray(Array.from(new Array(15).keys(), (x, i) => i + 1));
+        setQuantityArray(Array.from(new Array(15).keys(), (x, i) => i));
       } else {
-        setQuantityArray(Array.from(new Array(quantity).keys(), (x, i) => i + 1));
+        setQuantityArray(Array.from(new Array(quantity).keys(), (x, i) => i));
       }
-    }
-    if (selSize === 'Select Size') {
+      if (selQuantity === '-') {
+        setShowOptions(true);
+        setOptionsState(1);
+      } else {
+        setShowOptions(true);
+      }
+    } else {
       setShowOptions(false);
       setOptionsState('-');
-    } else if (selQuantity === '-') {
-      setShowOptions(true);
-      setSelQuantity(1);
-    } else {
-      setShowOptions(true);
     }
-  }, [selSku]);
+  }, [selSku, selQuantity]);
   const handleChange = function (event) {
     setOptionsState(event.target.value);
+    setSelQuantity(event.target.value);
   };
   return (
     <div>
@@ -45,9 +42,8 @@ export default function Quantity({
             value={optionsState}
             onChange={handleChange}
           >
-            <option value="default">-</option>
             {quantityArray.map((index) => (
-              <option>{quantityArray[index]}</option>
+              <option key={index}>{quantityArray[index]}</option>
             ))}
           </select>
         ) : <option>-</option>}
