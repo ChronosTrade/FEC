@@ -13,13 +13,10 @@ const OverviewMain = function () {
   // const { totalRatings, setTotalRatings } = useContext(AppContext);
   const [selStyle, setSelStyle] = useState({}); // Need data from API and set default style.
   const [selQuantity, setSelQuantity] = useState('-');
-  const [selSize, setSelSize] = useState('Select Size');
   const [selSku, setSelSku] = useState(null);
-  const [skusArray, setSkus] = useState([]);
-  const [skusObject, setOptions] = useState({});
   const [styles, setSelStyles] = useState([]); // DELETE LATER
   const [totalStyleQuantity, setStyleQuantity] = useState(true);
-  const { productID, setProductID } = useContext(AppContext);
+  const { productID } = useContext(AppContext);
 
   useEffect(() => {
     const config = {
@@ -31,8 +28,6 @@ const OverviewMain = function () {
       .then((response) => {
         setSelStyles(response.data.results);
         setSelStyle(response.data.results[0]);
-        setSkus(Object.keys(response.data.results[0].skus));
-        setOptions(response.data.results[0].skus);
         const arr = Object.keys(response.data.results[0].skus);
         for (let i = 0; i < arr.length; i += 1) {
           if (arr[i].quantity > 0) {
@@ -58,33 +53,22 @@ const OverviewMain = function () {
         styles={styles}
         setSelStyle={setSelStyle}
         setSelQuantity={setSelQuantity}
-        setSelSize={setSelSize}
       />
       <SizeList
         selStyle={selStyle}
-        setSelSku={setSelSku}
-        selSize={selSize}
-        skusArray={skusArray}
-        skusObject={skusObject}
-        setSelQuantity={setSelQuantity}
-        setSelSize={setSelSize}
         totalStyleQuantity={totalStyleQuantity}
+        setSelSku={setSelSku}
       />
       <QuantityList
-        skusArray={skusArray}
-        skusObject={skusObject}
         selQuantity={selQuantity}
-        selSize={selSize}
         selSku={selSku}
         setSelQuantity={setSelQuantity}
       />
       {/* <Price selStyle = {selStyle}/> */}
-      <Add
+      {/* <Add
         selSku={selSku}
         selQuantity={selQuantity}
-        productID={productID}
-        setProductID={setProductID}
-      />
+      /> */}
     </section>
   );
 };

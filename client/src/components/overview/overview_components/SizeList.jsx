@@ -1,33 +1,42 @@
 import React, { useState, useEffect } from 'react';
 
 export default function Size({
-  skusArray,
-  skusObject,
   selStyle,
-  setSelSize,
-  selSize,
   totalStyleQuantity,
-  setSelSku
+  setSelSku,
 }) {
+  // The optionsState is the selected state/value on the dropdown list
   const [optionsState, setOptionsState] = useState('Select Size');
-  // const [skuMap, setSkuMap] = useState({});
+  // The skusObject is an object containing all of the skus(sizes) for a selected style.
+  const [skusObject, setSizeOptions] = useState({});
+  // The skusArray allows us to map each sku(size) to dropdown list options.
+  // Because the skusObject is an object, we need to convert the sizes to an array.
+  const [skusArray, setSkus] = useState([]);
+  // The sizeMap object was created in order to have an object with the format: {size: sku_id}
+  // We need to pass the selected Sku {setSelSku} (which implies the size) to OverviewMn.
+  // Since the optionsState object & associated dropdown target value is listed in sizes (S, M...)
+  // I needed a way to grab the sku @ a given size.
+  const [sizeMap, setSizeMap] = useState({});
+
   useEffect(() => {
     setOptionsState('Select Size');
-  }, [selStyle]);
-  useEffect(() => {
-    const sizes = [];
-    const sizeMap = {};
-    for (let i = 0; i < skusArray.length; i += 1) {
-      sizes[i] = skusObject[skusArray[i]].size;
+    setSelSku(null);
+    if (Object.keys(selStyle).length !== 0) {
+      setSizeOptions(selStyle.skus);
+      setSkus(Object.keys(selStyle.skus));
+      const sizes = {};
+      Object.keys(selStyle.skus).forEach((key) => {
+        sizes[selStyle.skus[key].size] = {
+          sku_id: key,
+          quantity: selStyle.skus[key].quantity,
+        };
+      });
+      setSizeMap(sizes);
     }
-    //setSelSku = skusMap[optionsState]
   }, [selStyle]);
   const handleChange = function (event) {
-    setSelSize(event.target.value); // I actually only care about the sku_id, HOW DO I GRAB IT
     setOptionsState(event.target.value);
-    console.log(skusObject);
-    console.log(event.target.value);
-    // I need to update/create dependency for quantity based on the object of skusObj[sku]
+    setSelSku(sizeMap[event.target.value]);
   };
   return (
     <div>
