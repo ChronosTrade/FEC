@@ -22,14 +22,12 @@ function RelatedProductsMain() {
   const getRelated = () => {
     axios.get(`/products/${productID}/related`)
       .then((response) => {
-        console.log(response.data)
         var productsPromises = response.data.map((product) => {
           return getProduct(product)
         })
         Promise.all(productsPromises)
           .then((values) => {
             setRelatedProducts(values);
-            console.log(values)
           })
 
         //setRelatedProducts(response.data);

@@ -15,7 +15,6 @@ function Card({product}) {
     axios.get('/styles', config)
     .then((response) => {
       const styles = response.data.results.filter((style) => style['default?'] === true);
-      console.log(styles[0])
       setDefaultStyle(styles[0]);
       setImageUrl(response.data.results[0].photos[0].thumbnail_url)
     })
