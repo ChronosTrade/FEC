@@ -2,20 +2,21 @@ import styled from 'styled-components';
 
 export const ListWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
   width: 1000px;
   height: 350px;
+  // border: solid;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const ListCarousel = styled.div`
   display: flex;
-  border: solid;
   width: 100%;
   height: 100%;
   justify-content: space-between;
-  ::-webkit-scrollbar {
-    display: none;
-  }
+  overflow-x: auto;
 `;
 
 export const CardContainer = styled.div`
@@ -25,7 +26,7 @@ export const CardContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  overflow-x: auto;
+  // overflow-x: auto;
 
 `;
 

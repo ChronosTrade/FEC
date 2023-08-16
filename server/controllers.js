@@ -65,3 +65,53 @@ exports.reviewsMeta = (req, res) => {
       res.status(500).send(err.message);
     });
 };
+
+// get reviews
+exports.getReviews = (req, res) => {
+  const ProductId = req.query.product_id;
+
+  axios
+    .get(`${baseURL}/reviews?product_id=${ProductId}`, { headers })
+    .then((response) => {
+      res.json(response.data);
+    })
+    .catch((err) => {
+      res.status(500).send(err.message);
+    });
+};
+
+// get reviews details
+exports.reviewsMeta = (req, res) => {
+  const ProductId = req.query.product_id;
+
+  axios
+    .get(`${baseURL}/reviews/meta?product_id=${ProductId}`, { headers })
+    .then((response) => {
+      res.json(response.data);
+    })
+    .catch((err) => {
+      res.status(500).send(err.message);
+    });
+};
+
+exports.getProduct = (req, res) => {
+  const ProductId = req.params.id;
+  axios.get(`${baseURL}/products/${ProductId}`, {headers})
+    .then((response) => {
+      res.status(200).send(response.data);
+    })
+    .catch((err) => {
+      res.status(500)
+    })
+}
+
+exports.getRelated = (req, res) => {
+  const ProductId = req.params.id
+  axios.get(`${baseURL}/products/${ProductId}/related`, {headers})
+    .then((response) => {
+      res.status(200).send(response.data);
+    })
+    .catch((err) => {
+      res.status(500)
+    })
+}

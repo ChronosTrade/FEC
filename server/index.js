@@ -20,6 +20,9 @@ app.post('/cart', (req, res) => {
 app.get('/reviews', controllers.getReviews);
 app.get('/reviews/meta', controllers.reviewsMeta);
 
+app.get('/products/:id', controllers.getProduct)
+app.get('/products/:id/related', controllers.getRelated)
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
