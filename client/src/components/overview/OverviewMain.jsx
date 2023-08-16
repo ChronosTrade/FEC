@@ -3,7 +3,8 @@ import axios from 'axios';
 import AppContext from '../AppContext';
 import Add from './overview_components/Add';
 import Description from './overview_components/Description';
-import Photos from './overview_components/Photos';
+import MainImage from './overview_components/MainImage';
+import PhotoList from './overview_components/PhotoList';
 import Price from './overview_components/Price';
 import QuantityList from './overview_components/QuantityList';
 import SizeList from './overview_components/SizeList';
@@ -64,7 +65,7 @@ const OverviewMain = function () {
         selSku={selSku}
         setSelQuantity={setSelQuantity}
       />
-      {/* <Price selStyle = {selStyle}/> */}
+      <Price selStyle = {selStyle}/>
       <Add
         selSku={selSku}
         selQuantity={selQuantity}

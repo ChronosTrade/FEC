@@ -51,6 +51,5 @@ export default function Quantity({
           </select>
         ) : <option>-</option>}
     </div>
-
   );
 }
