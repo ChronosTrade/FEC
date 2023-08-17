@@ -21,6 +21,7 @@ export default function Quantity({
       }
       if (selQuantity === '-') {
         setShowOptions(true);
+        setSelQuantity(1);
         setOptionsState(1);
       } else {
         setShowOptions(true);

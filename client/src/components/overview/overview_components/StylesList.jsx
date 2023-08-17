@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ThumbImage, ThumbImageSelect, StylePhotosWrapper } from './stylesListStyling'
 
 export default function StylesList({
   selStyle,
   styles,
+  setSizeNotice,
   setSelStyle
 }) {
+  const [title, setTitle] = useState('');
+  useEffect(() => {
+    if(styles.length > 0) {
+      setTitle(styles[0].name)
+    }
+  },[styles])
   return (
     <StylePhotosWrapper role="presentation">
+      <h3>{title}</h3>
       {styles.map(
         (style) => (
           <StylesListEntry
@@ -15,6 +23,8 @@ export default function StylesList({
             key={style.style_id}
             selStyle={selStyle}
             setSelStyle={setSelStyle}
+            setSizeNotice={setSizeNotice}
+            setTitle={setTitle}
           />
         ),
       )}
@@ -22,9 +32,17 @@ export default function StylesList({
   );
 }
 
-export function StylesListEntry({ style, selStyle, setSelStyle }) {
+export function StylesListEntry({
+  style,
+  selStyle,
+  setSelStyle,
+  setSizeNotice,
+  setTitle
+}) {
   const clickHandler = () => {
     setSelStyle(style);
+    setSizeNotice(false);
+    setTitle(style.name);
   };
   return (
     <div>
@@ -33,12 +51,10 @@ export function StylesListEntry({ style, selStyle, setSelStyle }) {
           role="presentation"
           alt=""
           src={style.photos[0].thumbnail_url}
-          className="highlighted"
         /> : <ThumbImage
           role="presentation"
           alt=""
           src={style.photos[0].thumbnail_url}
-          className="thumbnail"
           onClick={clickHandler}
         />
       }
@@ -47,27 +63,3 @@ export function StylesListEntry({ style, selStyle, setSelStyle }) {
 }
 
 
-
-// import React, { useState } from 'react';
-// import { ModalImage, ModalOverlay, ThumbnailImage } from './styles';
-
-// const Thumbnail = ({ imageUrl }) => {
-//   const [isModalOpen, setIsModalOpen] = useState(false);
-
-//   return (
-//     <div>
-//       <ThumbnailImage
-//         src={imageUrl}
-//         alt='Review Thumbnail'
-//         onClick={() => setIsModalOpen(true)}
-//       />
-//       {isModalOpen && (
-//         <ModalOverlay onClick={() => setIsModalOpen(false)}>
-//           <ModalImage src={imageUrl} alt='Full Review' />
-//         </ModalOverlay>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Thumbnail;

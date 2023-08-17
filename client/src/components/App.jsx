@@ -3,10 +3,11 @@ import OverviewMain from './overview/OverviewMain';
 import ReviewMain from './reviews/ReviewMain';
 import RelatedProductsMain from './related_products/RelatedProductsMain';
 import AppContext from './AppContext';
+import { GlobalStyles } from './globalStyling';
 
 function App() {
   const [totalRatings, setTotalRatings] = useState(0);
-  const [productID, setProductID] = useState(40344);
+  const [productID, setProductID] = useState(40364);
 
   const contextValue = useMemo(
     () => ({
@@ -19,9 +20,10 @@ function App() {
   );
   return (
     <AppContext.Provider value={contextValue}>
-      <OverviewMain />
-      <ReviewMain />
-      <RelatedProductsMain />
+      <GlobalStyles />
+        <OverviewMain />
+        <ReviewMain />
+        <RelatedProductsMain />
     </AppContext.Provider>
   );
 }

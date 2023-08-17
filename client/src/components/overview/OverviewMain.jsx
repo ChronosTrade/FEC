@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import axios from 'axios';
 import AppContext from '../AppContext';
 import Add from './overview_components/Add';
@@ -9,15 +9,18 @@ import Price from './overview_components/Price';
 import QuantityList from './overview_components/QuantityList';
 import SizeList from './overview_components/SizeList';
 import StylesList from './overview_components/StylesList';
+import { GlobalStyles } from '../globalStyling';
 
 const OverviewMain = function () {
-  // const { totalRatings, setTotalRatings } = useContext(AppContext);
+  // const { totalRatings, setTotalRatings } = useContext(AppContext);'
   const [selStyle, setSelStyle] = useState({}); // Need data from API and set default style.
   const [selQuantity, setSelQuantity] = useState('-');
-  const [selSku, setSelSku] = useState({});
+  const [selSku, setSelSku] = useState(null);
   const [styles, setSelStyles] = useState([]); // DELETE LATER
-  const [totalStyleQuantity, setStyleQuantity] = useState(true);
+  const [sizeNotice, setSizeNotice] = useState(false);
+  const [showButton, setShowButton] = useState(true);
   const { productID } = useContext(AppContext);
+  const ref = useRef(null);
 
   useEffect(() => {
     const config = {
@@ -27,23 +30,17 @@ const OverviewMain = function () {
     };
     axios.get('/styles', config)
       .then((response) => {
-        setSelStyles(response.data.results);
-        setSelStyle(response.data.results[0]);
-        const arr = Object.keys(response.data.results[0].skus);
-        for (let i = 0; i < arr.length; i += 1) {
-          if (arr[i].quantity > 0) {
-            setStyleQuantity(true);
-          }
+        if(response.data.results.length > 0) {
+          setSelStyles(response.data.results);
+          setSelStyle(response.data.results[0]);
+          const arr = Object.keys(response.data.results[0].skus);
         }
+        // console.log('This is the data from the API', response.data);
       })
       .catch(() => {
         console.log('Server Error');
       });
   }, [productID]);
-
-  // const quantityHandler = function() {
-  //   setSelQuantity(quantity);
-  // }
 
   return (
     <section>
@@ -52,13 +49,17 @@ const OverviewMain = function () {
       <StylesList
         selStyle={selStyle}
         styles={styles}
+        productID={productID}
+        setSizeNotice={setSizeNotice}
         setSelStyle={setSelStyle}
-        setSelQuantity={setSelQuantity}
       />
       <SizeList
         selStyle={selStyle}
-        totalStyleQuantity={totalStyleQuantity}
+        sizeNotice={sizeNotice}
+        setShowButton={setShowButton}
+        setSizeNotice={setSizeNotice}
         setSelSku={setSelSku}
+        ref={ref}
       />
       <QuantityList
         selQuantity={selQuantity}
@@ -69,6 +70,9 @@ const OverviewMain = function () {
       <Add
         selSku={selSku}
         selQuantity={selQuantity}
+        showButton={showButton}
+        setSizeNotice={setSizeNotice}
+        ref={ref}
       />
     </section>
   );
