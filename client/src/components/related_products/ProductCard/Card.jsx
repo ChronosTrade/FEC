@@ -1,10 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import AppContext from '../../AppContext';
 import axios from 'axios';
 import { ActionButton, CardWrapper, ProductName, ProductCategory, ProductContainer, ProductPrice, ProductRating, ImageContainer, ProductImage } from './styles';
+import StarRating from '../../reviews/StarRating';
 
 function Card({product}) {
   const [defaultStyle, setDefaultStyle] = useState({})
   const [imageUrl, setImageUrl] = useState('');
+  const [productRatings, setProductRatings] = useState(0);
+  const { productID, setProductID } = useContext(AppContext);
 
   const getDefaultStyle = () => {
     const config = {
@@ -23,13 +27,39 @@ function Card({product}) {
     })
   }
 
+  const getRating = () => {
+    const config = {
+      params: {
+        product_id: product.id,
+      },
+    };
+    axios.get('/reviews/meta', config)
+      .then((response) => {
+        const ratings = response.data.ratings;
+        const totalRatings = Object.keys(ratings).reduce(
+          (acc, rating) => acc + Number(ratings[rating]),
+          0
+        );
+        const averageRating =
+        Object.keys(ratings).reduce(
+          (acc, rating) => acc + Number(rating) * Number(ratings[rating]),
+          0
+        ) / totalRatings;
+        setProductRatings(averageRating)
+      })
+      .catch(() => {
+        console.log('Unable to fetch rating');
+      })
+  }
+
   useEffect(() => {
+    getRating()
     getDefaultStyle();
   },[]);
 
 
   return (
-    <CardWrapper>
+    <CardWrapper onClick={() => setProductID(product.id)}>
       <ImageContainer>
         <ActionButton>&#9734;</ActionButton>
         <ProductImage src={imageUrl}/>
@@ -38,12 +68,7 @@ function Card({product}) {
         <ProductCategory>{product.category}</ProductCategory>
         <ProductName>{product.name}</ProductName>
         {defaultStyle !== undefined ? <ProductPrice>${defaultStyle.original_price}</ProductPrice>: <ProductPrice>${product.default_price}</ProductPrice> }
-        <ProductRating>&#9734;
-        &#9734;
-        &#9734;
-        &#9734;
-        &#9734;
-        </ProductRating>
+        <StarRating rating={productRatings} size='1rem'/>
       </ProductContainer>
     </CardWrapper>
   );
