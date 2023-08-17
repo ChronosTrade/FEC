@@ -4,7 +4,7 @@ import axios from 'axios';
 import { ActionButton, CardWrapper, ProductName, ProductCategory, ProductContainer, ProductPrice, ProductRating, ImageContainer, ProductImage } from './styles';
 import StarRating from '../../reviews/StarRating';
 
-function Card({product, change}) {
+function Card({product}) {
   const [defaultStyle, setDefaultStyle] = useState({})
   const [imageUrl, setImageUrl] = useState('');
   const [productRatings, setProductRatings] = useState(0);

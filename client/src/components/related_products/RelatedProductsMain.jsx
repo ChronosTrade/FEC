@@ -5,7 +5,7 @@ import ProductList from './Lists/ProductList';
 import Outfit from './Lists/Outfit';
 import AppContext from '../AppContext';
 
-function RelatedProductsMain({change}) {
+function RelatedProductsMain({}) {
   const { totalRatings, setTotalRatings } = useContext(AppContext);
   const { productID, setProductID } = useContext(AppContext);
   const  [currentProduct, setCurrentProduct]  = useState({});
