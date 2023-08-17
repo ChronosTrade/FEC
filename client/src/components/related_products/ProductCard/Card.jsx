@@ -1,12 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import AppContext from '../../AppContext';
 import axios from 'axios';
 import { ActionButton, CardWrapper, ProductName, ProductCategory, ProductContainer, ProductPrice, ProductRating, ImageContainer, ProductImage } from './styles';
 import StarRating from '../../reviews/StarRating';
 
-function Card({product}) {
+function Card({product, change}) {
   const [defaultStyle, setDefaultStyle] = useState({})
   const [imageUrl, setImageUrl] = useState('');
   const [productRatings, setProductRatings] = useState(0);
+  const { productID, setProductID } = useContext(AppContext);
 
   const getDefaultStyle = () => {
     const config = {
@@ -43,9 +45,7 @@ function Card({product}) {
           (acc, rating) => acc + Number(rating) * Number(ratings[rating]),
           0
         ) / totalRatings;
-
         setProductRatings(averageRating)
-
       })
       .catch(() => {
         console.log('Unable to fetch rating');
@@ -59,7 +59,7 @@ function Card({product}) {
 
 
   return (
-    <CardWrapper>
+    <CardWrapper onClick={() => setProductID(product.id)}>
       <ImageContainer>
         <ActionButton>&#9734;</ActionButton>
         <ProductImage src={imageUrl}/>
@@ -69,12 +69,6 @@ function Card({product}) {
         <ProductName>{product.name}</ProductName>
         {defaultStyle !== undefined ? <ProductPrice>${defaultStyle.original_price}</ProductPrice>: <ProductPrice>${product.default_price}</ProductPrice> }
         <StarRating rating={productRatings} size='1rem'/>
-        {/* <ProductRating>&#9734;
-        &#9734;
-        &#9734;
-        &#9734;
-        &#9734;
-        </ProductRating> */}
       </ProductContainer>
     </CardWrapper>
   );

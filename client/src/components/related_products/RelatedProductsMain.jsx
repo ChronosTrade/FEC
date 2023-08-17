@@ -5,11 +5,11 @@ import ProductList from './Lists/ProductList';
 import Outfit from './Lists/Outfit';
 import AppContext from '../AppContext';
 
-function RelatedProductsMain() {
+function RelatedProductsMain({change}) {
   const { totalRatings, setTotalRatings } = useContext(AppContext);
   const { productID, setProductID } = useContext(AppContext);
   const  [currentProduct, setCurrentProduct]  = useState({});
-  const [ relatedProducts, setRelatedProducts ] = useState([]);
+  const [relatedProducts, setRelatedProducts] = useState([]);
 
   const getProduct = (productID) => {
     return axios.get(`/products/${productID}`)
@@ -39,8 +39,7 @@ function RelatedProductsMain() {
 
   useEffect(() => {
     getRelated();
-
-  },[]);
+  },[productID]);
 
   return (
     <div>
