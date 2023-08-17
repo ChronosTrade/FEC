@@ -63,3 +63,20 @@ export const ActionButton = styled.button`
     color: #F5CB50;
   }
 `;
+
+export const ModalWrapper = styled.div`
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
+`;
+
+export const ModalContent = styled.div`
+  border: 1px solid black;
+  width: 40%;
+  min-width: 400px;
+  margin: 10% auto auto auto;
+  background-color: white
+`;

@@ -1,14 +1,17 @@
 import React, {useState, useEffect, useContext} from 'react';
+import { createPortal } from 'react-dom';
 import AppContext from '../../AppContext';
 import axios from 'axios';
 import { ActionButton, CardWrapper, ProductName, ProductCategory, ProductContainer, ProductPrice, ProductRating, ImageContainer, ProductImage } from './styles';
 import StarRating from '../../reviews/StarRating';
+import Comparison from './Comparison';
 
 function Card({product}) {
   const [defaultStyle, setDefaultStyle] = useState({})
   const [imageUrl, setImageUrl] = useState('');
   const [productRatings, setProductRatings] = useState(0);
   const { productID, setProductID } = useContext(AppContext);
+  const [showModal, setShowModal] = useState(false);
 
   const getDefaultStyle = () => {
     const config = {
@@ -59,9 +62,14 @@ function Card({product}) {
 
 
   return (
-    <CardWrapper onClick={() => setProductID(product.id)}>
+    <CardWrapper >
       <ImageContainer>
-        <ActionButton>&#9734;</ActionButton>
+        <ActionButton onClick={() => setShowModal(true)}>&#9734;</ActionButton>
+        {showModal && createPortal(
+          <Comparison onClose={ ()=> setShowModal(false)} />,
+          document.body
+        )}
+
         <ProductImage src={imageUrl}/>
       </ImageContainer>
       <ProductContainer>
