@@ -1,8 +1,8 @@
 import React from 'react';
 import StarRating from './StarRating';
 import styled from 'styled-components';
-import { 
-  SummaryWrapper, BarWrapper, BarLabel, Bar, FilledBar, BarSpot 
+import {
+  SummaryWrapper, BarWrapper, BarLabel, Bar, FilledBar, BarSpot
 } from './styles';
 
 const RatingSummary = ({ ratings, recommended, characteristics }) => {
