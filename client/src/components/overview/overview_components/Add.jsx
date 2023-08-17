@@ -7,10 +7,10 @@ export default function Add({
   const submitHandler = function (event) {
     event.preventDefault();
     const data = {
-      sku_id: selSku,
+      sku_id: selSku.sku_id,
       count: selQuantity,
     };
-    console.log(data);
+    console.log('data for cart', data);
     axios.post('/cart', data)
       .then(() => {
         console.log('Post Success');
@@ -23,4 +23,5 @@ export default function Add({
   return (
     <button type="button" onClick={submitHandler}>Add to Cart</button>
   );
+
 }
