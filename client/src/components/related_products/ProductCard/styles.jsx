@@ -35,10 +35,6 @@ export const ProductPrice = styled.p`
   margin-bottom: 35px
 `;
 
-export const ProductRating = styled.div`
-
-`;
-
 export const ImageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -73,10 +69,28 @@ export const ModalWrapper = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-export const ModalContent = styled.div`
+export const ModalContent = styled.table`
   border: 1px solid black;
   width: 40%;
+  height: 40%;
   min-width: 400px;
   margin: 10% auto auto auto;
   background-color: white
 `;
+
+export const ModalCaption = styled.caption`
+  caption-side: top;
+  background-color: white;
+  position: fixed;
+`
+
+export const HeaderRow = styled.tr`
+`;
+
+export const ProductHeader = styled.th`
+  scope: col;
+  border: 1px solid black;
+`;
+
+export const RowHeader = styled.th`
+`

@@ -66,7 +66,7 @@ function Card({product}) {
       <ImageContainer>
         <ActionButton onClick={() => setShowModal(true)}>&#9734;</ActionButton>
         {showModal && createPortal(
-          <Comparison onClose={ ()=> setShowModal(false)} />,
+          <Comparison features={product.features} onClose={ ()=> setShowModal(false)} />,
           document.body
         )}
 
