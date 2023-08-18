@@ -84,7 +84,7 @@ export const ModalCaption = styled.caption`
   caption-side: top;
   background-color: white;
   position: fixed;
-`
+`;
 
 export const HeaderRow = styled.tr`
 `;
@@ -95,4 +95,17 @@ export const ProductHeader = styled.th`
 `;
 
 export const CompareRow = styled.tr`
-`
+`;
+
+export const AddButtonContainer = styled.div`
+display: flex;
+flex-direction: column;
+position: relative;
+height: 85%
+`;
+
+export const AddButtomImage = styled.img`
+height: 100%;
+width: 100%;
+object-fit: contain;
+`;

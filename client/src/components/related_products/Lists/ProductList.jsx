@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext, useRef} from 'react';
 import { ListWrapper, ListCarousel, CardContainer, LeftButton, RightButton, ListTitle } from './styles';
 import Card from '../ProductCard/Card';
 
-function ProductList({ products}) {
+function ProductList({ products }) {
   const cardWidth = 220;
   const gap = 20;
   const divRef = useRef(null);
@@ -20,7 +20,7 @@ function ProductList({ products}) {
       <ListTitle>Related Products</ListTitle>
       {scrollValue > 0 && <LeftButton onClick={() => { handleArrowClick('left'); }}>&#10094;</LeftButton>}
       <ListCarousel ref={divRef}>
-        <CardContainer >
+        <CardContainer>
           {products.map((product) => <Card key={product.id} product={product} />)}
         </CardContainer>
       </ListCarousel>

@@ -10,6 +10,7 @@ function RelatedProductsMain() {
   const { productID, setProductID } = useContext(AppContext);
   const  [currentProduct, setCurrentProduct]  = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [outfit, setOutfit] = useState({});
 
   const getProduct = (productID) => {
     return axios.get(`/products/${productID}`)
@@ -44,7 +45,7 @@ function RelatedProductsMain() {
   return (
     <div>
       <ProductList products={relatedProducts}/>
-      {/* <Outfit /> */}
+      <Outfit outfit={outfit}/>
     </div>
   );
 }

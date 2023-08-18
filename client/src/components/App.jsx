@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
+import { GlobalStyles } from './globalStyling';
 import OverviewMain from './overview/OverviewMain';
 import ReviewMain from './reviews/ReviewMain';
 import RelatedProductsMain from './related_products/RelatedProductsMain';
 import AppContext from './AppContext';
 import UserContext from './UserContext';
-import { GlobalStyles } from './globalStyling';
+
 
 function App() {
   const [totalRatings, setTotalRatings] = useState(0);
