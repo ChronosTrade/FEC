@@ -1,4 +1,4 @@
-import React, { useState, useEffect, forwardRef} from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import Select from 'react-select';
 
 const Size = forwardRef(({
@@ -21,7 +21,7 @@ const Size = forwardRef(({
     setOptionsState({ value: null, label: 'Select Size' });
     setSelSku(null);
     setOutOfStock(false);
-    if (Object.keys(selStyle).length !== 0) {
+    if (Object.keys(selStyle).length) {
       setSizeOptions(selStyle.skus);
       const tempSizesArr = [];
       const set = {};

@@ -24,12 +24,12 @@ export default function ImageScroll({
   );
 }
 
-export function PhotoListEntry({
+function PhotoListEntry({
   photo,
   photos,
   selIndex,
   i,
-  setIndex
+  setIndex,
 }) {
   const clickHandler = (e) => {
     setIndex(Number(e.target.getAttribute('i')));
@@ -39,14 +39,12 @@ export function PhotoListEntry({
       {(photos[selIndex] === photo)
         ? (
           <PhotoSelect
-            role="presentation"
             alt=""
             src={photo.thumbnail_url}
             i={i}
           />
         ) : (
           <Photo
-            role="presentation"
             alt=""
             src={photo.thumbnail_url}
             i={i}

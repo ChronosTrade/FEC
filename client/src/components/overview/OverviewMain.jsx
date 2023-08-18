@@ -1,6 +1,9 @@
-import React, { useState, useContext, useEffect, useRef } from 'react';
+import React, {
+  useState, useContext, useEffect, useRef,
+} from 'react';
 import axios from 'axios';
 import AppContext from '../AppContext';
+// import UserContext from '../UserContext';
 import Add from './overview_components/Add';
 import Description from './overview_components/Description';
 import ImageGalleryMain from './overview_components/ImageGalleryMain';
@@ -9,15 +12,18 @@ import QuantityList from './overview_components/QuantityList';
 import SizeList from './overview_components/SizeList';
 import StylesList from './overview_components/StylesList';
 
-const OverviewMain = function () {
-  // const { totalRatings, setTotalRatings } = useContext(AppContext);'
+export default function OverviewMain() {
   const [selStyle, setSelStyle] = useState({});
   const [selQuantity, setSelQuantity] = useState('-');
   const [selSku, setSelSku] = useState(null);
   const [styles, setSelStyles] = useState([]);
   const [sizeNotice, setSizeNotice] = useState(false);
   const [showButton, setShowButton] = useState(true);
-  const { productID } = useContext(AppContext);
+  const {
+    productID,
+    totalRatings,
+    currentProduct,
+  } = useContext(AppContext);
   const ref = useRef(null);
 
   useEffect(() => {
@@ -31,8 +37,8 @@ const OverviewMain = function () {
         if (response.data.results.length > 0) {
           setSelStyles(response.data.results);
           setSelStyle(response.data.results[0]);
+          console.log(response.data.results[0]);
         }
-        console.log('This is the data from the API', response.data);
       })
       .catch(() => {
       });
@@ -40,7 +46,11 @@ const OverviewMain = function () {
 
   return (
     <section>
-      {/* <Description selStyle = {selStyle}/> */}
+      <Description
+        productID={productID}
+        currentProduct={currentProduct}
+        totalRatings={totalRatings}
+      />
       <ImageGalleryMain
         selStyle={selStyle}
         productID={productID}
@@ -74,5 +84,4 @@ const OverviewMain = function () {
       />
     </section>
   );
-};
-export default OverviewMain;
+}
