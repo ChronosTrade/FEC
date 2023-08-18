@@ -8,7 +8,6 @@ import Price from './overview_components/Price';
 import QuantityList from './overview_components/QuantityList';
 import SizeList from './overview_components/SizeList';
 import StylesList from './overview_components/StylesList';
-import { GlobalStyles } from '../globalStyling';
 
 const OverviewMain = function () {
   // const { totalRatings, setTotalRatings } = useContext(AppContext);'
@@ -29,15 +28,13 @@ const OverviewMain = function () {
     };
     axios.get('/styles', config)
       .then((response) => {
-        if(response.data.results.length > 0) {
+        if (response.data.results.length > 0) {
           setSelStyles(response.data.results);
           setSelStyle(response.data.results[0]);
-          const arr = Object.keys(response.data.results[0].skus);
         }
-        // console.log('This is the data from the API', response.data);
+        console.log('This is the data from the API', response.data);
       })
       .catch(() => {
-        console.log('Server Error');
       });
   }, [productID]);
 
@@ -67,7 +64,7 @@ const OverviewMain = function () {
         selSku={selSku}
         setSelQuantity={setSelQuantity}
       />
-      <Price selStyle = {selStyle}/>
+      <Price selStyle={selStyle} />
       <Add
         selSku={selSku}
         selQuantity={selQuantity}

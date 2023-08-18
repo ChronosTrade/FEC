@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ThumbImage, ThumbImageSelect, StylePhotosWrapper } from './stylesListStyling'
+import { ThumbImage, ThumbImageSelect, StylePhotosWrapper } from './stylesListStyling';
 
 export default function StylesList({
   selStyle,
@@ -9,10 +9,10 @@ export default function StylesList({
 }) {
   const [title, setTitle] = useState('');
   useEffect(() => {
-    if(styles.length > 0) {
-      setTitle(styles[0].name)
+    if (styles.length > 0) {
+      setTitle(styles[0].name);
     }
-  },[styles])
+  }, [styles]);
   return (
     <StylePhotosWrapper role="presentation">
       <h3>{title}</h3>
@@ -47,19 +47,20 @@ export function StylesListEntry({
   return (
     <div>
       {(selStyle === style)
-        ? <ThumbImageSelect
-          role="presentation"
-          alt=""
-          src={style.photos[0].thumbnail_url}
-        /> : <ThumbImage
-          role="presentation"
-          alt=""
-          src={style.photos[0].thumbnail_url}
-          onClick={clickHandler}
-        />
-      }
+        ? (
+          <ThumbImageSelect
+            role="presentation"
+            alt=""
+            src={style.photos[0].thumbnail_url}
+          />
+        ) : (
+          <ThumbImage
+            role="presentation"
+            alt=""
+            src={style.photos[0].thumbnail_url}
+            onClick={clickHandler}
+          />
+        )}
     </div>
   );
 }
-
-

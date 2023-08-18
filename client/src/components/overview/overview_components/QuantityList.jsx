@@ -13,10 +13,10 @@ export default function Quantity({
       const quantity = selSku.quantity;
       let tempQuantityArr = [];
       if (quantity > 15) {
-        tempQuantityArr = Array.from(new Array(15).keys(), (x, i) => i + 1)
+        tempQuantityArr = Array.from(new Array(15).keys(), (x, i) => i + 1);
         setQuantityArray(tempQuantityArr);
       } else {
-        tempQuantityArr = Array.from(new Array(quantity).keys(), (x, i) => i + 1)
+        tempQuantityArr = Array.from(new Array(quantity).keys(), (x, i) => i + 1);
         setQuantityArray(tempQuantityArr);
       }
       if (selQuantity === '-') {
@@ -30,8 +30,8 @@ export default function Quantity({
       setShowOptions(false);
       setOptionsState('-');
     }
-  }, [selSku, selQuantity]);
-  const handleChange = function (event) {
+  }, [selSku, selQuantity, setSelQuantity]);
+  const handleChange = (event) => {
     setOptionsState(event.target.value);
     setSelQuantity(event.target.value);
   };
@@ -47,7 +47,7 @@ export default function Quantity({
             onChange={handleChange}
           >
             {quantityArray.map((index) => (
-              <option key={index}>{quantityArray[index-1]}</option>
+              <option key={index}>{quantityArray[index - 1]}</option>
             ))}
           </select>
         ) : <option>-</option>}
