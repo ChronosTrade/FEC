@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { MainImage } from './ImageMainStyles'
+import PropTypes from 'prop-types';
+import { MainImage } from './ImageMainStyles';
+import ImageScroll from './ImageScroll';
 
 export default function ImageGalleryMain({
   selStyle,
@@ -9,71 +11,95 @@ export default function ImageGalleryMain({
   const [mainImg, setMainImg] = useState('');
   const [showLeft, setShowLeft] = useState(false);
   const [showRight, setShowRight] = useState(true);
+  const [maxIndex, setMaxIndex] = useState(0);
+  const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
     if (Object.keys(selStyle).length > 0) {
-      if (selStyle.photos.length === 1) {
-        setShowRight(false);
+      setMaxIndex(selStyle.photos.length - 1);
+      setPhotos(selStyle.photos);
+    }
+  }, [selStyle]);
+
+  useEffect(() => {
+    if (photos.length > 0) {
+      if (maxIndex === 0) {
         setShowLeft(false);
-        setIndex(0);
-        setMainImage(selStyle.photos[0].url);
-      } else if (index >= selStyle.photos.length - 1) {
-        setIndex(selStyle.photos.length - 1);
-        setMainImg(selStyle.photos[selStyle.photos.length - 1].url);
         setShowRight(false);
-      } else if (index < selStyle.photos.length - 1 && showRight === false) {
+        setIndex(0);
+        setMainImg(photos[0].url);
+      }
+      if (index > maxIndex) {
+        setIndex(maxIndex);
+      }
+      if (index > 0) {
+        setShowLeft(true);
+      }
+      if (index === 0) {
+        setShowLeft(false);
+      }
+      if (index === maxIndex) {
+        setShowRight(false);
+      }
+      if (index < maxIndex) {
         setShowRight(true);
-        setMainImg(selStyle.photos[index].url);
-      } else {
-        setMainImg(selStyle.photos[index].url);
+      }
+      if (photos[index]) {
+        setMainImg(photos[index].url);
       }
     }
-  }, [selStyle, index])
+  }, [index, maxIndex, photos]);
 
   useEffect(() => {
     setIndex(0);
     setShowLeft(false);
     setShowRight(true);
-  }, [productID])
+  }, [productID]);
 
-  const clickHandlerL = function () {
-    if (index > 1) {
+  const clickHandlerL = function clickHandlerL() {
+    if (index > 0) {
       setIndex(index - 1);
-    } else if (index === 1) {
-      setIndex(index - 1);
-      setShowLeft(false);
     }
-    if (showRight === false) {
-      setShowRight(true);
-    }
-  }
+  };
 
-  const clickHandlerR = function () {
-    if (index < selStyle.photos.length - 1) {
+  const clickHandlerR = function clickHandlerR() {
+    if (index < maxIndex) {
       setIndex(index + 1);
-    } else if (index === selStyle.photos.length - 2) {
-      setIndex(index + 1);
-      setShowRight(false);
     }
-    if (showLeft === false) {
-      setShowLeft(true);
-    }
-  }
+  };
 
   return (
     <div>
-      {/* <ImageGallery
-        index={index}
-        selStyle={selStyle}
-      /> */}
+      <ImageScroll
+        selIndex={index}
+        photos={photos}
+        setIndex={setIndex}
+      />
 
       <MainImage
         src={mainImg}
       />
-      {showLeft ? <button onClick={clickHandlerL}>GoLeft</button> : null}
-      {showRight ? <button onClick={clickHandlerR}>GoRight</button> : null}
+      {showLeft ? (
+        <button
+          type="button"
+          onClick={clickHandlerL}
+        >
+          GoLeft
+        </button>
+      ) : null}
+      {showRight ? (
+        <button
+          type="button"
+          onClick={clickHandlerR}
+        >
+          GoRight
+        </button>
+      ) : null}
 
     </div>
   );
 }
 
+ImageGalleryMain.proppTypes = {
+  selStyle: PropTypes.shape.isRequired,
+};

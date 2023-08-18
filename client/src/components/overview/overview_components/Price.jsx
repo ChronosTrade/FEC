@@ -7,7 +7,7 @@ export default function Price({
   const [sale, setSale] = useState(null);
   const [showSale, setShowSale] = useState(false);
   useEffect(() => {
-    if(!selStyle.sale_price) {
+    if (!selStyle.sale_price) {
       setPrice(selStyle.original_price);
       setSale(null);
       setShowSale(false);
@@ -16,12 +16,20 @@ export default function Price({
       setSale(selStyle.sale_price);
       setShowSale(true);
     }
-  }, [selStyle])
+  }, [selStyle]);
   return (
     <div>
       {!showSale
-        ? <h3>${price}</h3>: <h3>${price} ${sale}</h3>
-      }
+        ? (
+          <h3>
+            {price}
+          </h3>
+        ) : (
+          <h3>
+            {price}
+            {sale}
+          </h3>
+        )}
     </div>
-  )
+  );
 }
