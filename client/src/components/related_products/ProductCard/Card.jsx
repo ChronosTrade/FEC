@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import AppContext from '../../AppContext';
 import axios from 'axios';
 import { ActionButton, CardWrapper, ProductName, ProductCategory, ProductContainer, ProductPrice, ProductRating, ImageContainer, ProductImage } from './styles';
-import StarRating from '../../reviews/StarRating';
+import StarByProductId from '../../reviews/StarByProductId';
 import Comparison from './Comparison';
 
 function Card({product}) {
@@ -30,33 +30,7 @@ function Card({product}) {
     })
   }
 
-  const getRating = () => {
-    const config = {
-      params: {
-        product_id: product.id,
-      },
-    };
-    axios.get('/reviews/meta', config)
-      .then((response) => {
-        const ratings = response.data.ratings;
-        const totalRatings = Object.keys(ratings).reduce(
-          (acc, rating) => acc + Number(ratings[rating]),
-          0
-        );
-        const averageRating =
-        Object.keys(ratings).reduce(
-          (acc, rating) => acc + Number(rating) * Number(ratings[rating]),
-          0
-        ) / totalRatings;
-        setProductRatings(averageRating)
-      })
-      .catch(() => {
-        console.log('Unable to fetch rating');
-      })
-  }
-
   useEffect(() => {
-    getRating()
     getDefaultStyle();
   },[]);
 
@@ -76,7 +50,7 @@ function Card({product}) {
         <ProductCategory>{product.category}</ProductCategory>
         <ProductName>{product.name}</ProductName>
         {defaultStyle !== undefined ? <ProductPrice>${defaultStyle.original_price}</ProductPrice>: <ProductPrice>${product.default_price}</ProductPrice> }
-        <StarRating rating={productRatings} size='1rem'/>
+        <StarByProductId productId={product.id.toString()}/>
       </ProductContainer>
     </CardWrapper>
   );

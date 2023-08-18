@@ -1,10 +1,13 @@
 import React, {useState, useEffect, useContext} from 'react';
 import { ModalWrapper, ModalContent, ModalCaption, HeaderRow, ProductHeader } from './styles';
+import UserContext from '../../UserContext';
 
 function Comparison({ onClose, features }) {
-  const [currentProductFeatures, setCurrentProductFeatures] = useState([]);
+  const {currentProduct, setCurrentProduct } = useContext(UserContext)
+  const [currentProductFeatures, setCurrentProductFeatures] = useState(currentProduct.features);
   const [comparedProductFeatures, setComparedProductFeatures] = useState(features);
 
+  console.log(currentProductFeatures)
   console.log(comparedProductFeatures)
   return (
     <ModalWrapper onClick={onClose}>
