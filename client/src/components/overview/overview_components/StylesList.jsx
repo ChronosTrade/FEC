@@ -32,7 +32,7 @@ export default function StylesList({
   );
 }
 
-export function StylesListEntry({
+function StylesListEntry({
   style,
   selStyle,
   setSelStyle,
@@ -49,13 +49,11 @@ export function StylesListEntry({
       {(selStyle === style)
         ? (
           <ThumbImageSelect
-            role="presentation"
             alt=""
             src={style.photos[0].thumbnail_url}
           />
         ) : (
           <ThumbImage
-            role="presentation"
             alt=""
             src={style.photos[0].thumbnail_url}
             onClick={clickHandler}

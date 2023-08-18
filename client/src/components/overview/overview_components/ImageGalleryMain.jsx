@@ -5,7 +5,7 @@ import ImageScroll from './ImageScroll';
 
 export default function ImageGalleryMain({
   selStyle,
-  productID
+  productID,
 }) {
   const [index, setIndex] = useState(0);
   const [mainImg, setMainImg] = useState('');
@@ -15,7 +15,7 @@ export default function ImageGalleryMain({
   const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
-    if (Object.keys(selStyle).length > 0) {
+    if (Object.keys(selStyle).length) {
       setMaxIndex(selStyle.photos.length - 1);
       setPhotos(selStyle.photos);
     }
@@ -100,6 +100,15 @@ export default function ImageGalleryMain({
   );
 }
 
-ImageGalleryMain.proppTypes = {
-  selStyle: PropTypes.shape.isRequired,
-};
+// ImageGalleryMain.propTypes = {
+//   // selStyle: PropTypes.shape({
+//   //   default: PropTypes.boolean,
+//   //   name: PropTypes.string,
+//   //   // original_price: PropTypes.string,
+//   //   // photos Array of
+//   //   // sale_price: PropTypes.string,
+//   //   // skus:
+//   //   // style_id: PropTypes.integer
+//   // }),
+//   productID: PropTypes.shape.isRequired,
+// };
