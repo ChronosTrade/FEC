@@ -11,7 +11,6 @@ export default function ImageGalleryMain({
   const [showRight, setShowRight] = useState(true);
 
   useEffect(() => {
-    console.log(selStyle);
     if (Object.keys(selStyle).length > 0) {
       if (selStyle.photos.length === 1) {
         setShowRight(false);
@@ -19,19 +18,13 @@ export default function ImageGalleryMain({
         setIndex(0);
         setMainImage(selStyle.photos[0].url);
       } else if (index >= selStyle.photos.length - 1) {
-        console.log('max to less catch');
-        console.log('index in max to less', index);
         setIndex(selStyle.photos.length - 1);
         setMainImg(selStyle.photos[selStyle.photos.length - 1].url);
         setShowRight(false);
       } else if (index < selStyle.photos.length - 1 && showRight === false) {
-        console.log('min to more catch');
-
         setShowRight(true);
         setMainImg(selStyle.photos[index].url);
       } else {
-        console.log('No change catch');
-        console.log(index);
         setMainImg(selStyle.photos[index].url);
       }
     }
@@ -58,15 +51,13 @@ export default function ImageGalleryMain({
   const clickHandlerR = function () {
     if (index < selStyle.photos.length - 1) {
       setIndex(index + 1);
-    }      if (index === selStyle.photos.length -2) {
+    } else if (index === selStyle.photos.length - 2) {
       setIndex(index + 1);
       setShowRight(false);
     }
     if (showLeft === false) {
       setShowLeft(true);
     }
-    // setMainImg[selStyle.photos[tempIndex].url]
-    // console.log(selStyle.photos[tempIndex].url);
   }
 
   return (

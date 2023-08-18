@@ -34,7 +34,7 @@ const OverviewMain = function () {
           setSelStyle(response.data.results[0]);
           const arr = Object.keys(response.data.results[0].skus);
         }
-        console.log('This is the data from the API', response.data);
+        // console.log('This is the data from the API', response.data);
       })
       .catch(() => {
         console.log('Server Error');
