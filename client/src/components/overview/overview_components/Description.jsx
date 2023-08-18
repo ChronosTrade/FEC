@@ -46,7 +46,7 @@ export default function Description({ currentProduct, totalRatings }) {
       {showShare && (
         <>
           <ModalBackground onClick={closeModal} />
-          <Modal onClick={(e) => e.stopPropogation()}>
+          <Modal onClick={(e) => e.stopPropagation()}>
             <ShareView setShowShare={setShowShare} />
           </Modal>
         </>
