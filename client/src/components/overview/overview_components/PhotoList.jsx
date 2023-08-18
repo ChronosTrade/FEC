@@ -1,8 +1,6 @@
 import React from 'react';
 import { ThumbImage, ThumbImageSelect, StylePhotosWrapper } from './stylesListStyling'
 
-
-
 export function PhotoListEntry({ style, selStyle, setSelStyle }) {
   const clickHandler = () => {
     setSelStyle(style);

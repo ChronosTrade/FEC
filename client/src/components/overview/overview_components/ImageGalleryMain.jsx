@@ -1,67 +1,87 @@
-import React from 'react';
-import { ThumbImage, ThumbImageSelect, StylePhotosWrapper } from './stylesListStyling'
+import React, { useState, useEffect } from 'react';
+import { MainImage } from './ImageMainStyles'
 
-export default function PhotoList({
+export default function ImageGalleryMain({
   selStyle,
+  productID
 }) {
-  return (
-    useEffect(() => {
-      if (Object.keys(selStyle).length !== 0) {
-        setSizeOptions(selStyle.skus);
-        setSkus(Object.keys(selStyle.skus));
-        const tempSizeMap = {};
-        const tempSizeArr = [];
-        const set = {};
-        Object.keys(selStyle.skus).forEach((key) => {
-          if (!set[selStyle.skus[key].size]) {
-            tempSizeArr.push(key);
-            tempSizeMap[selStyle.skus[key].size] = {
-              sku_id: key,
-              quantity: selStyle.skus[key].quantity,
-            };
-          }
-          set[selStyle.skus[key].size] = true;
-        });
-        setSizeMap(tempSizeMap);
-        setSkus(tempSizeArr);
+  const [index, setIndex] = useState(0);
+  const [mainImg, setMainImg] = useState('');
+  const [showLeft, setShowLeft] = useState(false);
+  const [showRight, setShowRight] = useState(true);
+
+  useEffect(() => {
+    console.log(selStyle);
+    if (Object.keys(selStyle).length > 0) {
+      if (selStyle.photos.length === 1) {
+        setShowRight(false);
+        setShowLeft(false);
+        setIndex(0);
+        setMainImage(selStyle.photos[0].url);
+      } else if (index >= selStyle.photos.length - 1) {
+        console.log('max to less catch');
+        console.log('index in max to less', index);
+        setIndex(selStyle.photos.length - 1);
+        setMainImg(selStyle.photos[selStyle.photos.length - 1].url);
+        setShowRight(false);
+      } else if (index < selStyle.photos.length - 1 && showRight === false) {
+        console.log('min to more catch');
+
+        setShowRight(true);
+        setMainImg(selStyle.photos[index].url);
+      } else {
+        console.log('No change catch');
+        console.log(index);
+        setMainImg(selStyle.photos[index].url);
       }
-    }, [selStyle]);
+    }
+  }, [selStyle, index])
 
-    <ImagePhotosWrapper role="presentation">
-      {styles.map(
-        (style) => (
-          <StylesListEntry
-            style={style}
-            key={style.style_id}
-            selStyle={selStyle}
-            setSelStyle={setSelStyle}
-          />
-        ),
-      )}
-    </ImagePhotosWrapper>
-  );
-}
+  useEffect(() => {
+    setIndex(0);
+    setShowLeft(false);
+    setShowRight(true);
+  }, [productID])
 
-export function PhotoListEntry({ style, selStyle, setSelStyle }) {
-  const clickHandler = () => {
-    setSelStyle(style);
-  };
+  const clickHandlerL = function () {
+    if (index > 1) {
+      setIndex(index - 1);
+    } else if (index === 1) {
+      setIndex(index - 1);
+      setShowLeft(false);
+    }
+    if (showRight === false) {
+      setShowRight(true);
+    }
+  }
+
+  const clickHandlerR = function () {
+    if (index < selStyle.photos.length - 1) {
+      setIndex(index + 1);
+    }      if (index === selStyle.photos.length -2) {
+      setIndex(index + 1);
+      setShowRight(false);
+    }
+    if (showLeft === false) {
+      setShowLeft(true);
+    }
+    // setMainImg[selStyle.photos[tempIndex].url]
+    // console.log(selStyle.photos[tempIndex].url);
+  }
+
   return (
     <div>
-      {(selStyle === style)
-        ? <ThumbImageSelect
-          role="presentation"
-          alt=""
-          src={style.photos[0].thumbnail_url}
-          className="highlighted"
-        /> : <ThumbImage
-          role="presentation"
-          alt=""
-          src={style.photos[0].thumbnail_url}
-          className="thumbnail"
-          onClick={clickHandler}
-        />
-      }
+      {/* <ImageGallery
+        index={index}
+        selStyle={selStyle}
+      /> */}
+
+      <MainImage
+        src={mainImg}
+      />
+      {showLeft ? <button onClick={clickHandlerL}>GoLeft</button> : null}
+      {showRight ? <button onClick={clickHandlerR}>GoRight</button> : null}
+
     </div>
   );
 }

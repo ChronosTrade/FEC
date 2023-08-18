@@ -79,7 +79,6 @@ const Size = forwardRef(function Size({
         ) : (
           <Select
             aria-label="Size Options"
-            // placeHolder="Out of Stock"
             isDisabled={true}
             value={optionsState}
             // openMenuOnFocus={true}

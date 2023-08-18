@@ -7,7 +7,7 @@ import { GlobalStyles } from './globalStyling';
 
 function App() {
   const [totalRatings, setTotalRatings] = useState(0);
-  const [productID, setProductID] = useState(40364);
+  const [productID, setProductID] = useState(40344);
 
   const contextValue = useMemo(
     () => ({
