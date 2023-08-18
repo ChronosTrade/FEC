@@ -1,4 +1,3 @@
-// styles.js
 import styled from 'styled-components';
 
 export const MainImage = styled.img`
@@ -39,4 +38,29 @@ export const PhotosWrapper = styled.div`
     object-fit: cover;
     overflow: hidden;
   }
+`;
+
+export const Modal = styled.div`
+  position: fixed;
+  top: center;
+  left: center;
+  font-family: 'Nunito', sans-serif;
+  background: #f6f6f6;
+  width: 50rem;
+  height: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ModalBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1000%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

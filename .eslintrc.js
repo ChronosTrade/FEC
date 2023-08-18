@@ -2,7 +2,7 @@ module.exports = {
     "env": {
         "browser": true,
         "es2021": true,
-        "jest/globals": true
+        "jest": true
     },
     "extends": ["airbnb", "airbnb/hooks"],
     "overrides": [
@@ -23,7 +23,8 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        // "jest"
     ],
     "rules": {
     }
