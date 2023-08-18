@@ -36,6 +36,7 @@ const Size = forwardRef(function Size({
         }
         set[selStyle.skus[key].size] = true;
       });
+      // If data only includes 1 size as an option
       if (Object.keys(selStyle.skus).length === 1) {
         setOptionsState(tempSizesArr[0])
         const tempSkuObj = {
@@ -43,6 +44,7 @@ const Size = forwardRef(function Size({
           quantity: selStyle.skus[tempSizesArr[0].value].quantity
         }
       }
+      // If all quantities of sizes of the selected style are out of stock
       if (count === 0) {
         setOutOfStock(true);
         setOptionsState({ value: null, label: 'Out of Stock' });
