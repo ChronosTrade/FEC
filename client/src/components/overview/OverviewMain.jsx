@@ -3,8 +3,7 @@ import axios from 'axios';
 import AppContext from '../AppContext';
 import Add from './overview_components/Add';
 import Description from './overview_components/Description';
-import MainImage from './overview_components/MainImage';
-import PhotoList from './overview_components/PhotoList';
+import ImageGalleryMain from './overview_components/ImageGalleryMain';
 import Price from './overview_components/Price';
 import QuantityList from './overview_components/QuantityList';
 import SizeList from './overview_components/SizeList';
@@ -13,10 +12,10 @@ import { GlobalStyles } from '../globalStyling';
 
 const OverviewMain = function () {
   // const { totalRatings, setTotalRatings } = useContext(AppContext);'
-  const [selStyle, setSelStyle] = useState({}); // Need data from API and set default style.
+  const [selStyle, setSelStyle] = useState({});
   const [selQuantity, setSelQuantity] = useState('-');
   const [selSku, setSelSku] = useState(null);
-  const [styles, setSelStyles] = useState([]); // DELETE LATER
+  const [styles, setSelStyles] = useState([]);
   const [sizeNotice, setSizeNotice] = useState(false);
   const [showButton, setShowButton] = useState(true);
   const { productID } = useContext(AppContext);
@@ -45,11 +44,13 @@ const OverviewMain = function () {
   return (
     <section>
       {/* <Description selStyle = {selStyle}/> */}
-      {/* <Photos selStyle = {selStyle}/> */}
+      <ImageGalleryMain
+        selStyle={selStyle}
+        productID={productID}
+      />
       <StylesList
         selStyle={selStyle}
         styles={styles}
-        productID={productID}
         setSizeNotice={setSizeNotice}
         setSelStyle={setSelStyle}
       />

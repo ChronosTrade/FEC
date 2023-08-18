@@ -18,6 +18,31 @@ function ReviewMain() {
   const [reviewMeta, setReviewMeta] = useState({});
   const [displayedReviewsCount, setDisplayedReviewsCount] = useState(2);
 
+  function convertToNumbers(data) {
+    const convertedRatings = Object.fromEntries(
+      Object.entries(data.ratings).map(([key, value]) => [key, Number(value)]),
+    );
+
+    const convertedRecommended = {
+      true: Number(data.recommended.true),
+      false: Number(data.recommended.false),
+    };
+
+    const convertedCharacteristics = Object.fromEntries(
+      Object.entries(data.characteristics).map(([key, charObj]) => [
+        key,
+        { ...charObj, value: Number(charObj.value) },
+      ]),
+    );
+
+    return {
+      ...data,
+      ratings: convertedRatings,
+      recommended: convertedRecommended,
+      characteristics: convertedCharacteristics,
+    };
+  }
+
   useEffect(() => {
     axios
       .get(`/reviews?product_id=${productID}`)
@@ -28,7 +53,10 @@ function ReviewMain() {
 
     axios
       .get(`/reviews/meta?product_id=${productID}`)
-      .then((response) => setReviewMeta(response.data))
+      .then((response) => {
+        const modifiedData = convertToNumbers(response.data);
+        setReviewMeta(modifiedData);
+      })
       .catch((error) => {
         console.error(error);
       });
