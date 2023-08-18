@@ -6,6 +6,7 @@ export const CardWrapper = styled.div`
   flex-direction: column;
   flex: 0 0 220px;
   height: 350px;
+  z-index: 1;
   border-radius: 5px;
   box-shadow: 0 0 20px rgba(0, 0, 0, .05), 0 0px 40px rgba(0, 0, 0, .08);
   box-sizing: border-box;
@@ -55,6 +56,7 @@ export const ActionButton = styled.button`
   align-self: flex-end;
   background: none;
   border: none;
+  z-index: 3;
   &:hover {
     color: #F5CB50;
   }
@@ -92,5 +94,5 @@ export const ProductHeader = styled.th`
   border: 1px solid black;
 `;
 
-export const RowHeader = styled.th`
+export const CompareRow = styled.tr`
 `

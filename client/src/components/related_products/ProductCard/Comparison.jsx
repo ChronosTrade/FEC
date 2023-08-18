@@ -1,14 +1,36 @@
 import React, {useState, useEffect, useContext} from 'react';
-import { ModalWrapper, ModalContent, ModalCaption, HeaderRow, ProductHeader } from './styles';
+import { ModalWrapper, ModalContent, ModalCaption, HeaderRow, ProductHeader,CompareRow } from './styles';
+import { isEqual } from 'lodash'
 import UserContext from '../../UserContext';
 
-function Comparison({ onClose, features }) {
+function Comparison({ onClose, name, features }) {
   const {currentProduct, setCurrentProduct } = useContext(UserContext)
   const [currentProductFeatures, setCurrentProductFeatures] = useState(currentProduct.features);
   const [comparedProductFeatures, setComparedProductFeatures] = useState(features);
 
-  console.log(currentProductFeatures)
-  console.log(comparedProductFeatures)
+  const combinedFeatures = [
+    ...currentProductFeatures,
+    ...comparedProductFeatures
+  ]
+  const keys = combinedFeatures.map(({feature}) => feature);
+  const filteredFeatures = combinedFeatures.filter(({feature}, index) =>
+                            !keys.includes(feature, index + 1));
+
+
+  const compare = (product, trait) => {
+    if (product === 1) {
+      for (var i = 0; i < currentProductFeatures.length; i++) {
+        if (_.isEqual(currentProductFeatures[i], trait))
+        return <span>&#10003;</span>
+      }
+    } else if (product === 2) {
+      for (var i = 0; i < comparedProductFeatures.length; i++) {
+        if (_.isEqual(comparedProductFeatures[i], trait))
+        return <span>&#10003;</span>
+      }
+    }
+  }
+
   return (
     <ModalWrapper onClick={onClose}>
     <ModalContent>
@@ -17,27 +39,18 @@ function Comparison({ onClose, features }) {
       </ModalCaption>
       <thead>
         <HeaderRow>
-          <ProductHeader>Product 1</ProductHeader>
+          <ProductHeader>{currentProduct.name}</ProductHeader>
           <ProductHeader>Blank</ProductHeader>
-          <ProductHeader>Product 2</ProductHeader>
+          <ProductHeader>{name}</ProductHeader>
         </HeaderRow>
       </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Characteristic</td>
-            <td>X</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Characteristic</td>
-            <td>Y</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Characteristic</td>
-            <td>Z</td>
-          </tr>
+          {filteredFeatures.map((char, i) =>
+          <CompareRow key={i}>
+            <td>{compare(1, char)}</td>
+            {char.value ? <td>{char.value}</td> :<td>{char.feature}</td> }
+            <td>{compare(2, char)}</td>
+          </CompareRow>)}
         </tbody>
     </ModalContent>
     </ModalWrapper>

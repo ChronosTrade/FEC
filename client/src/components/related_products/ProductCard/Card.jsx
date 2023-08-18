@@ -36,17 +36,17 @@ function Card({product}) {
 
 
   return (
-    <CardWrapper >
+    <CardWrapper>
       <ImageContainer>
         <ActionButton onClick={() => setShowModal(true)}>&#9734;</ActionButton>
         {showModal && createPortal(
-          <Comparison features={product.features} onClose={ ()=> setShowModal(false)} />,
+          <Comparison name={product.name} features={product.features} onClose={ ()=> setShowModal(false)} />,
           document.body
         )}
 
         <ProductImage src={imageUrl}/>
       </ImageContainer>
-      <ProductContainer>
+      <ProductContainer onClick={() => setProductID(product.id)}>
         <ProductCategory>{product.category}</ProductCategory>
         <ProductName>{product.name}</ProductName>
         {defaultStyle !== undefined ? <ProductPrice>${defaultStyle.original_price}</ProductPrice>: <ProductPrice>${product.default_price}</ProductPrice> }
