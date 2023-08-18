@@ -1,17 +1,37 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { ListWrapper, ListCarousel, CardContainer, RightButton, ListTitle } from './styles';
 import Card from '../ProductCard/Card';
 import AddToOutfit from '../ProductCard/AddToOutfit';
+import AppContext from '../../AppContext';
 
-function Outfit({ outfit }) {
+function Outfit() {
+  const [outfit, setOutfit] = useState([]);
+  const {currentProduct, setCurrentProduct } = useContext(AppContext);
+
+  const addProduct = () => {
+    setOutfit([...outfit, currentProduct]);
+  };
+
+  useEffect(() => {
+    const result = JSON.parse(localStorage.getItem('outfit'));
+    if (result) {
+      setOutfit(result);
+    }
+    console.log(result);
+    // localStorage.setItem('outfit', JSON.stringify(outfit));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('outfit', JSON.stringify(outfit));
+  }, [outfit]);
 
   return (
     <ListWrapper>
       <ListTitle>Your Outfit</ListTitle>
       <ListCarousel>
         <CardContainer>
-          <AddToOutfit />
-          <Card />
+          <AddToOutfit add={addProduct} outfit={outfit}/>
+          {outfit.length > 0 && outfit.map((product, i) => <Card key={i} product={product} type='outfit'/>)}
         </CardContainer>
       </ListCarousel>
     </ListWrapper>

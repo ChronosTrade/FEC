@@ -109,3 +109,16 @@ height: 100%;
 width: 100%;
 object-fit: contain;
 `;
+
+export const RemoveButton = styled.button`
+  color: #000000;
+  position: absolute;
+  align-self: flex-end;
+  background: none;
+  border: none;
+  font-size: 28px;
+  z-index: 3;
+  &:hover {
+    color: #FA0010;
+  }
+`;

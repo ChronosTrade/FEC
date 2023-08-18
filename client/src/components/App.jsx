@@ -23,7 +23,6 @@ function App() {
       });
   }, [productID]);
 
-
   const contextValue = useMemo(
     () => ({
       productID,

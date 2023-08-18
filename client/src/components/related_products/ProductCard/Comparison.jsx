@@ -1,10 +1,10 @@
 import React, {useState, useEffect, useContext} from 'react';
 import { ModalWrapper, ModalContent, ModalCaption, HeaderRow, ProductHeader,CompareRow } from './styles';
 import { isEqual } from 'lodash'
-import UserContext from '../../UserContext';
+import AppContext from '../../AppContext';
 
 function Comparison({ onClose, name, features }) {
-  const {currentProduct, setCurrentProduct } = useContext(UserContext)
+  const {currentProduct, setCurrentProduct } = useContext(AppContext);
   const [currentProductFeatures, setCurrentProductFeatures] = useState(currentProduct.features);
   const [comparedProductFeatures, setComparedProductFeatures] = useState(features);
 

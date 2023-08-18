@@ -2,11 +2,11 @@ import React, {useState, useEffect, useContext} from 'react';
 import { createPortal } from 'react-dom';
 import AppContext from '../../AppContext';
 import axios from 'axios';
-import { ActionButton, CardWrapper, ProductName, ProductCategory, ProductContainer, ProductPrice, ProductRating, ImageContainer, ProductImage } from './styles';
+import { ActionButton, CardWrapper, ProductName, ProductCategory, ProductContainer, ProductPrice, ProductRating, ImageContainer, ProductImage, RemoveButton } from './styles';
 import StarByProductId from '../../reviews/StarByProductId';
 import Comparison from './Comparison';
 
-function Card({product}) {
+function Card({product, type}) {
   const [defaultStyle, setDefaultStyle] = useState({})
   const [imageUrl, setImageUrl] = useState('');
   const [productRatings, setProductRatings] = useState(0);
@@ -38,7 +38,8 @@ function Card({product}) {
   return (
     <CardWrapper>
       <ImageContainer>
-        <ActionButton onClick={() => setShowModal(true)}>&#9734;</ActionButton>
+        {type === 'product' && <ActionButton onClick={() => setShowModal(true)}>&#9734;</ActionButton>}
+        {type === 'outfit' && <RemoveButton ><span>&#120;</span></RemoveButton>}
         {showModal && createPortal(
           <Comparison name={product.name} features={product.features} onClose={ ()=> setShowModal(false)} />,
           document.body

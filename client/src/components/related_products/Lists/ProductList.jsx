@@ -21,7 +21,7 @@ function ProductList({ products }) {
       {scrollValue > 0 && <LeftButton onClick={() => { handleArrowClick('left'); }}>&#10094;</LeftButton>}
       <ListCarousel ref={divRef}>
         <CardContainer>
-          {products.map((product) => <Card key={product.id} product={product} />)}
+          {products.map((product) => <Card key={product.id} product={product} type='product' />)}
         </CardContainer>
       </ListCarousel>
       {scrollValue < 1000 && <RightButton onClick={() => { handleArrowClick('right'); }}>&#10095;</RightButton>}

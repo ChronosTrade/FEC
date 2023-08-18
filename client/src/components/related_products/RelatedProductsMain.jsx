@@ -1,16 +1,16 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext, useMemo } from 'react';
 import axios from 'axios';
-import Card from './ProductCard/Card';
 import ProductList from './Lists/ProductList';
 import Outfit from './Lists/Outfit';
 import AppContext from '../AppContext';
 
+
+
 function RelatedProductsMain() {
   const { totalRatings, setTotalRatings } = useContext(AppContext);
   const { productID, setProductID } = useContext(AppContext);
-  const  [currentProduct, setCurrentProduct]  = useState({});
+  const [currentProduct, setCurrentProduct]  = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const [outfit, setOutfit] = useState({});
 
   const getProduct = (productID) => {
     return axios.get(`/products/${productID}`)
@@ -44,8 +44,8 @@ function RelatedProductsMain() {
 
   return (
     <div>
-      <ProductList products={relatedProducts}/>
-      <Outfit outfit={outfit}/>
+      <ProductList products={relatedProducts} />
+      <Outfit />
     </div>
   );
 }

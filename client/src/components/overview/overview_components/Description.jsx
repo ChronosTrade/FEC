@@ -32,7 +32,7 @@ export default function Description({ currentProduct, totalRatings }) {
       >
         Share
       </button>
-      {showShare ? <ShareView /> : null}
+      {/* {showShare ? <ShareView /> : null} */}
     </div>
   );
 }
