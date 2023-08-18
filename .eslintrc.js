@@ -24,7 +24,7 @@ module.exports = {
     },
     "plugins": [
         "react",
-        "jest"
+        // "jest"
     ],
     "rules": {
     }
