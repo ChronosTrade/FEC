@@ -1,22 +1,7 @@
 // styles.js
 import styled, { keyframes } from 'styled-components';
-import { createGlobalStyle } from 'styled-components';
 
 const transitionPreset1 = 'all 0.15s ease-in-out';
-export const GlobalStyles = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;800&display=swap');
-  body {
-    font-family: 'Nunito', sans-serif;
-    background: #f6f6f6;
-  }
-  h1,
-  h2,
-  h3,
-  h4 {
-    justify-content: center;
-    text-aligh: center;
-  }
-`;
 
 export const ReviewWrapper = styled.div`
   h4 {
@@ -40,10 +25,24 @@ export const SummaryWrapper = styled.div`
 
   .leftColumn,
   .rightColumn {
+    margin-left: 2rem;
     flex-basis: 48%; // a slight gap between the columns
   }
 `;
 
+export const RatingContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: 5rem;
+`;
+export const SortReviews = styled.div`
+  margin-left: 2.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  border-top: 0.07rem solid #ccc;
+`;
 export const StyledReviewCard = styled.div`
   width: 90%;
   display: flex;
@@ -51,13 +50,18 @@ export const StyledReviewCard = styled.div`
   justify-content: center;
   margin: 0 auto;
   border-bottom: 0.07rem solid #ccc;
-  padding-bottom: 2rem;
-  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1rem;
   .reviewer-details {
     display: flex;
     justify-content: space-between;
     font-size: 0.8rem;
     margin-bottom: 0.5rem;
+  }
+  .response {
+    padding: 0.5rem;
+    background: #eee;
+    font-size: 0.8rem;
   }
 `;
 
@@ -74,7 +78,6 @@ export const ThumbnailImage = styled.img`
 export const PhotosWrapper = styled.div`
   display: flex;
   gap: 1rem;
-  margin-top: 1rem;
   img {
     object-fit: cover; // Ensure the image covers the dimensions without stretching
     overflow: hidden; // Clip any excess part of the image
@@ -90,11 +93,11 @@ export const ModalImage = styled.img`
   margin: 0 auto; // Center the image horizontally
 `;
 
-export const SubmitButton = styled.button`
+const BaseButton = styled.button`
   display: block;
   position: relative;
-  margin: 3rem auto 0;
   padding: 0.6rem 1.5rem;
+  font-family: inherit;
   transition: ${transitionPreset1};
   font-size: 1.5rem;
   font-weight: 600;
@@ -112,21 +115,41 @@ export const SubmitButton = styled.button`
   }
 `;
 
-export const HelpfulButton = styled.button`
-  display: block;
-  position: relative;
-  width: 6rem;
-  padding: 0.5rem 1rem;
-  transition: ${transitionPreset1};
+export const ButtonGroup = styled.div`
+  display: flex;
+  gap: 1rem; // This creates a gap between the two buttons
+`;
+
+
+export const HelpfulButton = styled(BaseButton)`
+  width: 6.5rem;
+  padding: 0.3rem 0.6rem;
   font-size: 0.8rem;
-  font-weight: 600;
-  background: #fff;
-  border: 1px solid #333;
-  outline: 0;
-  &:hover {
-    background: #333;
-    color: #fff;
+  border-width: 0.06rem;
+  &:disabled {
+    background: #ddd; // You can choose a different color for the disabled state
+    cursor: not-allowed;
   }
+`;
+
+export const SubmitButton = styled(BaseButton)`
+  margin: 1rem auto 3rem;
+`;
+
+export const LoadMoreButton = styled.button`
+  background: none;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.8rem;
+  border-width: 0.06rem;
+  margin: 0 auto 0;
+`;
+
+export const ReportButton = styled(LoadMoreButton)`
+  
+  margin-left:1rem;
 `;
 
 export const FontWeightBold = styled.span`
@@ -148,6 +171,7 @@ export const ModalOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
 `;
 
 // review form
@@ -185,20 +209,42 @@ export const BarLabel = styled.span`
 
 export const Bar = styled.div`
   flex-grow: 1;
-  height: 1rem;
+  height: 0.8rem;
   background-color: #ccc;
   position: relative;
 `;
 
 export const FilledBar = styled.div`
   height: 100%;
-  background-color: #333;
-  width: ${(props) => props.percentage}%;
+  background-color: #666;
+  width: ${(props) => props.$percentage}%;
 `;
 
 export const BarSpot = styled.div`
   height: 100%;
-  background-color: #333;
+  background-color: #666;
   width: 0.5rem;
-  margin-left: ${(props) => props.percentage}%;
+  margin-left: ${(props) => props.$percentage}%;
+`;
+
+export const StarWrapper = styled.span`
+  display: inline-block;
+  position: relative;
+  font-size: ${(props) => props.size || '1rem'};
+  color: #666;
+
+  &.full {
+    color: #f80;
+  }
+
+  &.partial::after {
+    content: '★';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: ${(props) => props.width || '0%'};
+    overflow: hidden;
+    color: #f80;
+    z-index: 1;
+  }
 `;

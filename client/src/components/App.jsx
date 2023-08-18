@@ -10,6 +10,7 @@ import AppContext from './AppContext';
 
 function App() {
   const [totalRatings, setTotalRatings] = useState(0);
+  const [averageRatings, setAverageRatings] = useState(0);
   const [productID, setProductID] = useState(40344);
   const [currentProduct, setCurrentProduct] = useState({});
   const refRatings = useRef(null);
@@ -22,6 +23,7 @@ function App() {
       });
   }, [productID]);
 
+
   const contextValue = useMemo(
     () => ({
       productID,
@@ -30,6 +32,8 @@ function App() {
       setProductID,
       setTotalRatings,
       setCurrentProduct,
+      averageRatings,
+      setAverageRatings,
     }),
     [
       productID,
@@ -38,6 +42,8 @@ function App() {
       setProductID,
       setTotalRatings,
       setCurrentProduct,
+      averageRatings,
+      setAverageRatings,
     ],
   );
 
