@@ -8,7 +8,6 @@ import AppContext from '../AppContext';
 function RelatedProductsMain() {
   const { totalRatings, setTotalRatings } = useContext(AppContext);
   const { productID, setProductID } = useContext(AppContext);
-  const [currentProduct, setCurrentProduct]  = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
 
   const getProduct = (productID) => {
@@ -23,7 +22,8 @@ function RelatedProductsMain() {
     axios.get(`/products/${productID}/related`)
       .then((response) => {
         const uniqueIDs = _.uniq(response.data);
-        const productsPromises = uniqueIDs.map((product) => getProduct(product));
+        const filteredIDs = uniqueIDs.filter((id) => id !== productID);
+        const productsPromises = filteredIDs.map((product) => getProduct(product));
         return productsPromises;
       })
       .catch(() => console.log('Unable to retrieve related ids'))
