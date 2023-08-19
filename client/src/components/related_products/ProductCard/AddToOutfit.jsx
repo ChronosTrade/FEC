@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { some, isEqual } from 'lodash';
 import { CardWrapper, AddButtonContainer, AddButtomImage } from './styles';
+import AppContext from '../../AppContext';
 
 function AddToOutfit({ add, outfit }) {
+  const {currentProduct, setCurrentProduct } = useContext(AppContext);
+
   const handleClick = () => {
-    add();
+    if (_.some(outfit, ((item) => _.isEqual(item, currentProduct))) === false) {
+      add();
+    }
   };
 
   return (
