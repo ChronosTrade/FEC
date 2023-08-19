@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { uniq } from 'lodash';
 import axios from 'axios';
 import ProductList from './Lists/ProductList';
 import Outfit from './Lists/Outfit';
@@ -21,7 +22,8 @@ function RelatedProductsMain() {
   useEffect(() => {
     axios.get(`/products/${productID}/related`)
       .then((response) => {
-        const productsPromises = response.data.map((product) => getProduct(product));
+        const uniqueIDs = _.uniq(response.data);
+        const productsPromises = uniqueIDs.map((product) => getProduct(product));
         return productsPromises;
       })
       .catch(() => console.log('Unable to retrieve related ids'))
