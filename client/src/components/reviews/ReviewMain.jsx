@@ -12,7 +12,7 @@ import Dropdown from './Dropdown';
 import WriteReview from './WriteReview';
 import Loading from './Loading';
 
-function ReviewMain() {
+function ReviewMain({ refRatings }) {
   const { productID } = useContext(AppContext);
   const [reviews, setReviews] = useState([]);
   const [reviewMeta, setReviewMeta] = useState({});
