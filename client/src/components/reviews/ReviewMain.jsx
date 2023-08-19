@@ -88,7 +88,7 @@ function ReviewMain() {
   };
 
   return (
-    <div>
+    <div ref={refRatings}>
       {reviewMeta.ratings
       && reviewMeta.recommended
       && reviewMeta.characteristics ? (
