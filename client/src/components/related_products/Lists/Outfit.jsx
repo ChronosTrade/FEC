@@ -12,6 +12,12 @@ function Outfit() {
     setOutfit([...outfit, currentProduct]);
   };
 
+  const removeProduct = () => {
+    setOutfit(
+      outfit.filter((item) => item.id !== currentProduct.id),
+    );
+  };
+
   useEffect(() => {
     const result = JSON.parse(localStorage.getItem('outfit'));
     if (result) {
@@ -29,7 +35,7 @@ function Outfit() {
       <ListCarousel>
         <CardContainer>
           <AddToOutfit add={addProduct} outfit={outfit} />
-          {outfit.length > 0 && outfit.map((product, i) => <Card key={i} product={product} type="outfit" />)}
+          {outfit.length > 0 && outfit.map((product, i) => <Card key={i} product={product} type="outfit" remove={removeProduct} />)}
         </CardContainer>
       </ListCarousel>
     </ListWrapper>

@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useContext, useMemo } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import ProductList from './Lists/ProductList';
 import Outfit from './Lists/Outfit';
 import AppContext from '../AppContext';
-
-
 
 function RelatedProductsMain() {
   const { totalRatings, setTotalRatings } = useContext(AppContext);
@@ -20,27 +18,22 @@ function RelatedProductsMain() {
       })
   }
 
-  const getRelated = () => {
+  useEffect(() => {
     axios.get(`/products/${productID}/related`)
       .then((response) => {
-        var productsPromises = response.data.map((product) => {
-          return getProduct(product)
-        })
-        Promise.all(productsPromises)
-          .then((values) => {
-            setRelatedProducts(values);
-          })
-
-        //setRelatedProducts(response.data);
+        const productsPromises = response.data.map((product) => getProduct(product));
+        return productsPromises;
+      })
+      .catch(() => console.log('Unable to retrieve related ids'))
+      .then((promises) => Promise.all(promises))
+      .catch(() => console.log('Unable to retrieve related products'))
+      .then((values) => {
+        setRelatedProducts(values);
       })
       .catch(() => {
-        console.log('Unable to retrieve related products');
-      })
-  }
-
-  useEffect(() => {
-    getRelated();
-  },[productID]);
+        console.log('Unable to set related products');
+      });
+  }, [productID]);
 
   return (
     <div>
