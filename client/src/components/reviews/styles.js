@@ -245,6 +245,6 @@ export const StarWrapper = styled.span`
     width: ${(props) => props.width || '0%'};
     overflow: hidden;
     color: #f80;
-    z-index: 1;
+    z-index: 0;
   }
 `;

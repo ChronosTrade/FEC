@@ -1,23 +1,34 @@
 import React, { useState, useEffect } from 'react';
+import { Modal, ModalBackground } from './ImageMainStyles';
 
 export default function Description({ currentProduct, totalRatings }) {
-  // const { totalRatings, setTotalRatings } = useContext(AppContext);
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
-  const [showShare, setShowShare] = useState('false');
+  const [showShare, setShowShare] = useState(false);
 
   useEffect(() => {
     if (Object.keys(currentProduct).length) {
-      console.log('CurrentProdcut', currentProduct);
       setCategory(currentProduct.category);
       setDescription(currentProduct.description);
       setTitle(currentProduct.name);
+      console.log(totalRatings);
     }
   }, [currentProduct]);
 
+  useEffect(() => {
+    if (showShare === false) {
+      document.body.style.overflow = 'unset';
+    }
+  }, [showShare]);
+
   const clickHandler = () => {
     setShowShare(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    setShowShare(false);
   };
 
   return (
@@ -32,22 +43,42 @@ export default function Description({ currentProduct, totalRatings }) {
       >
         Share
       </button>
-      {/* {showShare ? <ShareView /> : null} */}
+      {showShare && (
+        <>
+          <ModalBackground onClick={closeModal} />
+          <Modal onClick={(e) => e.stopPropagation()}>
+            <ShareView setShowShare={setShowShare} />
+          </Modal>
+        </>
+      )}
     </div>
   );
 }
 
-export function ShareView({ currentProduct, setShowShare }) {
+function ShareView({ setShowShare }) {
+  const cancelHandler = () => {
+    setShowShare(false);
+  };
   return (
     <div>
-      {/* {product.reviews} */}
+      <a href="https://facebook.com" target="_blank" rel="noreferrer">Facebook</a>
+      <a href="https://twitter.com" target="_blank" rel="noreferrer">Twitter</a>
+      <a href="https://pinterest.com" target="_blank" rel="noreferrer">Pinterest</a>
       <button
         type="button"
-        onClick={clickHandler}
+        onClick={cancelHandler}
+        label="cancel"
       >
-        Share
+        Cancel
       </button>
-      {showShare ? <ShareView /> : null}
+      <button
+        type="button"
+        onClick={cancelHandler}
+        placeholder="x"
+        label="X"
+      >
+        X
+      </button>
     </div>
   );
 }
