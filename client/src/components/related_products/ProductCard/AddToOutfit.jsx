@@ -1,10 +1,7 @@
-import React, {useState, useEffect, useContext} from 'react';
-import { ActionButton, CardWrapper, ImageContainer, ProductImage, AddButtonContainer, AddButtomImage } from './styles';
-import AppContext from '../../AppContext';
+import React from 'react';
+import { CardWrapper, AddButtonContainer, AddButtomImage } from './styles';
 
 function AddToOutfit({ add, outfit }) {
-  const {currentProduct, setCurrentProduct } = useContext(AppContext);
-
   const handleClick = () => {
     add();
   };
@@ -12,7 +9,7 @@ function AddToOutfit({ add, outfit }) {
   return (
     <CardWrapper>
       <AddButtonContainer onClick={handleClick}>
-        <AddButtomImage src='https://cdn.iconscout.com/icon/free/png-512/free-plus-93-434116.png?f=avif&w=256'/>
+        <AddButtomImage src="https://cdn.iconscout.com/icon/free/png-512/free-plus-93-434116.png?f=avif&w=256" />
       </AddButtonContainer>
       <span>Add to Outfit</span>
     </CardWrapper>

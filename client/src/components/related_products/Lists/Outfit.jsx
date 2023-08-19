@@ -6,7 +6,7 @@ import AppContext from '../../AppContext';
 
 function Outfit() {
   const [outfit, setOutfit] = useState([]);
-  const {currentProduct, setCurrentProduct } = useContext(AppContext);
+  const { currentProduct, setCurrentProduct } = useContext(AppContext);
 
   const addProduct = () => {
     setOutfit([...outfit, currentProduct]);
@@ -17,8 +17,6 @@ function Outfit() {
     if (result) {
       setOutfit(result);
     }
-    console.log(result);
-    // localStorage.setItem('outfit', JSON.stringify(outfit));
   }, []);
 
   useEffect(() => {
@@ -30,8 +28,8 @@ function Outfit() {
       <ListTitle>Your Outfit</ListTitle>
       <ListCarousel>
         <CardContainer>
-          <AddToOutfit add={addProduct} outfit={outfit}/>
-          {outfit.length > 0 && outfit.map((product, i) => <Card key={i} product={product} type='outfit'/>)}
+          <AddToOutfit add={addProduct} outfit={outfit} />
+          {outfit.length > 0 && outfit.map((product, i) => <Card key={i} product={product} type="outfit" />)}
         </CardContainer>
       </ListCarousel>
     </ListWrapper>

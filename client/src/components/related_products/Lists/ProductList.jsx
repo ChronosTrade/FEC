@@ -1,5 +1,7 @@
-import React, {useState, useEffect, useContext, useRef} from 'react';
-import { ListWrapper, ListCarousel, CardContainer, LeftButton, RightButton, ListTitle } from './styles';
+import React, { useState, useRef } from 'react';
+import {
+  ListWrapper, ListCarousel, CardContainer, LeftButton, RightButton, ListTitle,
+} from './styles';
 import Card from '../ProductCard/Card';
 
 function ProductList({ products }) {
@@ -9,9 +11,9 @@ function ProductList({ products }) {
   const [scrollValue, setScrollValue] = useState(0);
   const handleArrowClick = (direction) => {
     if (direction === 'right') {
-      setScrollValue( divRef.current.scrollLeft += (gap*2));
+      setScrollValue(divRef.current.scrollLeft += (gap * 2));
     } else {
-      setScrollValue(divRef.current.scrollLeft -= (gap*2));
+      setScrollValue(divRef.current.scrollLeft -= (gap * 2));
     }
   };
 
@@ -21,7 +23,7 @@ function ProductList({ products }) {
       {scrollValue > 0 && <LeftButton onClick={() => { handleArrowClick('left'); }}>&#10094;</LeftButton>}
       <ListCarousel ref={divRef}>
         <CardContainer>
-          {products.map((product) => <Card key={product.id} product={product} type='product' />)}
+          {products.map((product) => <Card key={product.id} product={product} type="product" />)}
         </CardContainer>
       </ListCarousel>
       {scrollValue < 1000 && <RightButton onClick={() => { handleArrowClick('right'); }}>&#10095;</RightButton>}

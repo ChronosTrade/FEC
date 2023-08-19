@@ -1,5 +1,7 @@
-import React, {useState, useEffect, useContext} from 'react';
-import { ModalWrapper, ModalContent, ModalCaption, HeaderRow, ProductHeader,CompareRow } from './styles';
+import React, { useState, useContext } from 'react';
+import {
+  ModalWrapper, ModalContent, ModalCaption, HeaderRow, ProductHeader, CompareRow,
+} from './styles';
 import { isEqual } from 'lodash'
 import AppContext from '../../AppContext';
 

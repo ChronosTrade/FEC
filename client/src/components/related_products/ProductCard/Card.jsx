@@ -39,19 +39,21 @@ function Card({product, type}) {
     <CardWrapper>
       <ImageContainer>
         {type === 'product' && <ActionButton onClick={() => setShowModal(true)}>&#9734;</ActionButton>}
-        {type === 'outfit' && <RemoveButton ><span>&#120;</span></RemoveButton>}
-        {showModal && createPortal(
-          <Comparison name={product.name} features={product.features} onClose={ ()=> setShowModal(false)} />,
-          document.body
-        )}
+        {type === 'outfit' && <RemoveButton><span>&#120;</span></RemoveButton>}
+        {showModal && createPortal(<Comparison
+          name={product.name}
+          features={product.features}
+          onClose={() => setShowModal(false)}
+        />, document.body)}
 
-        <ProductImage src={imageUrl}/>
+        <ProductImage src={imageUrl} />
       </ImageContainer>
       <ProductContainer onClick={() => setProductID(product.id)}>
         <ProductCategory>{product.category}</ProductCategory>
         <ProductName>{product.name}</ProductName>
-        {defaultStyle !== undefined ? <ProductPrice>${defaultStyle.original_price}</ProductPrice>: <ProductPrice>${product.default_price}</ProductPrice> }
-        <StarByProductId productId={product.id.toString()}/>
+        {defaultStyle !== undefined ? <ProductPrice>${defaultStyle.original_price}</ProductPrice>
+          : <ProductPrice>${product.default_price}</ProductPrice> }
+        <StarByProductId productId={product.id.toString()} />
       </ProductContainer>
     </CardWrapper>
   );
