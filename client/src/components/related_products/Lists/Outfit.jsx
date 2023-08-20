@@ -48,7 +48,7 @@ function Outfit() {
 
   return (
     <ListWrapper>
-      <ListTitle>Your Outfit</ListTitle>
+      {/* <ListTitle>Your Outfit</ListTitle> */}
       {scrollValue > 0 && <LeftButton onClick={() => { handleArrowClick('left'); }}>&#10094;</LeftButton>}
       <ListCarousel ref={divRef}>
         <CardContainer>

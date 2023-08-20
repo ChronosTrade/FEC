@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const ListWrapper = styled.div`
   display: flex;
-  // flex-direction: column;
   width: 1000px;
   height: 350px;
+  margin-bottom: 50px;
   ::-webkit-scrollbar {
     display: none;
   }
@@ -14,7 +14,6 @@ export const ListCarousel = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  //justify-content: space-between;
   overflow-x: auto;
 `;
 
@@ -24,9 +23,6 @@ export const CardContainer = styled.div`
   gap: 20px;
   display: flex;
   flex-direction: row;
-  //justify-content: space-between;
-  // overflow-x: auto;
-
 `;
 
 export const RightButton = styled.button`
