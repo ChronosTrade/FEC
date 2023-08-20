@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ThumbImage, ThumbImageSelect, StylePhotosWrapper } from './stylesListStyling';
+import { ThumbImage, ThumbImageSelect, StylePhotosWrapper } from '../overviewStyles';
 
 export default function StylesList({
   selStyle,

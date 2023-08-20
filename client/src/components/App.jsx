@@ -1,11 +1,6 @@
 import React, {
   useState, useEffect, useMemo, useRef,
 } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom';
 import axios from 'axios';
 import { GlobalStyles } from './globalStyling';
 import OverviewMain from './overview/OverviewMain';
@@ -15,7 +10,6 @@ import AppContext from './AppContext';
 
 function App() {
   const [totalRatings, setTotalRatings] = useState(0);
-  const [averageRatings, setAverageRatings] = useState(0);
   const [productID, setProductID] = useState(40344);
   const [currentProduct, setCurrentProduct] = useState({});
   const refRatings = useRef(null);
@@ -33,20 +27,22 @@ function App() {
       productID,
       totalRatings,
       currentProduct,
+
       setProductID,
       setTotalRatings,
       setCurrentProduct,
       averageRatings,
+      setAverageRatings,
       setAverageRatings,
     }),
     [
       productID,
       totalRatings,
       currentProduct,
+      averageRatings,
       setProductID,
       setTotalRatings,
       setCurrentProduct,
-      averageRatings,
       setAverageRatings,
     ],
   );

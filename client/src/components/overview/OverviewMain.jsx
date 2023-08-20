@@ -1,29 +1,24 @@
 import React, {
-  useState, useContext, useEffect, useRef,
+  useState, useContext, useEffect, useRef, forwardRef,
 } from 'react';
 import axios from 'axios';
 import AppContext from '../AppContext';
-// import UserContext from '../UserContext';
-import Add from './overview_components/Add';
-import Description from './overview_components/Description';
-import ImageGalleryMain from './overview_components/ImageGalleryMain';
-import Price from './overview_components/Price';
-import QuantityList from './overview_components/QuantityList';
-import SizeList from './overview_components/SizeList';
-import StylesList from './overview_components/StylesList';
+import Add from './productInfo&AddComps/Add';
+import Description from './productInfo&AddComps/Description';
+import ImageGalleryMain from './imageGalleryComps/ImageGalleryMain';
+import Price from './productInfo&AddComps/Price';
+import QuantityList from './selectionComps/QuantityList';
+import SizeList from './selectionComps/SizeList';
+import StylesList from './selectionComps/StylesList';
 
-export default function OverviewMain() {
+const OverviewMain = forwardRef((_props, refRatings) => {
   const [selStyle, setSelStyle] = useState({});
   const [selQuantity, setSelQuantity] = useState('-');
   const [selSku, setSelSku] = useState(null);
   const [styles, setSelStyles] = useState([]);
   const [sizeNotice, setSizeNotice] = useState(false);
   const [showButton, setShowButton] = useState(true);
-  const {
-    productID,
-    totalRatings,
-    currentProduct,
-  } = useContext(AppContext);
+  const { currentProduct, productID } = useContext(AppContext);
   const ref = useRef(null);
 
   useEffect(() => {
@@ -37,7 +32,8 @@ export default function OverviewMain() {
         if (response.data.results.length > 0) {
           setSelStyles(response.data.results);
           setSelStyle(response.data.results[0]);
-          console.log(response.data.results[0]);
+          // console.log(averageRatings);
+          // console.log(totalRatings);
         }
       })
       .catch(() => {
@@ -49,7 +45,7 @@ export default function OverviewMain() {
       <Description
         productID={productID}
         currentProduct={currentProduct}
-        totalRatings={totalRatings}
+        refRatings={refRatings}
       />
       <ImageGalleryMain
         selStyle={selStyle}
@@ -84,4 +80,6 @@ export default function OverviewMain() {
       />
     </section>
   );
-}
+});
+
+export default OverviewMain;
