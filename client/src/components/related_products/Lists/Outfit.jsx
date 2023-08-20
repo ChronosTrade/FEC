@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import React, {
+  useState, useEffect, useContext, useRef,
+} from 'react';
 import {
   ListWrapper, ListCarousel, CardContainer, LeftButton, RightButton, ListTitle,
 } from './styles';

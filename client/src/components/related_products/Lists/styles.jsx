@@ -5,7 +5,6 @@ export const ListWrapper = styled.div`
   // flex-direction: column;
   width: 1000px;
   height: 350px;
-  // border: solid;
   ::-webkit-scrollbar {
     display: none;
   }
@@ -15,7 +14,7 @@ export const ListCarousel = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  justify-content: space-between;
+  //justify-content: space-between;
   overflow-x: auto;
 `;
 
@@ -25,7 +24,7 @@ export const CardContainer = styled.div`
   gap: 20px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  //justify-content: space-between;
   // overflow-x: auto;
 
 `;
@@ -50,4 +49,5 @@ export const LeftButton = styled.button`
 
 export const ListTitle = styled.p`
    font-size: 18px;
+   width: 12%;
  `;
