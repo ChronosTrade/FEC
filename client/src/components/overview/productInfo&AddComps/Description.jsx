@@ -1,18 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, ModalBackground } from './ImageMainStyles';
+import React, { useState, useEffect, forwardRef } from 'react';
+import { Modal, ModalBackground } from '../overviewStyles';
+import Stars from './Stars';
+import ShareView from './ShareView';
 
-export default function Description({ currentProduct, totalRatings }) {
+const Description = forwardRef(({ currentProduct }, refRatings) => {
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
   const [showShare, setShowShare] = useState(false);
+  const [showStars, setShowStars] = useState(true);
+  // const { averageRatings, totalRatings } = useContext(AppContext);
+  const [averageRatings, setAverageRatings] = useState(2.5);
+  const [totalRatings, setB] = useState(4);
 
   useEffect(() => {
     if (Object.keys(currentProduct).length) {
       setCategory(currentProduct.category);
       setDescription(currentProduct.description);
       setTitle(currentProduct.name);
-      console.log(totalRatings);
     }
   }, [currentProduct]);
 
@@ -21,6 +26,14 @@ export default function Description({ currentProduct, totalRatings }) {
       document.body.style.overflow = 'unset';
     }
   }, [showShare]);
+
+  useEffect(() => {
+    if (totalRatings) {
+      setShowStars(true);
+    } else {
+      setShowStars(false);
+    }
+  }, [totalRatings]);
 
   const clickHandler = () => {
     setShowShare(true);
@@ -33,7 +46,7 @@ export default function Description({ currentProduct, totalRatings }) {
 
   return (
     <div>
-      {/* {product.reviews} */}
+      {showStars ? <Stars ref={refRatings} /> : null}
       {title}
       {category}
       {description}
@@ -46,39 +59,13 @@ export default function Description({ currentProduct, totalRatings }) {
       {showShare && (
         <>
           <ModalBackground onClick={closeModal} />
-          <Modal onClick={(e) => e.stopPropagation()}>
+          <Modal>
             <ShareView setShowShare={setShowShare} />
           </Modal>
         </>
       )}
     </div>
   );
-}
+});
 
-function ShareView({ setShowShare }) {
-  const cancelHandler = () => {
-    setShowShare(false);
-  };
-  return (
-    <div>
-      <a href="https://facebook.com" target="_blank" rel="noreferrer">Facebook</a>
-      <a href="https://twitter.com" target="_blank" rel="noreferrer">Twitter</a>
-      <a href="https://pinterest.com" target="_blank" rel="noreferrer">Pinterest</a>
-      <button
-        type="button"
-        onClick={cancelHandler}
-        label="cancel"
-      >
-        Cancel
-      </button>
-      <button
-        type="button"
-        onClick={cancelHandler}
-        placeholder="x"
-        label="X"
-      >
-        X
-      </button>
-    </div>
-  );
-}
+export default Description;

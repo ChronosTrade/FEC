@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRouteError } from 'react-router-dom'; // This is the error I was talking about with React-router/webpack
+import { useRouteError } from 'react-router-dom';
 
 export default function ErrorPage() {
   const error = useRouteError();

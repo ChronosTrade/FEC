@@ -8,12 +8,8 @@ const Size = forwardRef(({
   setShowButton,
   setSelSku,
 }, ref) => {
-  // The optionsState is the selected state/value on the dropdown list
   const [optionsState, setOptionsState] = useState('Select Size');
-  // The skusObject is an object containing all of the skus(sizes) for a selected style.
   const [skusObject, setSizeOptions] = useState({});
-  // The skusArray allows us to map each sku(size) to dropdown list options.
-  // Because the skusObject is an object, we need to convert the sizes to an array.
   const [sizesArray, setSizesArray] = useState([]);
   const [OutOfStock, setOutOfStock] = useState(false);
 

@@ -1,30 +1,7 @@
 import React from 'react';
-import { Photo, PhotoSelect, PhotosWrapper } from './ImageMainStyles';
+import { Photo, PhotoSelect } from '../overviewStyles';
 
-export default function ImageScroll({
-  selIndex,
-  photos,
-  setIndex
-}) {
-  return (
-    <PhotosWrapper role="presentation">
-      {photos.map(
-        (photo, i) => (
-          <PhotoListEntry
-            photo={photo}
-            i={i}
-            selIndex={selIndex}
-            key={photo.thumbnail_url}
-            photos={photos}
-            setIndex={setIndex}
-          />
-        ),
-      )}
-    </PhotosWrapper>
-  );
-}
-
-function PhotoListEntry({
+export default function PhotoListEntry({
   photo,
   photos,
   selIndex,
