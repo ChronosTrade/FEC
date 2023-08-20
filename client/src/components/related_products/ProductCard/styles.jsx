@@ -76,19 +76,18 @@ export const ModalContent = styled.table`
   height: 40%;
   min-width: 400px;
   margin: 10% auto auto auto;
-  background-color: white
-`;
-
-export const ModalCaption = styled.caption`
-  caption-side: top;
   background-color: white;
-  text-align: start;
+  border: 1px solid black;
 `;
 
 export const HeaderRow = styled.tr`
 `;
 
 export const ProductHeader = styled.th`
+  &.caption {
+    text-align: start;
+    font-weight: normal;
+  }
   &.left-product {
     text-align: start;
   }

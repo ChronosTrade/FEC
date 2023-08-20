@@ -38,10 +38,10 @@ function Comparison({ onClose, name, features }) {
   return (
     <ModalWrapper onClick={onClose}>
       <ModalContent>
-        <ModalCaption>
-          Comparing
-        </ModalCaption>
         <thead>
+          <HeaderRow>
+            <ProductHeader className="caption">Comparing</ProductHeader>
+          </HeaderRow>
           <HeaderRow>
             <ProductHeader className="left-product">{currentProduct.name}</ProductHeader>
             <ProductHeader></ProductHeader>
