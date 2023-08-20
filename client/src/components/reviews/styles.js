@@ -11,7 +11,7 @@ export const ReviewWrapper = styled.div`
   display: flex;
   flex-direction: column; // Stack children vertically
   justify-content: center; // Center children horizontally
-  margin: 0 auto; // Center the component itself horizontally
+  margin: 0 auto 3rem; // Center the component itself horizontally
   select {
     width:100px;
   }
@@ -133,7 +133,7 @@ export const HelpfulButton = styled(BaseButton)`
 `;
 
 export const SubmitButton = styled(BaseButton)`
-  margin: 1rem auto 3rem;
+  margin: 1rem auto 1rem;
 `;
 
 export const LoadMoreButton = styled.button`
@@ -177,11 +177,16 @@ export const ModalOverlay = styled.div`
 // review form
 export const ModalContent = styled.div`
   width: 80%;
-  max-width: 20rem;
-  background-color: #fff;
+  max-width: 40rem;
+  max-height:95%;
+  background-color: #f3f3f3;
   padding: 20px;
   border-radius: 5px;
   position: relative;
+  overflow-y: auto;
+  h3 {
+    text-align: center;
+  }
 `;
 
 // button for review form
@@ -210,7 +215,7 @@ export const BarLabel = styled.span`
 export const Bar = styled.div`
   flex-grow: 1;
   height: 0.8rem;
-  background-color: #ccc;
+  background-color: #eee;
   position: relative;
 `;
 
@@ -246,5 +251,88 @@ export const StarWrapper = styled.span`
     overflow: hidden;
     color: #f80;
     z-index: 0;
+  }
+`;
+
+export const RadioButtonBox = styled.div`
+  max-width: 60rem;
+  margin: 0 auto 0.6rem;
+  background: #f3f3f3;
+`;
+
+export const RadioButton = styled.div`
+  padding: 0.5rem;
+  text-align: center;
+  background: #f9f9f9;
+  border-radius: 0.3em;
+`;
+
+export const RadioButtonSpot = styled.div`
+  display: inline-block;
+  position: relative;
+  margin: 0 2.4rem 0 2.4rem;
+  width: 1rem;
+  height: 1rem;
+  background-color: ${(props) => (props.active ? '#d3d3d3' : 'transparent')};
+
+  border-radius: 100%;
+  border: 0.1rem solid;
+  border-color: ${(props) => (props.active ? '#990030' : '#333')};
+  cursor: pointer;
+  transition: ease 0.5s;
+
+  & span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.5em;
+    color: #333;
+  } 
+`;
+
+export const RadioButtonTxt = styled.span`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 0.5em;
+`;
+
+export const RadioButtonLabel = styled.p`
+  font-size: 0.9em;
+  padding: 0.4rem;
+  font-weight: 800;
+  margin: -0.5rem 0 -0.5rem;
+`;
+
+export const FormLabelGroupWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 0 2.5rem 0 2.5rem;
+  label {
+    margin: -2rem;
+    display: inline-block;
+    position: relative;
+    font-size: 0.8rem;
+  }
+`;
+
+export const BlankEntry = styled.div`
+  margin: 1.2rem auto;
+  input {
+    font-family: inherit;
+    height: 1.6rem;
+    width: 39rem;
+    padding: 0 0.5rem 0 0.5rem;
+  }
+`;
+
+export const ReviewBodyBox = styled(BlankEntry)`
+  textarea {
+    &::placeholder {
+    }
+    font-family: inherit;
+    width: 39rem;
+    padding: 0.4rem 0.5rem 4rem 0.5rem;
   }
 `;
