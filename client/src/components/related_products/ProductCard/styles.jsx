@@ -72,7 +72,6 @@ export const ModalWrapper = styled.div`
 `;
 
 export const ModalContent = styled.table`
-  border: 1px solid black;
   width: 40%;
   height: 40%;
   min-width: 400px;
@@ -83,18 +82,34 @@ export const ModalContent = styled.table`
 export const ModalCaption = styled.caption`
   caption-side: top;
   background-color: white;
-  position: fixed;
+  text-align: start;
 `;
 
 export const HeaderRow = styled.tr`
 `;
 
 export const ProductHeader = styled.th`
-  scope: col;
-  border: 1px solid black;
+  &.left-product {
+    text-align: start;
+  }
+  &.right-product {
+    text-align: end;
+  }
 `;
 
 export const CompareRow = styled.tr`
+`;
+
+export const RowElement = styled.td`
+  &.left-value {
+    text-align: start;
+  }
+  &.center-value {
+    text-align: center;
+  }
+  &.right-value {
+    text-align: end;
+  }
 `;
 
 export const AddButtonContainer = styled.div`

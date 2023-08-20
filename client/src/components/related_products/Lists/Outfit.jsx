@@ -50,7 +50,7 @@ function Outfit() {
       <ListCarousel ref={divRef}>
         <CardContainer>
           <AddToOutfit add={addProduct} outfit={outfit} />
-          {outfit.length > 0 && outfit.map((product, i) => <Card key={i} product={product} type="outfit" remove={removeProduct} />)}
+          {outfit.length > 0 && outfit.map((product) => <Card key={product.id} product={product} type="outfit" remove={removeProduct} />)}
         </CardContainer>
       </ListCarousel>
       {scrollValue < 1000 && <RightButton onClick={() => { handleArrowClick('right'); }}>&#10095;</RightButton>}
