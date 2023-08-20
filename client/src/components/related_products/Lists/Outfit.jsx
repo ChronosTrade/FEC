@@ -23,12 +23,13 @@ function Outfit() {
   };
 
   const addProduct = () => {
+    console.log(currentProduct);
     setOutfit([...outfit, currentProduct]);
   };
 
-  const removeProduct = () => {
+  const removeProduct = (id) => {
     setOutfit(
-      outfit.filter((item) => item.id !== currentProduct.id),
+      outfit.filter((item) => item.id !== id),
     );
   };
 

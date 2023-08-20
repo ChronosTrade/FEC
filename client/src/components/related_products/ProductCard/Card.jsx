@@ -17,7 +17,7 @@ function Card({product, type, remove}) {
   const [showModal, setShowModal] = useState(false);
 
   const handleRemoveClick = () => {
-    remove();
+    remove(product.id);
   };
 
   useEffect(() => {

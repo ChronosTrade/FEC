@@ -7,7 +7,7 @@ function AddToOutfit({ add, outfit }) {
   const {currentProduct, setCurrentProduct } = useContext(AppContext);
 
   const handleClick = () => {
-    if (_.some(outfit, ((item) => _.isEqual(item, currentProduct))) === false) {
+    if ((_.some(outfit, ((item) => _.isEqual(item, currentProduct)))) === false) {
       add();
     }
   };
