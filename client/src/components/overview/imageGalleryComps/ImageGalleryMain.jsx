@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { MainImage, ModalBackground, ExpandedModal,  } from '../overviewStyles';
+import {
+  MainImage, ModalBackground, ExpandedModal, ImageGalleryWrapper, DefaultImageWrapper,
+} from '../overviewStyles';
 import ImageScroll from './ImageScroll';
 import ExpandedView from './ExpandedView';
 
@@ -21,7 +23,6 @@ export default function ImageGalleryMain({
       setMaxIndex(selStyle.photos.length - 1);
       setPhotos(selStyle.photos);
     }
-    console.log(photos);
   }, [selStyle]);
 
   useEffect(() => {
@@ -87,7 +88,7 @@ export default function ImageGalleryMain({
   };
 
   return (
-    <div>
+    <ImageGalleryWrapper>
       <ImageScroll
         selIndex={index}
         photos={photos}
@@ -109,28 +110,32 @@ export default function ImageGalleryMain({
           </ExpandedModal>
         </>
       ) : null}
-      <MainImage
-        src={mainImg}
-        onClick={clickHandlerMain}
-      />
-      {showLeft ? (
-        <button
-          type="button"
-          onClick={clickHandlerL}
-        >
-          GoLeft
-        </button>
-      ) : null}
-      {showRight ? (
-        <button
-          type="button"
-          onClick={clickHandlerR}
-        >
-          GoRight
-        </button>
-      ) : null}
-
-    </div>
+      <DefaultImageWrapper>
+        <img
+          alt=""
+          className="mainImg"
+          role="presentation"
+          src={mainImg}
+          onClick={clickHandlerMain}
+        />
+        {showLeft ? (
+          <button
+            type="button"
+            onClick={clickHandlerL}
+          >
+            GoLeft
+          </button>
+        ) : null}
+        {showRight ? (
+          <button
+            type="button"
+            onClick={clickHandlerR}
+          >
+            GoRight
+          </button>
+        ) : null}
+      </DefaultImageWrapper>
+    </ImageGalleryWrapper>
   );
 }
 

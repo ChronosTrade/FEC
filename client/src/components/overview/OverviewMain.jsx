@@ -3,6 +3,9 @@ import React, {
 } from 'react';
 import axios from 'axios';
 import AppContext from '../AppContext';
+import {
+  OverviewWrapper, Container,
+} from './overviewStyles';
 import Add from './productInfo&AddComps/Add';
 import Description from './productInfo&AddComps/Description';
 import ImageGalleryMain from './imageGalleryComps/ImageGalleryMain';
@@ -41,44 +44,49 @@ const OverviewMain = forwardRef((_props, refRatings) => {
   }, [productID]);
 
   return (
-    <section>
+    <OverviewWrapper>
       <Description
         productID={productID}
         currentProduct={currentProduct}
         refRatings={refRatings}
       />
-      <ImageGalleryMain
-        selStyle={selStyle}
-        productID={productID}
-      />
-      <StylesList
-        selStyle={selStyle}
-        styles={styles}
-        setSizeNotice={setSizeNotice}
-        setSelStyle={setSelStyle}
-      />
-      <SizeList
-        selStyle={selStyle}
-        sizeNotice={sizeNotice}
-        setShowButton={setShowButton}
-        setSizeNotice={setSizeNotice}
-        setSelSku={setSelSku}
-        ref={ref}
-      />
-      <QuantityList
-        selQuantity={selQuantity}
-        selSku={selSku}
-        setSelQuantity={setSelQuantity}
-      />
-      <Price selStyle={selStyle} />
-      <Add
-        selSku={selSku}
-        selQuantity={selQuantity}
-        showButton={showButton}
-        setSizeNotice={setSizeNotice}
-        ref={ref}
-      />
-    </section>
+      <Container>
+        <div className="left">
+          <ImageGalleryMain
+            selStyle={selStyle}
+            productID={productID}
+          />
+        </div>
+        <div className="right">
+          <StylesList
+            selStyle={selStyle}
+            styles={styles}
+            setSizeNotice={setSizeNotice}
+            setSelStyle={setSelStyle}
+          />
+          <SizeList
+            selStyle={selStyle}
+            sizeNotice={sizeNotice}
+            setShowButton={setShowButton}
+            setSizeNotice={setSizeNotice}
+            setSelSku={setSelSku}
+            ref={ref}
+          />
+          <QuantityList
+            selSku={selSku}
+            setSelQuantity={setSelQuantity}
+          />
+          <Price selStyle={selStyle} />
+          <Add
+            selSku={selSku}
+            selQuantity={selQuantity}
+            showButton={showButton}
+            setSizeNotice={setSizeNotice}
+            ref={ref}
+          />
+        </div>
+      </Container>
+    </OverviewWrapper>
   );
 });
 
