@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+
 export const OverviewWrapper = styled.section`
 h4 {
   font-weight: 400;
@@ -191,6 +192,7 @@ export const ExpandedModal = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 3;
+
   transform: translate(-50%, -50%);
 `;
 
@@ -237,6 +239,7 @@ export const Photo = styled.img`
     border-color: grey;
     padding: 0.32rem;
     border: 0.1rem solid;
+
   }
 `;
 

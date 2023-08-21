@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+
 import {
   MainImage, ModalBackground, ExpandedModal, ImageGalleryWrapper, DefaultImageWrapper,
 } from '../overviewStyles';
@@ -136,6 +137,7 @@ export default function ImageGalleryMain({
         ) : null}
       </DefaultImageWrapper>
     </ImageGalleryWrapper>
+
   );
 }
 

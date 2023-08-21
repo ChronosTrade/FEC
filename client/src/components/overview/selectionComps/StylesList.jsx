@@ -10,6 +10,7 @@ export default function StylesList({
   const [title, setTitle] = useState('');
   useEffect(() => {
     if (styles.length > 0) {
+
       setTitle(`Color: ${styles[0].name}`);
     }
   }, [styles]);
@@ -44,6 +45,7 @@ function StylesListEntry({
   const clickHandler = () => {
     setSelStyle(style);
     setSizeNotice(false);
+
     setTitle(`Color: ${style.name}`);
   };
   return (
@@ -52,6 +54,7 @@ function StylesListEntry({
         ? (
           <img
             className="imgSelect"
+
             alt=""
             src={style.photos[0].thumbnail_url}
           />

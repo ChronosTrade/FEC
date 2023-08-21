@@ -47,7 +47,6 @@ const Size = forwardRef(({
       }
     }
   }, [selStyle, setSelSku, setShowButton]);
-
   const handleChange = (e) => {
     setOptionsState(e);
     const tempSkuObj = {
