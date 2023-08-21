@@ -10,12 +10,12 @@ import AppContext from '../../AppContext';
 
 function Outfit() {
   const [outfit, setOutfit] = useState([]);
-  const { currentProduct, setCurrentProduct } = useContext(AppContext);
-
-  const cardWidth = 220;
-  // const gap = 20;
-  const divRef = useRef(null);
   const [scrollValue, setScrollValue] = useState(0);
+  const { currentProduct, setCurrentProduct } = useContext(AppContext);
+  const [maxWidth, setMaxWidth] = useState(0);
+  const cardWidth = 220;
+  const divRef = useRef(null);
+
   const handleArrowClick = (direction) => {
     if (direction === 'right') {
       setScrollValue(divRef.current.scrollLeft += (cardWidth));
@@ -44,6 +44,11 @@ function Outfit() {
 
   useEffect(() => {
     localStorage.setItem('outfit', JSON.stringify(outfit));
+    if (outfit.length > 3) {
+      setMaxWidth((outfit.length - 3) * 220 + (220 - 2));
+    } else {
+      setMaxWidth((0));
+    }
   }, [outfit]);
 
   return (
@@ -56,7 +61,7 @@ function Outfit() {
           {outfit.length > 0 && outfit.map((product) => <Card key={product.id} product={product} type="outfit" remove={removeProduct} />)}
         </CardContainer>
       </ListCarousel>
-      {scrollValue < 1000 && <RightButton onClick={() => { handleArrowClick('right'); }}>&#10095;</RightButton>}
+      {scrollValue < maxWidth && <RightButton onClick={() => { handleArrowClick('right'); }}>&#10095;</RightButton>}
     </ListWrapper>
   );
 }

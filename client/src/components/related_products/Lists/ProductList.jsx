@@ -6,16 +6,12 @@ import Card from '../ProductCard/Card';
 
 function ProductList({ products }) {
   const cardWidth = 220;
-  // const gap = 20;
   const divRef = useRef(null);
   const [scrollValue, setScrollValue] = useState(0);
   const [maxWidth, setMaxWidth] = useState(0);
 
-
-
   const handleArrowClick = (direction) => {
     if (direction === 'right') {
-      console.log(scrollValue);
       setScrollValue(divRef.current.scrollLeft += (cardWidth));
     } else {
       setScrollValue(divRef.current.scrollLeft -= (cardWidth));
