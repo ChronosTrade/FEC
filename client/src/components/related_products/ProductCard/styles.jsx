@@ -102,12 +102,16 @@ export const CompareRow = styled.tr`
 export const RowElement = styled.td`
   &.left-value {
     text-align: start;
+    font-weight: bold;
+    font-size: 20px;
   }
   &.center-value {
     text-align: center;
   }
   &.right-value {
     text-align: end;
+    font-weight: bold;
+    font-size: 20px;
   }
 `;
 

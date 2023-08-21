@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   ListWrapper, ListCarousel, CardContainer, LeftButton, RightButton, ListTitle,
 } from './styles';
@@ -9,13 +9,26 @@ function ProductList({ products }) {
   // const gap = 20;
   const divRef = useRef(null);
   const [scrollValue, setScrollValue] = useState(0);
+  const [maxWidth, setMaxWidth] = useState(0);
+
+
+
   const handleArrowClick = (direction) => {
     if (direction === 'right') {
+      console.log(scrollValue);
       setScrollValue(divRef.current.scrollLeft += (cardWidth));
     } else {
       setScrollValue(divRef.current.scrollLeft -= (cardWidth));
     }
   };
+
+  useEffect(() => {
+    if (products.length > 4) {
+      setMaxWidth((products.length - 4) * 220 + (220 - 2));
+    } else {
+      setMaxWidth((0));
+    }
+  }, [products.length]);
 
   return (
     <ListWrapper>
@@ -26,7 +39,7 @@ function ProductList({ products }) {
           {products.map((product) => <Card key={product.id} product={product} type="product" />)}
         </CardContainer>
       </ListCarousel>
-      {scrollValue < 1000 && <RightButton onClick={() => { handleArrowClick('right'); }}>&#10095;</RightButton>}
+      {scrollValue < maxWidth && <RightButton onClick={() => { handleArrowClick('right'); }}>&#10095;</RightButton>}
     </ListWrapper>
   );
 }

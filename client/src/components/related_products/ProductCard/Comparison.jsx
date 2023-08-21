@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { isEqual } from 'lodash';
 import {
-  ModalWrapper, ModalContent, ModalCaption, HeaderRow, ProductHeader, CompareRow,
+  ModalWrapper, ModalContent, HeaderRow, ProductHeader, CompareRow,
   RowElement,
 } from './styles';
 import AppContext from '../../AppContext';
