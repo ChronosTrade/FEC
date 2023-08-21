@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import {
-  ListWrapper, ListCarousel, CardContainer, LeftButton, RightButton, ListTitle,
+  ListWrapper, ListCarousel, CardContainer, LeftButton, RightButton,
 } from './styles';
 import Card from '../ProductCard/Card';
 
@@ -41,3 +42,25 @@ function ProductList({ products }) {
 }
 
 export default ProductList;
+
+ProductList.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      campus: PropTypes.string,
+      name: PropTypes.string,
+      slogan: PropTypes.string,
+      description: PropTypes.string,
+      category: PropTypes.string,
+      default_price: PropTypes.string,
+      features: PropTypes.arrayOf(
+        PropTypes.shape({
+          feature: PropTypes.string,
+          value: PropTypes.string,
+        }),
+      ),
+      created_at: PropTypes.string,
+      updated_at: PropTypes.string,
+    }),
+  ).isRequired,
+};

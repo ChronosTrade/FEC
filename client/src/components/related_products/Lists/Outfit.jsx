@@ -25,7 +25,6 @@ function Outfit() {
   };
 
   const addProduct = () => {
-    console.log(currentProduct);
     setOutfit([...outfit, currentProduct]);
   };
 
