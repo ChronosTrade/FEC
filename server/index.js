@@ -9,20 +9,13 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(express.json());
 
-app.get('/styles', (req, res) => {
-  controllers.getStyles(req, res);
-});
-
-app.post('/cart', (req, res) => {
-  controllers.saveCart(req, res);
-});
-
+app.get('/styles', controllers.getStyles);
+app.get('/cart', controllers.saveCart);
 app.get('/reviews', controllers.getReviews);
 app.get('/reviews/meta', controllers.reviewsMeta);
 app.post('/reviews', controllers.postReview);
 app.put('/reviews/:reviewId/helpful', controllers.markReviewAsHelpful);
 app.put('/reviews/:reviewId/report', controllers.reportReview);
-
 app.get('/products/:id', controllers.getProduct);
 app.get('/products/:id/related', controllers.getRelated);
 

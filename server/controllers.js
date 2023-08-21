@@ -66,34 +66,8 @@ exports.reviewsMeta = (req, res) => {
 };
 
 exports.postReview = (req, res) => {
-  const {
-    productId,
-    rating,
-    summary,
-    body,
-    recommend,
-    name,
-    email,
-    photos,
-    characteristics,
-  } = req.body;
-
   axios
-    .post(
-      `${baseURL}/reviews`,
-      {
-        productId,
-        rating,
-        summary,
-        body,
-        recommend,
-        name,
-        email,
-        photos,
-        characteristics,
-      },
-      { headers },
-    )
+    .post(`${baseURL}/reviews`, req.body, { headers })
     .then((response) => {
       res.status(201).send(response.data);
     })

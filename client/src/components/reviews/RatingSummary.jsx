@@ -13,7 +13,7 @@ import {
 } from './styles';
 
 function RatingSummary({ ratings, recommended, characteristics }) {
-  const { averageRatings, setTotalRatings, setAverageRatings } = useContext(AppContext); 
+  const { totalRatings, averageRatings, setTotalRatings, setAverageRatings } = useContext(AppContext); 
 
   if (!ratings || !characteristics) {
     return null;
@@ -35,12 +35,6 @@ function RatingSummary({ ratings, recommended, characteristics }) {
     setAverageRatings(averageRatingValue);
   }, [ratings, setTotalRatings, setAverageRatings]);
 
-
-  const totalReviews = Object.values(ratings).reduce(
-    (acc, curr) => acc + Number(curr),
-    0
-  );
-
   const mapCharacteristicToPercentage = (value) => ((value - 1) / 4) * 100;
 
   const recommendPercent = (
@@ -60,7 +54,7 @@ function RatingSummary({ ratings, recommended, characteristics }) {
           <BarWrapper key={star}>
             <BarLabel>{`${star} Stars:`}</BarLabel>
             <Bar>
-              <FilledBar $percentage={(ratings[star] / totalReviews) * 100} />
+              <FilledBar $percentage={(ratings[star] / totalRatings) * 100} />
             </Bar>
           </BarWrapper>
         ))}

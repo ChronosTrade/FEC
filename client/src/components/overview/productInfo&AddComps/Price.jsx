@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { PriceStyle, SaleStyle } from '../overviewStyles';
 
 export default function Price({
   selStyle,
@@ -21,14 +22,14 @@ export default function Price({
     <div>
       {!showSale
         ? (
-          <h3>
+          <PriceStyle>
             {price}
-          </h3>
+          </PriceStyle>
         ) : (
-          <h3>
+          <SaleStyle>
             {price}
             {sale}
-          </h3>
+          </SaleStyle>
         )}
     </div>
   );

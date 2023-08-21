@@ -1,11 +1,6 @@
 import React, {
   useState, useEffect, useMemo, useRef,
 } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom';
 import axios from 'axios';
 import { GlobalStyles } from './globalStyling';
 import OverviewMain from './overview/OverviewMain';
@@ -33,20 +28,20 @@ function App() {
       productID,
       totalRatings,
       currentProduct,
+      averageRatings,
       setProductID,
       setTotalRatings,
       setCurrentProduct,
-      averageRatings,
       setAverageRatings,
     }),
     [
       productID,
       totalRatings,
       currentProduct,
+      averageRatings,
       setProductID,
       setTotalRatings,
       setCurrentProduct,
-      averageRatings,
       setAverageRatings,
     ],
   );

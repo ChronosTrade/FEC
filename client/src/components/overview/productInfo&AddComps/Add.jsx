@@ -1,6 +1,8 @@
 import React, { forwardRef } from 'react';
 import axios from 'axios';
 
+import { AddToCart } from '../overviewStyles';
+
 const Add = forwardRef(({
   selSku,
   selQuantity,
@@ -24,12 +26,12 @@ const Add = forwardRef(({
     <div>
       {showButton
         ? (
-          <button
+          <AddToCart
             onClick={submitHandler}
             type="button"
           >
             Add to Cart
-          </button>
+          </AddToCart>
         ) : null}
     </div>
   );

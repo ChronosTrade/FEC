@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { MainImage } from './ImageMainStyles';
+
+import {
+  MainImage, ModalBackground, ExpandedModal, ImageGalleryWrapper, DefaultImageWrapper,
+} from '../overviewStyles';
 import ImageScroll from './ImageScroll';
+import ExpandedView from './ExpandedView';
 
 export default function ImageGalleryMain({
   selStyle,
@@ -9,10 +13,11 @@ export default function ImageGalleryMain({
 }) {
   const [index, setIndex] = useState(0);
   const [mainImg, setMainImg] = useState('');
-  const [showLeft, setShowLeft] = useState(false);
-  const [showRight, setShowRight] = useState(true);
   const [maxIndex, setMaxIndex] = useState(0);
   const [photos, setPhotos] = useState([]);
+  const [showExp, setShowExp] = useState(false);
+  const [showLeft, setShowLeft] = useState(false);
+  const [showRight, setShowRight] = useState(true);
 
   useEffect(() => {
     if (Object.keys(selStyle).length) {
@@ -56,6 +61,12 @@ export default function ImageGalleryMain({
     setShowRight(true);
   }, [productID]);
 
+  useEffect(() => {
+    if (showExp === false) {
+      // document.body.style.overflow = 'unset';
+    }
+  }, [showExp]);
+
   const clickHandlerL = function clickHandlerL() {
     if (index > 0) {
       setIndex(index - 1);
@@ -68,35 +79,65 @@ export default function ImageGalleryMain({
     }
   };
 
+  const clickHandlerMain = function clickHandlerMain() {
+    setShowExp(true);
+    // document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    setShowExp(false);
+  };
+
   return (
-    <div>
+    <ImageGalleryWrapper>
       <ImageScroll
         selIndex={index}
         photos={photos}
         setIndex={setIndex}
       />
-
-      <MainImage
-        src={mainImg}
-      />
-      {showLeft ? (
-        <button
-          type="button"
-          onClick={clickHandlerL}
-        >
-          GoLeft
-        </button>
+      {showExp ? (
+        <>
+          <ModalBackground onClick={closeModal} />
+          <ExpandedModal>
+            <ExpandedView
+              index={index}
+              mainImg={mainImg}
+              maxIndex={maxIndex}
+              showLeft={showLeft}
+              showRight={showRight}
+              setIndex={setIndex}
+              setShowExp={setShowExp}
+            />
+          </ExpandedModal>
+        </>
       ) : null}
-      {showRight ? (
-        <button
-          type="button"
-          onClick={clickHandlerR}
-        >
-          GoRight
-        </button>
-      ) : null}
+      <DefaultImageWrapper>
+        <img
+          alt=""
+          className="mainImg"
+          role="presentation"
+          src={mainImg}
+          onClick={clickHandlerMain}
+        />
+        {showLeft ? (
+          <button
+            type="button"
+            onClick={clickHandlerL}
+          >
+            GoLeft
+          </button>
+        ) : null}
+        {showRight ? (
+          <button
+            type="button"
+            onClick={clickHandlerR}
+          >
+            GoRight
+          </button>
+        ) : null}
+      </DefaultImageWrapper>
+    </ImageGalleryWrapper>
 
-    </div>
   );
 }
 

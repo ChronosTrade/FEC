@@ -115,7 +115,7 @@ function ReviewMain({ refRatings }) {
               More Reviews
             </LoadMoreButton>
           )}
-          <WriteReview />
+          <WriteReview reviewMeta={reviewMeta}/>
         </ReviewWrapper>
         ) : (
           <Loading />
