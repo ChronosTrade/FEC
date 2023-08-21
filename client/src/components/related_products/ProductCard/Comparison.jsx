@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { isEqual } from 'lodash';
 import {
-  ModalWrapper, ModalContent, ModalCaption, HeaderRow, ProductHeader, CompareRow,
+  ModalWrapper, ModalContent, HeaderRow, ProductHeader, CompareRow,
+  RowElement,
 } from './styles';
 import AppContext from '../../AppContext';
 
@@ -36,27 +37,27 @@ function Comparison({ onClose, name, features }) {
 
   return (
     <ModalWrapper onClick={onClose}>
-    <ModalContent>
-      <ModalCaption>
-
-      </ModalCaption>
-      <thead>
-        <HeaderRow>
-          <ProductHeader>{currentProduct.name}</ProductHeader>
-          <ProductHeader>Blank</ProductHeader>
-          <ProductHeader>{name}</ProductHeader>
-        </HeaderRow>
-      </thead>
-      <tbody>
-        {filteredFeatures.map((char, i) => (
-          <CompareRow key={i}>
-            <td>{compare(1, char)}</td>
-            {char.value ? <td>{char.value}</td> : <td>{char.feature}</td> }
-            <td>{compare(2, char)}</td>
-          </CompareRow>
-        ))}
-      </tbody>
-    </ModalContent>
+      <ModalContent>
+        <thead>
+          <HeaderRow>
+            <ProductHeader className="caption">Comparing</ProductHeader>
+          </HeaderRow>
+          <HeaderRow>
+            <ProductHeader className="left-product">{currentProduct.name}</ProductHeader>
+            <ProductHeader></ProductHeader>
+            <ProductHeader className="right-product">{name}</ProductHeader>
+          </HeaderRow>
+        </thead>
+        <tbody>
+          {filteredFeatures.map((char, i) => (
+            <CompareRow key={i}>
+              <RowElement className="left-value">{compare(1, char)}</RowElement>
+              {char.value ? <RowElement className="center-value">{char.value}</RowElement> : <RowElement className="center-value">{char.feature}</RowElement> }
+              <RowElement className="right-value">{compare(2, char)}</RowElement>
+            </CompareRow>
+          ))}
+        </tbody>
+      </ModalContent>
     </ModalWrapper>
   );
 }

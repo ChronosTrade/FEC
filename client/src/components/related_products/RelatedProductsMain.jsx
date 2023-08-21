@@ -39,7 +39,9 @@ function RelatedProductsMain() {
 
   return (
     <div>
+      <p>Related Products</p>
       <ProductList products={relatedProducts} />
+      <p>Your Outfit</p>
       <Outfit />
     </div>
   );
