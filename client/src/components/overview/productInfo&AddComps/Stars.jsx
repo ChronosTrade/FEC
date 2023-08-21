@@ -1,7 +1,7 @@
 import React, {
   useState, useEffect, useContext, forwardRef,
 } from 'react';
-import { StarWrap } from '../overviewStyles';
+import { StarWrap, SeeReviews, OverviewRatingsWrap } from '../overviewStyles';
 import AppContext from '../../AppContext';
 
 const Stars = forwardRef((_props, ref) => {
@@ -16,7 +16,7 @@ const Stars = forwardRef((_props, ref) => {
   const remainder = (averageRatings - full) * 100;
   const message = `View ${totalRatings} Reviews`;
   return (
-    <div>
+    <OverviewRatingsWrap>
       {Array.from({ length: full }).map((_, i) => (
         <StarWrap className="full" key={i}>
           &#9733;
@@ -32,10 +32,10 @@ const Stars = forwardRef((_props, ref) => {
           &#9734;
         </StarWrap>
       ))}
-      <div role="link" onClick={clickHandler}>
+      <SeeReviews role="link" onClick={clickHandler}>
         {message}
-      </div>
-    </div>
+      </SeeReviews>
+    </OverviewRatingsWrap>
   );
 });
 

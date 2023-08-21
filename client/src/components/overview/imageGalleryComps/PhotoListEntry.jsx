@@ -1,5 +1,5 @@
 import React from 'react';
-import { Photo, PhotoSelect } from '../overviewStyles';
+import { Photo, PhotoSelect, PhotosWrapper } from '../overviewStyles';
 
 export default function PhotoListEntry({
   photo,
@@ -16,13 +16,11 @@ export default function PhotoListEntry({
       {(photos[selIndex] === photo)
         ? (
           <PhotoSelect
-            alt=""
             src={photo.thumbnail_url}
             i={i}
           />
         ) : (
           <Photo
-            alt=""
             src={photo.thumbnail_url}
             i={i}
             onClick={clickHandler}

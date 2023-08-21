@@ -28,12 +28,10 @@ function App() {
       productID,
       totalRatings,
       currentProduct,
-
+      averageRatings,
       setProductID,
       setTotalRatings,
       setCurrentProduct,
-      averageRatings,
-      setAverageRatings,
       setAverageRatings,
     }),
     [

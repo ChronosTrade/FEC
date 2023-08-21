@@ -8,14 +8,14 @@ export default function ImageScroll({
   setIndex
 }) {
   return (
-    <PhotosWrapper role="presentation">
+    <PhotosWrapper>
       {photos.map(
         (photo, i) => (
           <PhotoListEntry
             photo={photo}
             i={i}
             selIndex={selIndex}
-            key={photo.thumbnail_url}
+            key={i}
             photos={photos}
             setIndex={setIndex}
           />

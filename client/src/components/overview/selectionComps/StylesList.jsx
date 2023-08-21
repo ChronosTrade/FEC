@@ -10,25 +10,28 @@ export default function StylesList({
   const [title, setTitle] = useState('');
   useEffect(() => {
     if (styles.length > 0) {
-      setTitle(styles[0].name);
+
+      setTitle(`Color: ${styles[0].name}`);
     }
   }, [styles]);
   return (
-    <StylePhotosWrapper role="presentation">
-      <h3>{title}</h3>
-      {styles.map(
-        (style) => (
-          <StylesListEntry
-            style={style}
-            key={style.style_id}
-            selStyle={selStyle}
-            setSelStyle={setSelStyle}
-            setSizeNotice={setSizeNotice}
-            setTitle={setTitle}
-          />
-        ),
-      )}
-    </StylePhotosWrapper>
+    <>
+      <h3 className="styleTitle">{title}</h3>
+      <div className="styled" role="presentation">
+        {styles.map(
+          (style) => (
+            <StylesListEntry
+              style={style}
+              key={style.style_id}
+              selStyle={selStyle}
+              setSelStyle={setSelStyle}
+              setSizeNotice={setSizeNotice}
+              setTitle={setTitle}
+            />
+          ),
+        )}
+      </div>
+    </>
   );
 }
 
@@ -42,18 +45,22 @@ function StylesListEntry({
   const clickHandler = () => {
     setSelStyle(style);
     setSizeNotice(false);
-    setTitle(style.name);
+
+    setTitle(`Color: ${style.name}`);
   };
   return (
     <div>
       {(selStyle === style)
         ? (
-          <ThumbImageSelect
+          <img
+            className="imgSelect"
+
             alt=""
             src={style.photos[0].thumbnail_url}
           />
         ) : (
-          <ThumbImage
+          <img
+            className="img"
             alt=""
             src={style.photos[0].thumbnail_url}
             onClick={clickHandler}

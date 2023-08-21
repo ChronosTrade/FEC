@@ -1,5 +1,7 @@
 import React, { useState, useEffect, forwardRef } from 'react';
-import { Modal, ModalBackground } from '../overviewStyles';
+import {
+  Modal, ModalBackground, DescWrapper, TitleStyle, DescriptionStyle, CategoryStyle, OverviewRatingsWrap,
+} from '../overviewStyles';
 import Stars from './Stars';
 import ShareView from './ShareView';
 
@@ -15,7 +17,7 @@ const Description = forwardRef(({ currentProduct }, refRatings) => {
 
   useEffect(() => {
     if (Object.keys(currentProduct).length) {
-      setCategory(currentProduct.category);
+      setCategory(`Category: ${currentProduct.category}`);
       setDescription(currentProduct.description);
       setTitle(currentProduct.name);
     }
@@ -46,11 +48,16 @@ const Description = forwardRef(({ currentProduct }, refRatings) => {
 
   return (
     <div>
-      {showStars ? <Stars ref={refRatings} /> : null}
-      {title}
-      {category}
-      {description}
+      <DescWrapper>
+        <TitleStyle>{title}</TitleStyle>
+        {showStars ? <Stars ref={refRatings} /> : null}
+        <DescriptionStyle>{description}</DescriptionStyle>
+      </DescWrapper>
+      <CategoryStyle>
+        {category}
+      </CategoryStyle>
       <button
+        className="share"
         type="button"
         onClick={clickHandler}
       >
