@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1692725813202" clover="3.2.0">
+  <project timestamp="1692725813202" name="All files">
+    <metrics statements="142" coveredstatements="127" conditionals="36" coveredconditionals="21" methods="35" coveredmethods="23" elements="213" coveredelements="171" complexity="0" loc="142" ncloc="142" packages="5" files="10" classes="10"/>
+    <package name="components">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="AppContext.jsx" path="/Users/patrickalexandre/Desktop/Hack Reactor Main Course/FEC/FEC/client/src/components/AppContext.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.related_products.Lists">
+      <metrics statements="23" coveredstatements="17" conditionals="8" coveredconditionals="3" methods="6" coveredmethods="3"/>
+      <file name="ProductList.jsx" path="/Users/patrickalexandre/Desktop/Hack Reactor Main Course/FEC/FEC/client/src/components/related_products/Lists/ProductList.jsx">
+        <metrics statements="17" coveredstatements="11" conditionals="8" coveredconditionals="3" methods="6" coveredmethods="3"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="33" count="0" type="cond" truecount="1" falsecount="1"/>
+        <line num="36" count="4" type="stmt"/>
+        <line num="39" count="0" type="cond" truecount="1" falsecount="1"/>
+        <line num="46" count="1" type="stmt"/>
+      </file>
+      <file name="styles.jsx" path="/Users/patrickalexandre/Desktop/Hack Reactor Main Course/FEC/FEC/client/src/components/related_products/Lists/styles.jsx">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.related_products.ProductCard">
+      <metrics statements="54" coveredstatements="50" conditionals="18" coveredconditionals="13" methods="14" coveredmethods="10"/>
+      <file name="Card.jsx" path="/Users/patrickalexandre/Desktop/Hack Reactor Main Course/FEC/FEC/client/src/components/related_products/ProductCard/Card.jsx">
+        <metrics statements="18" coveredstatements="14" conditionals="8" coveredconditionals="5" methods="9" coveredmethods="5"/>
+        <line num="13" count="10" type="stmt"/>
+        <line num="14" count="10" type="stmt"/>
+        <line num="15" count="10" type="stmt"/>
+        <line num="16" count="10" type="stmt"/>
+        <line num="17" count="10" type="stmt"/>
+        <line num="19" count="10" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="23" count="10" type="stmt"/>
+        <line num="24" count="5" type="stmt"/>
+        <line num="29" count="5" type="stmt"/>
+        <line num="31" count="20" type="stmt"/>
+        <line num="32" count="5" type="stmt"/>
+        <line num="33" count="5" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="40" count="10" type="stmt"/>
+        <line num="43" count="0" type="cond" truecount="2" falsecount="0"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+      </file>
+      <file name="Comparison.jsx" path="/Users/patrickalexandre/Desktop/Hack Reactor Main Course/FEC/FEC/client/src/components/related_products/ProductCard/Comparison.jsx">
+        <metrics statements="19" coveredstatements="19" conditionals="10" coveredconditionals="8" methods="5" coveredmethods="5"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="26" count="3" type="stmt"/>
+        <line num="27" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="31" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="32" count="3" type="stmt"/>
+        <line num="33" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="34" count="2" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="55" count="3" type="stmt"/>
+      </file>
+      <file name="styles.jsx" path="/Users/patrickalexandre/Desktop/Hack Reactor Main Course/FEC/FEC/client/src/components/related_products/ProductCard/styles.jsx">
+        <metrics statements="17" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="83" count="1" type="stmt"/>
+        <line num="86" count="1" type="stmt"/>
+        <line num="99" count="1" type="stmt"/>
+        <line num="102" count="1" type="stmt"/>
+        <line num="118" count="1" type="stmt"/>
+        <line num="125" count="1" type="stmt"/>
+        <line num="131" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.reviews">
+      <metrics statements="59" coveredstatements="54" conditionals="10" coveredconditionals="5" methods="15" coveredmethods="10"/>
+      <file name="StarByProductId.jsx" path="/Users/patrickalexandre/Desktop/Hack Reactor Main Course/FEC/FEC/client/src/components/reviews/StarByProductId.jsx">
+        <metrics statements="12" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="5"/>
+        <line num="7" count="10" type="stmt"/>
+        <line num="9" count="10" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="15" count="25" type="stmt"/>
+        <line num="18" count="5" type="stmt"/>
+        <line num="19" count="25" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="29" count="10" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+      </file>
+      <file name="StarRating.jsx" path="/Users/patrickalexandre/Desktop/Hack Reactor Main Course/FEC/FEC/client/src/components/reviews/StarRating.jsx">
+        <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+        <line num="6" count="10" type="stmt"/>
+        <line num="7" count="10" type="stmt"/>
+        <line num="9" count="10" type="stmt"/>
+        <line num="12" count="15" type="stmt"/>
+        <line num="22" count="25" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+      </file>
+      <file name="styles.js" path="/Users/patrickalexandre/Desktop/Hack Reactor Main Course/FEC/FEC/client/src/components/reviews/styles.js">
+        <metrics statements="40" coveredstatements="36" conditionals="8" coveredconditionals="3" methods="6" coveredmethods="2"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="78" count="1" type="stmt"/>
+        <line num="88" count="1" type="stmt"/>
+        <line num="96" count="1" type="stmt"/>
+        <line num="118" count="1" type="stmt"/>
+        <line num="124" count="1" type="stmt"/>
+        <line num="135" count="1" type="stmt"/>
+        <line num="139" count="1" type="stmt"/>
+        <line num="150" count="1" type="stmt"/>
+        <line num="155" count="1" type="stmt"/>
+        <line num="159" count="1" type="stmt"/>
+        <line num="164" count="1" type="stmt"/>
+        <line num="178" count="1" type="stmt"/>
+        <line num="193" count="1" type="stmt"/>
+        <line num="203" count="1" type="stmt"/>
+        <line num="209" count="1" type="stmt"/>
+        <line num="215" count="1" type="stmt"/>
+        <line num="222" count="1" type="stmt"/>
+        <line num="225" count="0" type="stmt"/>
+        <line num="228" count="1" type="stmt"/>
+        <line num="232" count="0" type="stmt"/>
+        <line num="235" count="1" type="stmt"/>
+        <line num="238" count="50" type="cond" truecount="1" falsecount="1"/>
+        <line num="250" count="50" type="cond" truecount="2" falsecount="0"/>
+        <line num="257" count="1" type="stmt"/>
+        <line num="263" count="1" type="stmt"/>
+        <line num="270" count="1" type="stmt"/>
+        <line num="276" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="280" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="294" count="1" type="stmt"/>
+        <line num="301" count="1" type="stmt"/>
+        <line num="308" count="1" type="stmt"/>
+        <line num="320" count="1" type="stmt"/>
+        <line num="330" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.tests">
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="exampleData.js" path="/Users/patrickalexandre/Desktop/Hack Reactor Main Course/FEC/FEC/client/src/components/tests/exampleData.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="122" count="1" type="stmt"/>
+        <line num="155" count="1" type="stmt"/>
+        <line num="267" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

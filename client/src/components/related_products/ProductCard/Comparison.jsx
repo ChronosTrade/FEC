@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react';
-import { isEqual } from 'lodash';
+//import { isEqual } from 'lodash';
 import {
   ModalWrapper, ModalContent, HeaderRow, ProductHeader, CompareRow,
   RowElement,
 } from './styles';
 import AppContext from '../../AppContext';
+
+const isEqual = require('lodash/isEqual');
 
 function Comparison({ onClose, name, features }) {
   const {currentProduct, setCurrentProduct } = useContext(AppContext);
@@ -22,13 +24,13 @@ function Comparison({ onClose, name, features }) {
   const compare = (product, trait) => {
     if (product === 1) {
       for (let i = 0; i < currentProductFeatures.length; i++) {
-        if (_.isEqual(currentProductFeatures[i], trait)) {
+        if (isEqual(currentProductFeatures[i], trait)) {
           return <span>&#10003;</span>;
         }
       }
     } else if (product === 2) {
       for (let i = 0; i < comparedProductFeatures.length; i++) {
-        if (_.isEqual(comparedProductFeatures[i], trait)) {
+        if (isEqual(comparedProductFeatures[i], trait)) {
           return <span>&#10003;</span>;
         }
       }
@@ -37,7 +39,7 @@ function Comparison({ onClose, name, features }) {
 
   return (
     <ModalWrapper onClick={onClose}>
-      <ModalContent>
+      <ModalContent data-testid="compare-table">
         <thead>
           <HeaderRow>
             <ProductHeader className="caption">Comparing</ProductHeader>
