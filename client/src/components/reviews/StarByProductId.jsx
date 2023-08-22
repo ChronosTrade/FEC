@@ -19,14 +19,14 @@ function StarByProductId({ productId }) {
           (acc, curr) => acc + Number(curr),
           0,
         );
-        setAverageRating(totalRatings / totalReviews);
+        setAverageRating((totalRatings / totalReviews).toFixed(1));
       })
       .catch((error) => {
         console.error(error);
       });
   }, [productId]);
 
-  return <StarRating rating={averageRating} />;
+  return <StarRating rating={Number(averageRating)} />;
 }
 
 StarByProductId.propTypes = {

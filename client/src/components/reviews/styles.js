@@ -7,6 +7,7 @@ export const ReviewWrapper = styled.div`
   h4 {
     font-weight: 400;
   }
+  max-width: 70rem;
   width: 80%;
   display: flex;
   flex-direction: column; // Stack children vertically
