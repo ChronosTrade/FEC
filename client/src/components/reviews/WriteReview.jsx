@@ -156,7 +156,7 @@ function WriteReview({ reviewMeta }) {
                   key={characteristicName}
                   label={characteristicName}
                   options={['1', '2', '3', '4', '5']}
-                  value={characteristics[charData.id]}
+                  value={characteristics[charData.id] || 0}
                   onChange={(value) =>
                     setCharacteristics((prev) => ({
                       ...prev,

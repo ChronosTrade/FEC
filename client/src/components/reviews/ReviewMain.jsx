@@ -12,7 +12,7 @@ import Dropdown from './Dropdown';
 import WriteReview from './WriteReview';
 import Loading from './Loading';
 
-function ReviewMain({ refRatings }) {
+function ReviewMain() {
   const { productID } = useContext(AppContext);
   const [reviews, setReviews] = useState([]);
   const [reviewMeta, setReviewMeta] = useState({});
@@ -88,7 +88,7 @@ function ReviewMain({ refRatings }) {
   };
 
   return (
-    <div ref={refRatings}>
+    <div>
       {reviewMeta.ratings
       && reviewMeta.recommended
       && reviewMeta.characteristics ? (
