@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import axios from 'axios';
 import AppContext from '../../AppContext';
 import {
-  ActionButton, CardWrapper, ProductName, ProductCategory, ProductContainer, ProductPrice,
+  ActionButton, CardWrapper, ProductName, ProductCategory, ProductContainer, ProductPrice, OldPrice,
   ImageContainer, ProductImage, RemoveButton,
 } from './styles';
 import StarByProductId from '../../reviews/StarByProductId';
@@ -15,9 +15,17 @@ function Card({product, type, remove}) {
   const [productRatings, setProductRatings] = useState(0);
   const { productID, setProductID } = useContext(AppContext);
   const [showModal, setShowModal] = useState(false);
+  const [onSale, setOnSale] = useState(false);
 
   const handleRemoveClick = () => {
     remove(product.id);
+  };
+
+  const getPrice = () => {
+    if (defaultStyle !== undefined) {
+      return defaultStyle.original_price;
+    }
+    return product.default_price;
   };
 
   useEffect(() => {
@@ -31,6 +39,10 @@ function Card({product, type, remove}) {
         const styles = response.data.results.filter((style) => style['default?'] === true);
         setDefaultStyle(styles[0]);
         setImageUrl(response.data.results[0].photos[0].thumbnail_url);
+        //If the default style is on sale
+        if (styles[0].sale_price !== null) {
+          setOnSale(true);
+        }
       })
       .catch(() => {
         console.log('Unable to fetch style');
@@ -53,13 +65,24 @@ function Card({product, type, remove}) {
       <ProductContainer onClick={() => setProductID(product.id)}>
         <ProductCategory>{product.category}</ProductCategory>
         <ProductName>{product.name}</ProductName>
-        {defaultStyle !== undefined ? (
-          <ProductPrice>
-            $
-            {defaultStyle.original_price}
-          </ProductPrice>
+        {onSale ? (
+          <div>
+            <ProductPrice className="sale-price">
+              $
+              {defaultStyle.sale_price}
+            </ProductPrice>
+            <OldPrice>
+              $
+              {getPrice}
+            </OldPrice>
+          </div>
         )
-          : <ProductPrice>${product.default_price}</ProductPrice> }
+          : (
+            <ProductPrice>
+              $
+              {getPrice()}
+            </ProductPrice>
+          )}
         <StarByProductId productId={product.id.toString()} />
       </ProductContainer>
     </CardWrapper>

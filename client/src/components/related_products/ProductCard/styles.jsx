@@ -32,6 +32,14 @@ export const ProductCategory = styled.p`
 `;
 
 export const ProductPrice = styled.p`
+&.sale-price {
+  color: red;
+}
+  height: 0px;
+  margin-bottom: 35px;
+`;
+
+export const OldPrice = styled.s`
   height: 0px;
   margin-bottom: 35px
 `;
