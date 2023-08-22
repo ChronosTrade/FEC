@@ -33,20 +33,18 @@ function Icons({
     <div>
       {(index === i)
         ? (
-          <PhotoSelect
+          <img
+            src="../../../assets/favicon.png"
             alt=""
             i={i}
-          >
-            &#xf553;
-          </PhotoSelect>
+          />
         ) : (
-          <Photo
+          <img
+            src="../../../assets/favicon.png"
             alt=""
             i={i}
             onClick={clickHandler}
-          >
-            &#xf553;
-          </Photo>
+          />
         )}
     </div>
   );

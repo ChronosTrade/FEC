@@ -6,7 +6,6 @@ export default function Quantity({
   selSku,
   setSelQuantity
 }) {
-  // const [optionsState, setOptionsState] = useState('-');
   const [optionsState, setOptionsState] = useState({ value: null, label: '-' });
   const [showOptions, setShowOptions] = useState(false);
   const [quantityOptions, setQuantityOptions] = useState([]);

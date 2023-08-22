@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
 import {
-  MainImage, ModalBackground, ExpandedModal, ImageGalleryWrapper, DefaultImageWrapper,
+  LeftColumn, LeftButton, RightButton, DefaultImageWrapper,
 } from '../overviewStyles';
 import ImageScroll from './ImageScroll';
-import ExpandedView from './ExpandedView';
 
 export default function ImageGalleryMain({
   selStyle,
   productID,
+  index,
+  photos,
+  mainImg,
+  maxIndex,
+  showLeft,
+  showRight,
+  setIndex,
+  setShowExp,
+  setShowLeft,
+  setShowRight,
+  setMainImg,
+  setPhotos,
+  setMaxIndex,
 }) {
-  const [index, setIndex] = useState(0);
-  const [mainImg, setMainImg] = useState('');
-  const [maxIndex, setMaxIndex] = useState(0);
-  const [photos, setPhotos] = useState([]);
-  const [showExp, setShowExp] = useState(false);
-  const [showLeft, setShowLeft] = useState(false);
-  const [showRight, setShowRight] = useState(true);
-
   useEffect(() => {
     if (Object.keys(selStyle).length) {
       setMaxIndex(selStyle.photos.length - 1);
@@ -53,7 +56,7 @@ export default function ImageGalleryMain({
         setMainImg(photos[index].url);
       }
     }
-  }, [index, maxIndex, photos]);
+  }, [index, maxIndex, photos, setIndex, setMainImg, setShowRight, setShowLeft]);
 
   useEffect(() => {
     setIndex(0);
@@ -61,83 +64,63 @@ export default function ImageGalleryMain({
     setShowRight(true);
   }, [productID]);
 
-  useEffect(() => {
-    if (showExp === false) {
-      // document.body.style.overflow = 'unset';
-    }
-  }, [showExp]);
-
-  const clickHandlerL = function clickHandlerL() {
+  const clickHandlerL = () => {
     if (index > 0) {
       setIndex(index - 1);
     }
   };
 
-  const clickHandlerR = function clickHandlerR() {
+  const clickHandlerR = () => {
     if (index < maxIndex) {
       setIndex(index + 1);
     }
   };
 
-  const clickHandlerMain = function clickHandlerMain() {
+  const clickHandlerMain = () => {
     setShowExp(true);
-    // document.body.style.overflow = 'hidden';
-  };
-
-  const closeModal = () => {
-    setShowExp(false);
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    document.body.style.overflow = 'hidden';
   };
 
   return (
-    <ImageGalleryWrapper>
-      <ImageScroll
-        selIndex={index}
-        photos={photos}
-        setIndex={setIndex}
-      />
-      {showExp ? (
-        <>
-          <ModalBackground onClick={closeModal} />
-          <ExpandedModal>
-            <ExpandedView
-              index={index}
-              mainImg={mainImg}
-              maxIndex={maxIndex}
-              showLeft={showLeft}
-              showRight={showRight}
-              setIndex={setIndex}
-              setShowExp={setShowExp}
-            />
-          </ExpandedModal>
-        </>
-      ) : null}
+    <>
+      <LeftColumn>
+        <ImageScroll
+          selIndex={index}
+          photos={photos}
+          setIndex={setIndex}
+        />
+      </LeftColumn>
       <DefaultImageWrapper>
         <img
-          alt=""
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            position: 'absolute',
+          }}
+          alt="Main View"
           className="mainImg"
-          role="presentation"
           src={mainImg}
           onClick={clickHandlerMain}
+          onKeyDown={clickHandlerMain}
         />
         {showLeft ? (
-          <button
-            type="button"
+          <LeftButton
             onClick={clickHandlerL}
           >
             GoLeft
-          </button>
+          </LeftButton>
         ) : null}
         {showRight ? (
-          <button
-            type="button"
+          <RightButton
             onClick={clickHandlerR}
           >
             GoRight
-          </button>
+          </RightButton>
         ) : null}
       </DefaultImageWrapper>
-    </ImageGalleryWrapper>
-
+    </>
   );
 }
 

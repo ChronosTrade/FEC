@@ -1,92 +1,140 @@
 import React, {
   useState, useContext, useEffect, useRef, forwardRef,
 } from 'react';
-import axios from 'axios';
 import AppContext from '../AppContext';
+// import { useAppContext } from '../AppContext';
 import {
-  OverviewWrapper, Container,
+  OverviewWrapper, Container, SelectionContainer, RightColumn, ExpandedModalWrapper, ModalBackground, Wrapper
 } from './overviewStyles';
-import Add from './productInfo&AddComps/Add';
-import Description from './productInfo&AddComps/Description';
+import Add from './productInfoAddComps/Add';
+import Description from './productInfoAddComps/Description';
 import ImageGalleryMain from './imageGalleryComps/ImageGalleryMain';
-import Price from './productInfo&AddComps/Price';
+import Price from './productInfoAddComps/Price';
 import QuantityList from './selectionComps/QuantityList';
 import SizeList from './selectionComps/SizeList';
 import StylesList from './selectionComps/StylesList';
+import Magnifier from './imageGalleryComps/Magnifier';
 
-const OverviewMain = forwardRef((_props, refRatings) => {
+const OverviewMain = forwardRef(({ styles }, refRatings) => {
   const [selStyle, setSelStyle] = useState({});
   const [selQuantity, setSelQuantity] = useState('-');
   const [selSku, setSelSku] = useState(null);
-  const [styles, setSelStyles] = useState([]);
+  const [render1, setRender1] = useState(false);
   const [sizeNotice, setSizeNotice] = useState(false);
   const [showButton, setShowButton] = useState(true);
+  const [index, setIndex] = useState(0);
+  const [mainImg, setMainImg] = useState('');
+  const [maxIndex, setMaxIndex] = useState(0);
+  const [photos, setPhotos] = useState([]);
+  const [showExp, setShowExp] = useState(false);
+  const [showLeft, setShowLeft] = useState(false);
+  const [showRight, setShowRight] = useState(true);
+
+  // const [styles, setSelStyles] = useState([]);
+  // const productID = useAppContext();
+  // const currentProduct = useAppContext();
+  // const styles = useAppContext();
   const { currentProduct, productID } = useContext(AppContext);
   const ref = useRef(null);
 
   useEffect(() => {
-    const config = {
-      params: {
-        ID: productID,
-      },
-    };
-    axios.get('/styles', config)
-      .then((response) => {
-        if (response.data.results.length > 0) {
-          setSelStyles(response.data.results);
-          setSelStyle(response.data.results[0]);
-          // console.log(averageRatings);
-          // console.log(totalRatings);
-        }
-      })
-      .catch(() => {
-      });
-  }, [productID]);
+    if (styles) {
+      setSelStyle(styles[0]);
+      setRender1(true);
+    }
+  }, [styles]);
+
+  useEffect(() => {
+    if (showExp === false) {
+      document.body.style.overflow = 'unset';
+    }
+  }, [showExp]);
+
+  const closeModal = () => {
+    setShowExp(false);
+    document.body.style.overflow = 'hidden';
+  };
 
   return (
-    <OverviewWrapper>
-      <Description
-        productID={productID}
-        currentProduct={currentProduct}
-        refRatings={refRatings}
-      />
-      <Container>
-        <div className="left">
-          <ImageGalleryMain
-            selStyle={selStyle}
-            productID={productID}
-          />
-        </div>
-        <div className="right">
-          <StylesList
-            selStyle={selStyle}
-            styles={styles}
-            setSizeNotice={setSizeNotice}
-            setSelStyle={setSelStyle}
-          />
-          <SizeList
-            selStyle={selStyle}
-            sizeNotice={sizeNotice}
-            setShowButton={setShowButton}
-            setSizeNotice={setSizeNotice}
-            setSelSku={setSelSku}
-            ref={ref}
-          />
-          <QuantityList
-            selSku={selSku}
-            setSelQuantity={setSelQuantity}
-          />
-          <Price selStyle={selStyle} />
-          <Add
-            selSku={selSku}
-            selQuantity={selQuantity}
-            showButton={showButton}
-            setSizeNotice={setSizeNotice}
-            ref={ref}
-          />
-        </div>
-      </Container>
-    </OverviewWrapper>
+    <div>
+      <OverviewWrapper>
+        {render1
+          ? (
+            <>
+              <Description
+                currentProduct={currentProduct}
+                refRatings={refRatings}
+              />
+              <Container>
+                <ImageGalleryMain
+                  selStyle={selStyle}
+                  productID={productID}
+                  index={index}
+                  mainImg={mainImg}
+                  maxIndex={maxIndex}
+                  showLeft={showLeft}
+                  showRight={showRight}
+                  photos={photos}
+                  showExp={showExp}
+                  setMaxIndex={setMaxIndex}
+                  setShowLeft={setShowLeft}
+                  setShowRight={setShowRight}
+                  setMainImg={setMainImg}
+                  setPhotos={setPhotos}
+                  setIndex={setIndex}
+                  setShowExp={setShowExp}
+                />
+                <RightColumn>
+                  <StylesList
+                    selStyle={selStyle}
+                    styles={styles}
+                    setSizeNotice={setSizeNotice}
+                    setSelStyle={setSelStyle}
+                  />
+                  <SelectionContainer>
+                    <SizeList
+                      selStyle={selStyle}
+                      sizeNotice={sizeNotice}
+                      setShowButton={setShowButton}
+                      setSizeNotice={setSizeNotice}
+                      setSelSku={setSelSku}
+                      ref={ref}
+                    />
+                    <QuantityList
+                      selSku={selSku}
+                      setSelQuantity={setSelQuantity}
+                    />
+                    <Price selStyle={selStyle} />
+                    <Add
+                      selSku={selSku}
+                      selQuantity={selQuantity}
+                      showButton={showButton}
+                      setSizeNotice={setSizeNotice}
+                      ref={ref}
+                    />
+                  </SelectionContainer>
+                </RightColumn>
+              </Container>
+            </>
+          ) : null }
+        {showExp ? (
+          <>
+            <Wrapper>
+              <Magnifier
+                index={index}
+                mainImg={mainImg}
+                maxIndex={maxIndex}
+                showLeft={showLeft}
+                showRight={showRight}
+                setIndex={setIndex}
+                setShowExp={setShowExp}
+              />
+            </Wrapper>
+            <ModalBackground onClick={closeModal} />
+          </>
+        ) : null}
+      </OverviewWrapper>
+    </div>
   );
 });
 
