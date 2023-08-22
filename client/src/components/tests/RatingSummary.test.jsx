@@ -43,7 +43,6 @@ const mockCharacteristics = {
 };
 
 describe('RatingSummary Component', () => {
-
   test('renders RatingSummary with ratings, recommendations, and characteristics', () => {
     render(
       <AppContext.Provider value={mockContextValue}>
@@ -52,7 +51,7 @@ describe('RatingSummary Component', () => {
           recommended={mockRecommended}
           characteristics={mockCharacteristics}
         />
-      </AppContext.Provider>
+      </AppContext.Provider>,
     );
 
     // elements
@@ -64,6 +63,5 @@ describe('RatingSummary Component', () => {
     expect(screen.queryByText('Width:')).toBeTruthy();
     expect(screen.queryByText('Comfort:')).toBeTruthy();
     expect(screen.queryByText('Quality:')).toBeTruthy();
-
   });
 });

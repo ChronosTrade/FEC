@@ -1,5 +1,5 @@
 // styles.js
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 const transitionPreset1 = 'all 0.15s ease-in-out';
 
@@ -120,7 +120,6 @@ export const ButtonGroup = styled.div`
   display: flex;
   gap: 1rem; // This creates a gap between the two buttons
 `;
-
 
 export const HelpfulButton = styled(BaseButton)`
   width: 6.5rem;
