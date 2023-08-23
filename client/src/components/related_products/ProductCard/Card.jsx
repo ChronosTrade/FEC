@@ -21,6 +21,14 @@ function Card({product, type, remove}) {
     remove(product.id);
   };
 
+  const handleProductClick = () => {
+    if (imageUrl === null) {
+      alert('Product is unavailable');
+    } else {
+      setProductID(product.id);
+    }
+  };
+
   const getPrice = () => {
     if (defaultStyle !== undefined) {
       return defaultStyle.original_price;
@@ -62,7 +70,7 @@ function Card({product, type, remove}) {
 
         <ProductImage src={imageUrl} />
       </ImageContainer>
-      <ProductContainer onClick={() => setProductID(product.id)}>
+      <ProductContainer onClick={handleProductClick}>
         <ProductCategory>{product.category}</ProductCategory>
         <ProductName>{product.name}</ProductName>
         {onSale ? (
