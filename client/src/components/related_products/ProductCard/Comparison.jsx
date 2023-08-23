@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-//import { isEqual } from 'lodash';
 import {
   ModalWrapper, ModalContent, HeaderRow, ProductHeader, CompareRow,
   RowElement,

@@ -7,6 +7,7 @@ import ProductList from '../related_products/Lists/ProductList';
 import {
   products, reviewMeta, reviews, style, defaultProduct,
 } from './exampleData';
+import RelatedProductsMain from '../related_products/RelatedProductsMain';
 import Card from '../related_products/ProductCard/Card';
 import Comparison from '../related_products/ProductCard/Comparison';
 import AppContext from '../AppContext';
@@ -15,6 +16,7 @@ const isEqual = require('lodash/isEqual');
 
 jest.mock('axios');
 const mockedAxios = axios;
+
 const mockContextValue = {
   productID: 40344,
   currentProduct: defaultProduct,
@@ -42,6 +44,16 @@ beforeEach(() => {
     if (url.includes('/styles')) {
       return Promise.resolve({
         data: style,
+      });
+    }
+    if (url.includes('/products/40344/related')) {
+      return Promise.resolve({
+        data: relatedProducts,
+      });
+    }
+    if (url.includes('/products/40344')) {
+      return Promise.resolve({
+        data: products[0],
       });
     }
     throw new Error('Unknown URL');
@@ -88,5 +100,14 @@ describe('Card', () => {
     await waitFor(() => expect(screen.queryByText('Brass')).toBeTruthy());
     await waitFor(() => expect(screen.queryByText('100% Cotton')).toBeTruthy());
     await waitFor(() => expect(screen.queryByText('Skinny')).toBeTruthy());
+  });
+
+  it('should render top component', async () => {
+    render(
+      <AppContext.Provider value={mockContextValue}>
+        <RelatedProductsMain />
+      </AppContext.Provider>,
+    );
+    expect(mockedAxios.get).toHaveBeenCalledTimes(11);
   });
 });
