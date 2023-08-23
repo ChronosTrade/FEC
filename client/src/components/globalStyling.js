@@ -1,21 +1,24 @@
-import styled, { keyframes } from 'styled-components';
-import { createGlobalStyle } from 'styled-components';
+import styled, { keyframes, createGlobalStyle } from 'styled-components';
 
-const transitionPreset1 = 'all 0.15s ease-in-out';
+export const darkGrey = '#666';
+export const whiteBackground = '#f3f3f3';
+export const themeColor = '#234E70';
+export const secColor = '#FBF8BE';
+
 export const GlobalStyles = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;800&display=swap');
-  body {
-    font-family: 'Nunito', sans-serif;
-    background: #f6f6f6;
-  }
-  h1,
-  h2,
-  h3,
-  h4 {
-    justify-content: center;
-    text-aligh: center;
-  }
-.input:focus{
-  border-colore: red;
-}
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;800&display=swap');
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: ${whiteBackground};
+    }
+    h1,
+    h2,
+    h3,
+    h4 {
+      justify-content: center;
+      text-align: center; 
+    }
+    .input:focus{
+      border-color: ${themeColor};
+    }
 `;

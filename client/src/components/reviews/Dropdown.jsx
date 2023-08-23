@@ -1,13 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { StyledDropdown } from './styles';
 
 function Dropdown({ onChange }) {
   return (
-    <select onChange={(e) => onChange(e.target.value)}>
-      <option value="relevant">Relevant</option>
-      <option value="newest">Newest</option>
-      <option value="helpful">Helpful</option>
-    </select>
+    <StyledDropdown>
+      <select onChange={(e) => onChange(e.target.value)}>
+        <option value="relevant">Relevant</option>
+        <option value="newest">Newest</option>
+        <option value="helpful">Helpful</option>
+      </select>
+    </StyledDropdown>
   );
 }
 
+Dropdown.propTypes = {
+  onChange: PropTypes.func.isRequired,
+};
 export default Dropdown;

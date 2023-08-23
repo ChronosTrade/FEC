@@ -6,6 +6,7 @@ import OverviewMain from './overview/OverviewMain';
 import ReviewMain from './reviews/ReviewMain';
 import RelatedProductsMain from './related_products/RelatedProductsMain';
 import AppContext from './AppContext';
+import Footer from './Footer';
 
 function App() {
   const [totalRatings, setTotalRatings] = useState(0);
@@ -63,8 +64,9 @@ function App() {
     <AppContext.Provider value={contextValue}>
       <GlobalStyles />
       <OverviewMain styles={styles} />
-      <ReviewMain />
       <RelatedProductsMain />
+      <ReviewMain />
+      <Footer />
     </AppContext.Provider>
   );
 }
