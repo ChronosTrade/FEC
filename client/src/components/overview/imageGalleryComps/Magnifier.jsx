@@ -8,6 +8,7 @@ import {
   LeftButtonExpand,
   RightButtonExpand,
 } from '../overviewStyles';
+import IconScroll from './IconScroll';
 
 export default function Magnifier({
   mainImg,
@@ -54,6 +55,11 @@ export default function Magnifier({
 
   return (
     <ExpandedModalWrapper>
+      <IconScroll
+        index={index}
+        maxIndex={maxIndex}
+        setIndex={setIndex}
+      />
       <ExpandedImage
         src={mainImg}
         onMouseEnter={insideHandler}

@@ -29,6 +29,15 @@ margin-bottom: 1em;
 
 export const ReviewsWrap = styled.div`
 display: flex;
+  .starsContainer{
+
+  }
+  .starsRatings{
+    font-weight: 600;
+    margin-inline-start: 0.3em;
+    margin-block-start: 0.12em;
+    margin-block-end: 0;
+  }
 `;
 
 export const SeeReviewsButton = styled.button`
@@ -37,7 +46,7 @@ export const SeeReviewsButton = styled.button`
   border: none;
   cursor: pointer;
   text-decoration: underline;
-  font-size: 0.8rem;
+  font-size: 1rem;
   border-width: 0.06rem;
   &:hover {
     text-decoration: none;
@@ -164,8 +173,8 @@ top: 50%;
 left: 100%;
 transform: translate(-100%, -50%);
 cursor: pointer;
-border-top-right-radius:10px;
-border-bottom-left-radius:10px;
+// border-top-right-radius:0px;
+// border-bottom-left-radius:0px;
 background: none;
 border: none;
 color: #08a4a7;
@@ -256,19 +265,23 @@ font-size: 0.8em;
 `;
 
 export const StarWrap = styled.span`
+  display: inline-block;
   position: relative;
+  font-size: 1rem;
   color: #08a4a7;
-  .full {
+  &.full {
     color: #08a4a7;
   }
-  .partial::after {
+  &.partial::after {
     content: '★';
     position: absolute;
-    left: 0;
-    overflow: hidden;
-    width: ${(props) => props.width};
     color: #08a4a7;
-    z-index: 2;
+    left: 0;
+    top: 0;
+    width: ${(props) => props.width || '0%'};
+    overflow: hidden;
+    color: #08a4a7;
+    z-index: 0;
   }
 `;
 
@@ -327,14 +340,29 @@ export const Close = styled.div`
     cursor: pointer;
   }
 `;
+
 export const Icons = styled.div`
   margin-top: 1em;
   margin-bottom: 0.5em;
   display: flex;
   gap: 1.6rem;
 `;
-export const ModalClose = styled.button`
 
+export const IconsWrap = styled.span`
+  position: absolute;
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  gap: 1.6rem;
+  top: 5px;
+  z-index: 5;
+  .selectedIcon{
+    opacity: 0.7;
+    color: black;
+  }
+  .unselectedIcon{
+    opacity: 0.3;
+  }
 `;
 
 export const ModalCancel = styled.button`
