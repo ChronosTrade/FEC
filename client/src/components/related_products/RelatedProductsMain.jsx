@@ -40,12 +40,12 @@ function RelatedProductsMain() {
   }, [productID]);
 
   return (
-    <div>
+    <RelatedProductsWrapper>
       <p>Related Products</p>
       <ProductList products={relatedProducts} />
       <p>Your Outfit</p>
       <Outfit />
-    </div>
+    </RelatedProductsWrapper>
   );
 }
 
