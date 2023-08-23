@@ -42,7 +42,7 @@ function ReviewCard({ review }) {
   };
 
   return (
-    <StyledReviewCard>
+    <StyledReviewCard data-testid="review-card">
       <p>
         <b>{review.summary.toUpperCase()}</b>
       </p>

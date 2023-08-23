@@ -21,8 +21,7 @@ function StarByProductId({ productId }) {
         );
         setAverageRating((totalRatings / totalReviews).toFixed(1));
       })
-      .catch((error) => {
-        console.error(error);
+      .catch(() => {
       });
   }, [productId]);
 
