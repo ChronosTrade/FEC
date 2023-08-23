@@ -5,7 +5,7 @@
 import React from 'react';
 import { render, fireEvent, act } from '@testing-library/react';
 import axios from 'axios';
-import ReviewCard from '../reviews/ReviewCard.jsx';
+import ReviewCard from '../reviews/ReviewCard';
 
 // Mocking the axios to isolate the component from its external dependencies
 jest.mock('axios');
@@ -22,24 +22,24 @@ describe('ReviewCard', () => {
     photos: [
       {
         url: 'https://example.com/photo1.jpg',
-        id: 1
+        id: 1,
       },
       {
         url: 'https://example.com/photo2.jpg',
-        id: 2
-      }
+        id: 2,
+      },
     ],
     reviewer_name: 'John Doe',
-    date: '2023-01-01'
+    date: '2023-01-01',
   };
 
   it('should render review correctly', () => {
-    const { getByText, getByAltText } = render(<ReviewCard review={mockReview} />);
-    
-    expect(getByText('GREAT PRODUCT!')).toBeInTheDocument;
-    expect(getByText('This is the product review body.')).toBeInTheDocument;
-    expect(getByText('Response from seller:')).toBeInTheDocument;
-    expect(getByText('Thanks for the feedback!')).toBeInTheDocument;
+    const { getByText } = render(<ReviewCard review={mockReview} />);
+
+    expect(getByText('GREAT PRODUCT!')).toBeTruthy();
+    expect(getByText('This is the product review body.')).toBeTruthy();
+    expect(getByText('Response from seller:')).toBeTruthy();
+    expect(getByText('Thanks for the feedback!')).toBeTruthy();
   });
 
   it('should increase helpful count on "Helpful" button click', async () => {
@@ -54,7 +54,7 @@ describe('ReviewCard', () => {
       expect(axios.put).toHaveBeenCalledWith('/reviews/1/helpful');
     });
 
-    expect(getByText('6')).toBeInTheDocument;
+    expect(getByText('6')).toBeTruthy();
   });
 
   it('should call the correct endpoint on "Report" button click', async () => {
@@ -69,5 +69,4 @@ describe('ReviewCard', () => {
       expect(axios.put).toHaveBeenCalledWith('/reviews/1/report');
     });
   });
-
 });

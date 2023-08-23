@@ -27,7 +27,7 @@ const Add = forwardRef(({
       {showButton
         ? (
           <AddToCart
-            data-testid="add-to-cart"
+            data-testid="addtocart"
             onClick={submitHandler}
             type="button"
           >

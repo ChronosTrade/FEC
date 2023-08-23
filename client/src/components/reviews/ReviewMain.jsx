@@ -92,7 +92,7 @@ function ReviewMain() {
       {reviewMeta.ratings
       && reviewMeta.recommended
       && reviewMeta.characteristics ? (
-        <ReviewWrapper>
+        <ReviewWrapper id="Reviews">
           <RatingSummary
             ratings={reviewMeta.ratings}
             recommended={reviewMeta.recommended}
@@ -115,7 +115,7 @@ function ReviewMain() {
               More Reviews
             </LoadMoreButton>
           )}
-          <WriteReview reviewMeta={reviewMeta}/>
+          <WriteReview reviewMeta={reviewMeta} />
         </ReviewWrapper>
         ) : (
           <Loading />

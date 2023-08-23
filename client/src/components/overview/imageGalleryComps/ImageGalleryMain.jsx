@@ -100,6 +100,7 @@ export default function ImageGalleryMain({
             position: 'absolute',
           }}
           alt="Main View"
+          data-testid="mainImage"
           className="mainImg"
           src={mainImg}
           onClick={clickHandlerMain}

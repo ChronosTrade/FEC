@@ -151,17 +151,17 @@ function WriteReview({ reviewMeta }) {
                   }}
                 />
               </div>
-              {reviewMeta && Object.entries(reviewMeta.characteristics).map(([characteristicName, charData]) => (
+              {reviewMeta
+              && Object.entries(reviewMeta.characteristics).map(([charName, charData]) => (
                 <CustomRadioButton
-                  key={characteristicName}
-                  label={characteristicName}
+                  key={charName}
+                  label={charName}
                   options={['1', '2', '3', '4', '5']}
                   value={characteristics[charData.id] || 0}
-                  onChange={(value) =>
-                    setCharacteristics((prev) => ({
-                      ...prev,
-                      [charData.id]: value,
-                    }))}
+                  onChange={(value) => setCharacteristics((prev) => ({
+                    ...prev,
+                    [charData.id]: value,
+                  }))}
                 />
               ))}
               <SubmitButton type="submit">Submit Review</SubmitButton>
