@@ -3,17 +3,20 @@ import styled from 'styled-components';
 export const OverviewWrapper = styled.section`
 display: flex;
 flex-direction: column;
+width: 1100px;
 max-width: 80rem;
 margin: 0 auto 3rem;
 `;
 
 export const DescWrapper = styled.div`
 display: flex;
-width: 68.7%;
-flex-direction: column;
-justify-content: center;
-margin-bottom: 1em;
+flex-direction:column;
+justify-content: left;
+margin-bottom: 0.5em;
+width: 741px;
 
+.info {
+}
 .title {
   font-weight: 500;
   font-size: 30px;
@@ -21,7 +24,6 @@ margin-bottom: 1em;
   margin-top; 0.2em;
 }
 .description {
-  max-width: 40em;
   margin-block-start: 0.5em;
   margin-block-end: 0.5em;
 }
@@ -56,7 +58,6 @@ export const SeeReviewsButton = styled.button`
 export const ShareWrap = styled.div`
 display: flex;
 justify-content: space-between;
-width: 100%;
 
 .share {
   justify-content: end;
@@ -76,21 +77,38 @@ width: 100%;
 
 export const Container = styled.div`
   display: flex;
-  height: 800px;
 `;
 
 export const LeftColumn = styled.div`
- display: flex;
- position: relative;
- flex-direction: column;
  width: 4rem;
  margin-right: 1.5em;
+ height: 200px;
+ ::-webkit-scrollbar {
+   display: none;
+ }
 `;
+
+// export const ListWrapper = styled.div`
+//   display: flex;
+//   width: 1000px;
+//   height: 350px;
+//   margin-bottom: 50px;
+//   ::-webkit-scrollbar {
+//     display: none;
+//   }
+// `;
+
+// export const ListCarousel = styled.div`
+//   display: flex;
+//   width: 100%;
+//   height: 100%;
+//   overflow-x: auto;
+// `;
 
 export const PhotosWrapper = styled.div`
   display: flex;
   flex-direction: column;
-
+  overflow-y: auto;
   .selected {
     width: 3rem;
     height: 3rem;
@@ -120,15 +138,16 @@ export const PhotosWrapper = styled.div`
 
 export const DefaultImageWrapper = styled.div`
 position: relative;
-width: 50rem;
-height: 50rem;
 object-fit: cover;
 cursor: pointer;
+width: '650px',
+height: '770px',
 `;
 
 export const LeftButton = styled.button`
 position: absolute;
 top: 50%;
+left: 0%;
 transform: translate(0%, -50%);
 cursor: pointer;
 border-top-right-radius:10px;
@@ -216,7 +235,7 @@ export const RightColumn = styled.div`
 display: flex;
 flex-direction: column;
 position: relative;
-top: -7%;
+top: -55px;
 left: 4%;
 max-width: 25rem;
 `;

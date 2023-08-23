@@ -13,10 +13,10 @@ export default function IconScroll({
   const [icon, setIcon] = useState(faBox);
 
   useEffect(() => {
-    console.log(currentProduct);
-    // if (Object.keys(currentProduct) > 0) {
     if (currentProduct.category === 'Jackets') {
       setIcon(faShirt);
+    } else if (currentProduct.category === 'Dress Shoes' || currentProduct.category === 'Kicks') {
+      setIcon(faShoePrints);
     } else {
       setIcon(faBox);
     }
@@ -47,17 +47,16 @@ function Icons({
   icon
 }) {
   const clickHandler = (e) => {
-    console.log(e.target);
     if (e.target.getAttribute('i')) {
       setIndex(Number(e.target.getAttribute('i')));
     }
-    console.log(index);
   };
   return (
     <div>
       {(index === i)
         ? (
-          <i className="selectedIcon"
+          <i
+            className="selectedIcon"
             i={i}
           >
             <FontAwesomeIcon

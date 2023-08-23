@@ -1,5 +1,4 @@
-import React, {
-  useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import { GlobalStyles } from './globalStyling';
 import OverviewMain from './overview/OverviewMain';
@@ -11,13 +10,15 @@ import Footer from './Footer';
 function App() {
   const [totalRatings, setTotalRatings] = useState(0);
   const [averageRatings, setAverageRatings] = useState(0);
-  const [productID, setProductID] = useState(40344);
+  const [productID, setProductID] = useState(40347);
   const [styles, setSelStyles] = useState(null);
   const [currentProduct, setCurrentProduct] = useState({});
 
   useEffect(() => {
     axios.get(`/products/${productID}`)
-      .then((response) => {console.log('test'); setCurrentProduct(response.data)} )
+      .then((response) => {
+        setCurrentProduct(response.data);
+      })
       .catch(() => {
       });
     const config = {
@@ -44,7 +45,6 @@ function App() {
       setProductID,
       setTotalRatings,
       setCurrentProduct,
-      averageRatings,
       setAverageRatings,
     }),
     [
@@ -55,7 +55,6 @@ function App() {
       setProductID,
       setTotalRatings,
       setCurrentProduct,
-      averageRatings,
       setAverageRatings,
     ],
   );
