@@ -1,6 +1,6 @@
 import React, { useState, useEffect, forwardRef } from 'react';
 import Select from 'react-select';
-import { SelectSizeNote, SizeLabel, SelectDropDown } from '../overviewStyles';
+import { SelectSizeNote, SelectDropDown } from '../overviewStyles';
 
 const Size = forwardRef(({
   selStyle,
@@ -14,8 +14,19 @@ const Size = forwardRef(({
   const [sizesArray, setSizesArray] = useState([]);
   const [OutOfStock, setOutOfStock] = useState(false);
 
+  const customStyles = {
+    option: (styles) => ({
+      ...styles,
+      cursor: 'pointer',
+    }),
+    control: (styles) => ({
+      ...styles,
+      cursor: 'pointer',
+    }),
+  };
+
   useEffect(() => {
-    setOptionsState({ value: null, label: 'Select Size' });
+    setOptionsState({ value: 'Select Size', label: 'Select Size' });
     setSelSku(null);
     setOutOfStock(false);
     if (Object.keys(selStyle).length > 0) {
@@ -40,13 +51,14 @@ const Size = forwardRef(({
       }
       if (count === 0) {
         setOutOfStock(true);
-        setOptionsState({ value: null, label: 'Out of Stock' });
+        setOptionsState({ value: 'Out of Stock', label: 'Out of Stock' });
         setShowButton(false);
       } else {
         setSizesArray(tempSizesArr);
       }
     }
   }, [selStyle, setSelSku, setShowButton]);
+
   const handleChange = (e) => {
     setOptionsState(e);
     const tempSkuObj = {
@@ -62,11 +74,14 @@ const Size = forwardRef(({
       {sizeNotice ? (
         <SelectSizeNote>Please Select Size</SelectSizeNote>
       ) : <SelectSizeNote>Size</SelectSizeNote>}
-      <SelectDropDown>
+      <SelectDropDown data-testid="size-dropdown">
         {!OutOfStock
           ? (
             <Select
-              aria-label="Size Options"
+              styles={customStyles}
+              classNamePrefix="list"
+              aria-labelledby="Size Options"
+              placeholder="Select Size"
               openMenuOnFocus
               options={sizesArray}
               value={optionsState}
@@ -75,7 +90,8 @@ const Size = forwardRef(({
             />
           ) : (
             <Select
-              aria-label="Size Options"
+              styles={customStyles}
+              aaria-labelledby="Size Options Out"
               isDisabled
               value={optionsState}
               ref={ref}

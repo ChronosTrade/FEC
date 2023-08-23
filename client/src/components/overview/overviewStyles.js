@@ -1,137 +1,175 @@
 import styled from 'styled-components';
 
-
 export const OverviewWrapper = styled.section`
-h4 {
-  font-weight: 400;
+display: flex;
+flex-direction: column;
+max-width: 80rem;
+margin: 0 auto 3rem;
+`;
+
+export const DescWrapper = styled.div`
+display: flex;
+flex-direction: column;
+max-width: 60rem;
+justify-content: center;
+margin-bottom: 1em;
+
+.title {
+  font-weight: 500;
+  font-size: 30px;
+  margin-bottom: 0.1em;
+  margin-top; 0.2em;
 }
-width: 1200px;
-justify-content: center; // Center children horizontally
-margin: 0 auto; // Center the component itself horizontally
-select {
-  width:100px;
+.description {
+  max-width: 50em;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+}
+`;
+
+export const ReviewsWrap = styled.div`
+display: flex;
+`;
+
+export const SeeReviewsButton = styled.button`
+  background: none;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.8rem;
+  border-width: 0.06rem;
+  &:hover {
+    text-decoration: none;
+  }
+`;
+
+export const ShareWrap = styled.div`
+display: flex;
+gap: 45.3rem;
+.share {
+  justify-content: end;
+  align-items: flex-end;
+  cursor: pointer;
+}
+.category {
+  font-weight: lighter;
+  font-size: 14px;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
 }
 `;
 
 export const Container = styled.div`
   display: flex;
-  .left {
-    width: 800px;
-    justify-content: left;
-  }
-  .left .mainImg{
-    width: 45rem;
-    height: 45rem;
-    margin-left: 30px;
-    object-fit: cover;
-    overflow: hidden;
-    cursor: pointer;
-  }
-  .left .photos {
+  height: 800px;
+`;
 
-  }
-  .right {
-    position: relative;
-    top:-50px;
-    flex-direction: column;
-    width: 400px;
-    margin-left:50px;
-  }
-  .right .styled {
-    display: flex;
-    flex-direction:row;
-    flex-wrap: wrap;
-    gap: 0.3em;
-  }
+export const LeftColumn = styled.div`
+ display: flex;
+ position: relative;
+ flex-direction: column;
+ width: 4rem;
+ margin-right: 1.5em;
+`;
 
-  .right .styleTitle {
-    font-weight: normal;
-    font-size: 20px;
-  }
+export const PhotosWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 
-  .right .styled .img {
-      width: 3.5rem;
-      height: 3.5rem;
-      padding: 0.2em;
-      border: 0.2rem solid;
-      border-color: #f6f6f6;
-      object-fit: cover;
-      overflow: hidden;
-      cursor: pointer;
-      &:hover {
-        border-color: grey;
-        padding: 0.32rem;
-        border: 0.1rem solid;
-      }
-  }
-
-  .right .styled .imgSelect {
-    object-fit: cover;
-    overflow: hidden;
-    width: 3.5rem;
-    height: 3.5rem;
+  .selected {
+    width: 3rem;
+    height: 3rem;
     padding: 0.2em;
     border: 0.2rem solid;
     border-color: red;
+    object-fit: cover;
+    overflow: hidden;
     cursor: pointer;
-}
-
-  .right .empty {
-    &:before {
-      background: aqua;
-      color: black;
-      height: 50px;
+  }
+  .unselected {
+    width: 3rem;
+    height: 3em;
+    padding: 0.2em;
+    border: 0.2rem solid;
+    border-color: #f6f6f6;
+    object-fit: cover;
+    overflow: hidden;
+    cursor: pointer;
+    &:hover {
+      border-color: grey;
+      padding: 0.32rem;
+      border: 0.1rem solid;
     }
-
-    min-height: 50px;
-    // float: left;
   }
 `;
 
-export const ThumbImage = styled.img`
-  border: 0.07rem solid;
-  border-color: #ccc;
-  width: 3rem;
-  height: 3rem;
+export const DefaultImageWrapper = styled.div`
+position: relative;
+width: 50rem;
+height: 50rem;
+object-fit: cover;
+cursor: pointer;
+`;
+
+export const LeftButton = styled.button`
+position: absolute;
+top: 50%;
+transform: translate(0%, -50%);
+cursor: pointer;
+`;
+
+export const RightButton = styled.button`
+position: absolute;
+top: 50%;
+left: 100%;
+transform: translate(-100%, -50%);
+cursor: pointer;
+`;
+
+export const RightColumn = styled.div`
+display: flex;
+flex-direction: column;
+position: relative;
+top: -7%;
+left: 4%;
+max-width: 25rem;
+`;
+
+export const StylesBlock = styled.div`
+display: flex;
+flex-wrap: wrap;
+gap: 0.2em;
+
+.selectedStyle {
+  margin-right: 5px;
+  margin-left: 5px;
   object-fit: cover;
   overflow: hidden;
-  flex: 1 0 20%;
+  width: 3.5rem;
+  height: 3.5rem;
+  padding: 0.2em;
+  border: 0.2rem solid;
+  border-color: red;
   cursor: pointer;
-`;
-export const ThumbImageSelect = styled.img`
-
-`;
-
-// export const Left = styled.div`
-// display: inherit;
-// `;
-// export const Right = styled.div`
-// flex-direction: column !important;
-
-// `;
-
-export const DescWrapper = styled.div`
-margin-top: 0.2em;
-margin-bottom: 1em;
-width: 800px;
-`;
-export const TitleStyle = styled.div`
-font-weight: 500;
-font-size: 30px;
-margin-bottom: 0.2em;
-margin-top; 0.2em;
-`;
-
-export const CategoryStyle = styled.div`
-font-weight: lighter;
-font-size: 14px;
-margin-bottom: 0.2em;
-margin-top; 0.2em;
-`;
-
-export const OverviewRatingsWrap = styled.div`
-display: inline-block;
-font-size: 1em;
+}
+.unselectedStyle {
+  margin-right: 5px;
+  margin-left: 5px;
+  width: 3.5rem;
+  height: 3.5rem;
+  padding: 0.2em;
+  border: 0.2rem solid;
+  border-color: #f6f6f6;
+  object-fit: cover;
+  overflow: hidden;
+  cursor: pointer;
+  &:hover {
+    border-color: grey;
+    padding: 0.32rem;
+    border: 0.1rem solid;
+  }
+}
 `;
 
 export const SeeReviews = styled.div`
@@ -158,97 +196,10 @@ export const StarWrap = styled.span`
   }
 `;
 
-export const DescriptionStyle = styled.div`
-font-size: 1em;
-margin-top" 0.2em
-`;
-
-export const Category = styled.div`
-
-`;
-
-export const ImageGalleryWrapper = styled.div`
-display: flex;
-`;
-
-export const ExpandedImage = styled.img`
-// width: 50rem;
-// height: 50rem;
-max-height: 90%;
-object-fit: cover;
-overflow: hidden;
-cursor: zoom-in;
-position: absolute;
-`;
-
-export const ExpandedModal = styled.div`
-  // position: fixed;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  max-height: 90%;
-  font-family: 'Nunito', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 3;
-
-  transform: translate(-50%, -50%);
-`;
-
-export const DefaultImageWrapper = styled.div`
-position: relative;
-
-`;
-
-export const MainImageArrow = styled.div`
-width: 0;
-height: 0;
-border-style: solid;
-border-width: 0 20px 20px 0;
-border-color: transparent gold transparent transparent;
-position: absolute; /* Remove the element from normal flow */
-top: 0; right: 0;   /* Position the element at top-right corner of the wrapper */
-`;
-
-export const PhotosWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const PhotoSelect = styled.img`
-  width: 3rem;
-  height: 3rem;
-  padding: 0.2em;
-  border: 0.2rem solid;
-  border-color: red;
-  object-fit: cover;
-  overflow: hidden;
-  cursor: pointer;
-`;
-export const Photo = styled.img`
-  width: 3rem;
-  height: 3em;
-  padding: 0.2em;
-  border: 0.2rem solid;
-  border-color: #f6f6f6;
-  object-fit: cover;
-  overflow: hidden;
-  cursor: pointer;
-  &:hover {
-    border-color: grey;
-    padding: 0.32rem;
-    border: 0.1rem solid;
-
-  }
-`;
-
 export const Modal = styled.div`
-  // position: fixed;
   position: absolute;
   left: 50%;
   top: 50%;
-  max-height: 90%;
   font-family: 'Nunito', sans-serif;
   background: #f6f6f6;
   width: 50rem;
@@ -257,8 +208,66 @@ export const Modal = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 3;
-
   transform: translate(-50%, -50%);
+`;
+
+export const Wrapper = styled.div`
+position: absolute;
+left: 50%;
+top: 50%;
+font-family: 'Nunito', sans-serif;
+background: #f6f6f6;
+width: 900px;
+height: 1000px;
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 3;
+transform: translate(-50%, -50%);
+`;
+
+export const ExpandedModalWrapper = styled.div`
+position: absolute;
+`;
+
+export const ExpandedImage = styled.img`
+height: 1010px;
+width: 900px;
+cursor: zoom-in;
+`;
+
+export const MagnifyingGlass = styled.div`
+display: ${(props) => (props.showmag ? '' : 'none')};
+position: absolute;
+cursor: pointer;
+pointer-events: none;
+height: 200px;
+width: 200px;
+opacity: 1;
+border: 1px solid;
+top: ${(props) => (props.y - 200 / 2)}px;
+left: ${(props) => (props.x - 200 / 2)}px;
+background-position-x: ${(props) => (-props.x * 2.5 + 200 / 2)}px;
+background-position-y: ${(props) => (-props.y * 2.5 + 200 / 2)}px;
+background-size: ${(900 * 2.5)}px ${(1010 * 2.5)}px;
+background-repeat: no-repeat;
+background-image: url('${(props) => (props.mainimg)}');
+`;
+
+export const LeftButtonExpand = styled.button`
+position: absolute;
+top: 50%;
+left: -10%;
+transform: translate(0%, -50%);
+cursor: pointer;
+`;
+
+export const RightButtonExpand = styled.button`
+position: absolute;
+top: 50%;
+left: 110%;
+transform: translate(-100%, -50%);
+cursor: pointer;
 `;
 
 export const ModalBackground = styled.div`
@@ -266,60 +275,65 @@ export const ModalBackground = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 1000%;
+  height: 200%;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  z-index: 1;
+`;
+
+export const SelectionContainer = styled.div`
+  position: relative;
 `;
 
 export const SelectSizeNote = styled.h4`
   position: absolute;
-  top: 220px;
+  top: 0;
   font-weight: normal;
   font-size: 20px;
 `;
 
 export const SizeLabel = styled.h4`
   position: absolute;
-  top: 220px;
+  top: 0;
   font-weight: normal;
   font-size: 20px;
 `;
 
 export const SelectDropDown = styled.div`
   position: absolute;
-  top: 280px;
+  top: 60px;
   left: 0;
   width: 200px;
 `;
 
 export const QuantityLabel = styled.h4`
   position: absolute;
-  top: 320px;
+  top: 100px;
   font-weight: normal;
   font-size: 20px;
 `;
 
 export const QuantityDropDown = styled.div`
   position: absolute;
-  top: 380px;
+  top: 160px;
   width: 200px;
 `;
 
 export const AddToCart = styled.button`
   position: absolute;
-  top: 480px;
+  top: 260px;
   width: 300px;
+  cursor: pointer;
 `;
 
 export const PriceStyle = styled.div`
   position: absolute;
-  top: 450px;
+  top: 225px;
 `;
 
 export const SaleStyle = styled.div`
   position: absolute;
-  top: 450px;
+  top: 225px;
 `;
