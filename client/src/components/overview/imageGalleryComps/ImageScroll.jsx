@@ -7,6 +7,8 @@ export default function ImageScroll({
   photos,
   setIndex
 }) {
+
+
   return (
     <PhotosWrapper>
       {photos.map(
