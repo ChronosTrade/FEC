@@ -9,8 +9,8 @@ margin: 0 auto 3rem;
 
 export const DescWrapper = styled.div`
 display: flex;
+width: 68.7%;
 flex-direction: column;
-max-width: 60rem;
 justify-content: center;
 margin-bottom: 1em;
 
@@ -21,7 +21,7 @@ margin-bottom: 1em;
   margin-top; 0.2em;
 }
 .description {
-  max-width: 50em;
+  max-width: 40em;
   margin-block-start: 0.5em;
   margin-block-end: 0.5em;
 }
@@ -29,6 +29,15 @@ margin-bottom: 1em;
 
 export const ReviewsWrap = styled.div`
 display: flex;
+  .starsContainer{
+
+  }
+  .starsRatings{
+    font-weight: 600;
+    margin-inline-start: 0.3em;
+    margin-block-start: 0.12em;
+    margin-block-end: 0;
+  }
 `;
 
 export const SeeReviewsButton = styled.button`
@@ -37,7 +46,7 @@ export const SeeReviewsButton = styled.button`
   border: none;
   cursor: pointer;
   text-decoration: underline;
-  font-size: 0.8rem;
+  font-size: 1rem;
   border-width: 0.06rem;
   &:hover {
     text-decoration: none;
@@ -46,11 +55,16 @@ export const SeeReviewsButton = styled.button`
 
 export const ShareWrap = styled.div`
 display: flex;
-gap: 45.3rem;
+justify-content: space-between;
+width: 100%;
+
 .share {
   justify-content: end;
   align-items: flex-end;
   cursor: pointer;
+  background: none;
+  border: none;
+  opacity; 0.5;
 }
 .category {
   font-weight: lighter;
@@ -82,7 +96,7 @@ export const PhotosWrapper = styled.div`
     height: 3rem;
     padding: 0.2em;
     border: 0.2rem solid;
-    border-color: red;
+    border-color: #08a4a7;
     object-fit: cover;
     overflow: hidden;
     cursor: pointer;
@@ -117,6 +131,40 @@ position: absolute;
 top: 50%;
 transform: translate(0%, -50%);
 cursor: pointer;
+border-top-right-radius:10px;
+border-bottom-left-radius:10px;
+background: none;
+border: none;
+transition:all 1s;
+color: #08a4a7;
+&:after,&:before{
+  content:" ";
+  width:10px;
+  height:10px;
+  position:absolute;
+  border :0px solid #08a4a7;
+  transition:all 1s;
+  }
+&:after{
+  top:-1px;
+  left:-1px;
+  border-top:2px solid #08a4a7;
+  border-left:2px solid #08a4a7;
+}
+&:before{
+  bottom:-1px;
+  right:-1px;
+  border-bottom:2px solid #08a4a7;
+  border-right:2px solid #08a4a7;
+}
+&:hover{
+  border-top-right-radius:0px;
+border-bottom-left-radius:0px;
+  &:before,&:after{
+
+    width:100%;
+    height:100%;
+}
 `;
 
 export const RightButton = styled.button`
@@ -125,6 +173,43 @@ top: 50%;
 left: 100%;
 transform: translate(-100%, -50%);
 cursor: pointer;
+// border-top-right-radius:0px;
+// border-bottom-left-radius:0px;
+background: none;
+border: none;
+color: #08a4a7;
+background: #f6f6f6;
+opacity: 0.7;
+transition:all 1s;
+&:after,&:before{
+  content:" ";
+  width:10px;
+  height:10px;
+  position:absolute;
+  border :0px solid #08a4a7;
+  transition:all 0.6s;
+  }
+&:after{
+  bottom:-1px;
+  left:-1px;
+  border-bottom:2px solid #08a4a7;
+  border-left:2px solid #08a4a7;
+}
+&:before{
+  top:-1px;
+  right:-1px;
+  border-top:2px solid #08a4a7;
+  border-right:2px solid #08a4a7;
+}
+&:hover{
+  border-top-right-radius:0px;
+  border-bottom-right-radius:0px;
+  color:#00FFFF;
+  background: rgba(0, 0, 0, 0.5);
+  &:before,&:after{
+    width:100%;
+    height:100%;
+}
 `;
 
 export const RightColumn = styled.div`
@@ -150,7 +235,7 @@ gap: 0.2em;
   height: 3.5rem;
   padding: 0.2em;
   border: 0.2rem solid;
-  border-color: red;
+  border-color: #08a4a7;
   cursor: pointer;
 }
 .unselectedStyle {
@@ -180,19 +265,23 @@ font-size: 0.8em;
 `;
 
 export const StarWrap = styled.span`
+  display: inline-block;
   position: relative;
-  color: red;
-  .full {
-    color: #fff;
+  font-size: 1rem;
+  color: #08a4a7;
+  &.full {
+    color: #08a4a7;
   }
-  .partial::after {
+  &.partial::after {
     content: '★';
     position: absolute;
+    color: #08a4a7;
     left: 0;
+    top: 0;
+    width: ${(props) => props.width || '0%'};
     overflow: hidden;
-    width: ${(props) => props.width};
-    color: red;
-    z-index: 2;
+    color: #08a4a7;
+    z-index: 0;
   }
 `;
 
@@ -202,13 +291,90 @@ export const Modal = styled.div`
   top: 50%;
   font-family: 'Nunito', sans-serif;
   background: #f6f6f6;
-  width: 50rem;
-  height: 20rem;
+  width: 35rem;
+  height: 17rem;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   z-index: 3;
   transform: translate(-50%, -50%);
+  .border {
+    border-top: 0.07rem solid #ccc;
+    width: 100%;
+  }
+  .innerText {
+    top: 20px;
+    margin-block-start: 1.5em;
+    margin-block-end: 0.05em;
+    margin-left: 1rem;
+    width: 100%;
+  }
+`;
+
+export const Close = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  margin-block-end: 0.8em;
+  .headText {
+    margin-block-start: 0.6em;
+    margin-block-end: 0;
+    font-weight: normal;
+    font-size: 24px;
+  }
+  .closeCorner {
+    display: flex;
+    flex-direction: column;
+    margin-block-start: 0.5rem;
+  }
+  .closeCornerText {
+    font-size: 12px;
+    font-weight: 400;
+    padding-left: 0.2rem;
+    margin-block-start: 0em;
+    margin-block-end: 0;
+  }
+  .close {
+    background: none;
+    border:none;
+    cursor: pointer;
+  }
+`;
+
+export const Icons = styled.div`
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  display: flex;
+  gap: 1.6rem;
+`;
+
+export const IconsWrap = styled.span`
+  position: absolute;
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  gap: 1.6rem;
+  top: 5px;
+  z-index: 5;
+  .selectedIcon{
+    opacity: 0.7;
+    color: black;
+  }
+  .unselectedIcon{
+    opacity: 0.3;
+  }
+`;
+
+export const ModalCancel = styled.button`
+  position: relative;
+  top: 1.2rem;
+  width: 250px;
+  height: 50px;
+  background-color: #f6f6f6;
+  border-color: black;
+  border-width: thin;
+  cursor: pointer;
+  font-size: 14px;
 `;
 
 export const Wrapper = styled.div`
@@ -256,18 +422,34 @@ background-image: url('${(props) => (props.mainimg)}');
 
 export const LeftButtonExpand = styled.button`
 position: absolute;
+background: none;
+border: none;
 top: 50%;
-left: -10%;
+left: -5%;
 transform: translate(0%, -50%);
 cursor: pointer;
+color: #00FFFF;
+&:hover{
+  color: #08a4a7;
+  transition:all 0.7s;
+}
+z-index: 4;
 `;
 
 export const RightButtonExpand = styled.button`
 position: absolute;
+background: none;
+border: none;
 top: 50%;
-left: 110%;
+left: 105%;
 transform: translate(-100%, -50%);
 cursor: pointer;
+color: #00FFFF;
+z-index: 4;
+&:hover{
+  color: #08a4a7;
+  transition:all 0.7s;
+}
 `;
 
 export const ModalBackground = styled.div`
@@ -323,17 +505,44 @@ export const QuantityDropDown = styled.div`
 
 export const AddToCart = styled.button`
   position: absolute;
-  top: 260px;
+  top: 280px;
   width: 300px;
+  height: 50px;
+  border: none;
+  color: black;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #00FFFF;
   cursor: pointer;
 `;
 
-export const PriceStyle = styled.div`
+export const PriceWrapper = styled.div`
+display: flex;
+.price{
   position: absolute;
-  top: 225px;
-`;
-
-export const SaleStyle = styled.div`
+  top: 235px;
+  font-size: 26px;
+  font-weight: 600;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.priceSale{
   position: absolute;
-  top: 225px;
+  color: #08a4a7;
+  text-decoration: line-through;
+  top: 235px;
+  font-size: 26px;
+  font-weight: 600;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.sale{
+  position: absolute;
+  top: 235px;
+  left: 125px;
+  font-size: 26px;
+  font-weight: 600;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
 `;

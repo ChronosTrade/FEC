@@ -15,4 +15,7 @@ export const GlobalStyles = createGlobalStyle`
     justify-content: center;
     text-aligh: center;
   }
+.input:focus{
+  border-colore: red;
+}
 `;

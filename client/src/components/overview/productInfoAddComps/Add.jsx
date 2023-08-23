@@ -31,7 +31,7 @@ const Add = forwardRef(({
             onClick={submitHandler}
             type="button"
           >
-            Add to Cart
+            ADD TO CART
           </AddToCart>
         ) : null}
     </div>
