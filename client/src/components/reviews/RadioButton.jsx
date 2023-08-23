@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   RadioButton,
@@ -36,8 +36,9 @@ const SelectChart = {
   ],
 };
 
-function CustomRadioButton({ label, options, value, onChange }) {
-
+function CustomRadioButton({
+  label, options, value, onChange,
+}) {
   return (
     <RadioButtonBox>
       <RadioButtonLabel>{label}</RadioButtonLabel>

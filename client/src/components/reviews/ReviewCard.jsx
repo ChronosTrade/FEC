@@ -14,6 +14,7 @@ import Thumbnail from './Thumbnail';
 import StarRating from './StarRating';
 
 function ReviewCard({ review }) {
+  console.log(review);
   const [isMarkedHelpful, setIsMarkedHelpful] = useState(false);
   const [helpfulCount, setHelpfulCount] = useState(review.helpfulness);
 
@@ -42,49 +43,63 @@ function ReviewCard({ review }) {
   };
 
   return (
+
     <StyledReviewCard data-testid="review-card">
-      <p>
-        <b>{review.summary.toUpperCase()}</b>
-      </p>
-      <StarRating rating={review.rating} size="1rem" />
-      <p>{review.body}</p>
-      {review.response && (
-        <div className="response">
+      <div className="leftSection">
+        <div className="reviewer-id">
           <p>
-            <u>Response from seller:</u>
+            {review.reviewer_name}
           </p>
-          <p>{review.response}</p>
         </div>
-      )}
-      {review.recommend && (
+        <div className="review-date">
+          <p>
+            {new Date(review.date).toDateString()}
+          </p>
+        </div>
         <div className="recommendation">
-          <span>✓</span>
-          {' I recommend this product'}
+          <p>
+            Recommend?
+            {' '}
+            <b>
+              {review.recommend ? 'Yes' : 'No'}
+            </b>
+          </p>
         </div>
-      )}
-      {review.photos.length > 0 && (
-        <PhotosWrapper>
-          {review.photos.map((photo) => (
-            <Thumbnail imageUrl={photo.url} key={photo.id} />
-          ))}
-        </PhotosWrapper>
-      )}
-      {/* Reviewer Details */}
-      <div className="reviewer-details">
-        <p>
-          {review.reviewer_name}
-          {' at '}
-          {new Date(review.date).toDateString()}
-        </p>
+
       </div>
-      <ButtonGroup>
-        <HelpfulButton onClick={handleHelpfulClick} disabled={isMarkedHelpful}>
-          <FontWeightBold>Helpful</FontWeightBold>
-          {'    '}
-          <FontWeightLight>{helpfulCount}</FontWeightLight>
-        </HelpfulButton>
-        <ReportButton onClick={handleReportClick}>Report</ReportButton>
-      </ButtonGroup>
+
+      <div className="rightSection">
+        <div className="review-title">
+          <p>
+            {review.summary.toUpperCase()}
+          </p>
+        </div>
+        <StarRating rating={review.rating} size="1rem" />
+        <p>{review.body}</p>
+        {review.response && (
+          <div className="response">
+            <p>
+              <u>Response from seller:</u>
+            </p>
+            <p>{review.response}</p>
+          </div>
+        )}
+        {review.photos.length > 0 && (
+          <PhotosWrapper>
+            {review.photos.map((photo) => (
+              <Thumbnail imageUrl={photo.url} key={photo.id} />
+            ))}
+          </PhotosWrapper>
+        )}
+        <ButtonGroup>
+          <HelpfulButton onClick={handleHelpfulClick} disabled={isMarkedHelpful}>
+            <FontWeightBold>Helpful</FontWeightBold>
+            {'    '}
+            <FontWeightLight>{helpfulCount}</FontWeightLight>
+          </HelpfulButton>
+          <ReportButton onClick={handleReportClick}>Report</ReportButton>
+        </ButtonGroup>
+      </div>
     </StyledReviewCard>
   );
 }

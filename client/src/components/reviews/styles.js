@@ -1,14 +1,17 @@
 // styles.js
 import styled from 'styled-components';
+import {
+  darkGrey, whiteBackground, themeColor, secColor,
+} from '../globalStyling';
 
 const transitionPreset1 = 'all 0.15s ease-in-out';
+const veryLightGrey = '#ddd';
 
 export const ReviewWrapper = styled.div`
   h4 {
     font-weight: 400;
   }
   max-width: 70rem;
-  width: 80%;
   display: flex;
   flex-direction: column; // Stack children vertically
   justify-content: center; // Center children horizontally
@@ -16,18 +19,31 @@ export const ReviewWrapper = styled.div`
   select {
     width:100px;
   }
+  #review-header {
+    font-size: 1.5rem;
+    width: 90%;
+    margin: 0 auto;
+  }
 `;
 
 export const SummaryWrapper = styled.div`
   width: 90%;
   display: flex;
-  text-align: center;
+  text-align: left;
   justify-content: space-between;
+  margin: 0 auto;
 
-  .leftColumn,
+  .leftColumn {
+    flex-basis: 40%;
+    p {
+      color: ${darkGrey};
+    }
+  }
   .rightColumn {
-    margin-left: 2rem;
-    flex-basis: 48%; // a slight gap between the columns
+    flex-basis: 60%; 
+    p {
+      margin: 0 1rem 0.5rem;
+    }
   }
 `;
 
@@ -35,34 +51,67 @@ export const RatingContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-left: 5rem;
+  margin-left: 0;
 `;
 export const SortReviews = styled.div`
-  margin-left: 2.8rem;
+  width: 90%;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 0.2rem;
   border-top: 0.07rem solid #ccc;
 `;
+
 export const StyledReviewCard = styled.div`
   width: 90%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   margin: 0 auto;
   border-bottom: 0.07rem solid #ccc;
-  padding-bottom: 1.5rem;
-  margin-bottom: 1rem;
-  .reviewer-details {
+  padding-bottom: 2rem;
+
+  .leftSection {
     display: flex;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    margin-bottom: 0.5rem;
+    flex-basis: 20%;
+    flex-direction: column;
+    p {
+      margin-bottom: 0;
+    }
   }
+
+  .rightSection {
+    flex-basis: 78%; 
+    display: flex;
+    max-width: 78%;
+    flex-direction: column;
+    justify-content: center;
+    p {
+      word-wrap: break-word;
+    }
+  }
+  
+  .review-title {
+    margin-bottom: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    p {
+      margin-bottom: 1rem;
+    }
+  }
+  .reviewer-id {
+    font-size: 1.2rem;
+  }
+  .review-date {
+    font-size: 0.8rem;
+    color: ${darkGrey};
+   }
   .response {
     padding: 0.5rem;
-    background: #eee;
+    background: ${veryLightGrey};
     font-size: 0.8rem;
+  }
+  .recommendation {
+    font-size: 0.8rem;  
   }
 `;
 
@@ -102,7 +151,8 @@ const BaseButton = styled.button`
   transition: ${transitionPreset1};
   font-size: 1.5rem;
   font-weight: 600;
-  background: #fff;
+  background: ${themeColor};
+  color: white;
   border: 0.07rem solid #333;
   outline: 0;
   cursor: pointer;
@@ -117,8 +167,8 @@ const BaseButton = styled.button`
 `;
 
 export const ButtonGroup = styled.div`
+  margin-top: 1rem;
   display: flex;
-  gap: 1rem; // This creates a gap between the two buttons
 `;
 
 export const HelpfulButton = styled(BaseButton)`
@@ -144,12 +194,16 @@ export const LoadMoreButton = styled.button`
   text-decoration: underline;
   font-size: 0.8rem;
   border-width: 0.06rem;
-  margin: 0 auto 0;
+  margin: 1rem auto 0;
+  opacity: ${(props) => (props.transparent ? '0' : '1')}; 
+  &:hover {
+    text-decoration: none;
+  }
 `;
 
 export const ReportButton = styled(LoadMoreButton)`
   
-  margin-left:1rem;
+  margin: 0 1rem;
 `;
 
 export const FontWeightBold = styled.span`
@@ -179,7 +233,7 @@ export const ModalContent = styled.div`
   width: 80%;
   max-width: 40rem;
   max-height:95%;
-  background-color: #f3f3f3;
+  background-color: ${whiteBackground};
   padding: 20px;
   border-radius: 5px;
   position: relative;
@@ -204,43 +258,87 @@ export const BarWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 0.5rem;
+  .star-count {
+    margin-left: 1rem;
+  }
+  button {
+    border: 0;
+    background: none;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 `;
 
 export const BarLabel = styled.span`
-  width: 4rem;
-  text-align: right;
+  width: 3rem;
+  text-align: left;
   margin-right: 0.5rem;
 `;
 
 export const Bar = styled.div`
-  flex-grow: 1;
-  height: 0.8rem;
-  background-color: #eee;
+  flex-grow: 0.8;
+  height: 0.6rem;
+  background-color: ${veryLightGrey};
   position: relative;
 `;
 
+export const Slider = styled.div`
+  flex-grow: 1;
+  height: 0.3rem;
+  background-color: ${veryLightGrey};
+  color: ${themeColor};
+  position: relative;
+  margin-left: 1rem;
+
+
+  &:before, &:after {
+    content: ''; 
+    display: block;
+    position: absolute;
+    height: 0.5rem;
+    width: 0.2rem;
+    background-color: ${whiteBackground};
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &:before {
+    left: 25%; 
+  }
+
+  &:after {
+    left: 75%; 
+  }
+
+`;
+
+export const CharLabel = styled.div`
+  width: 5rem;
+  margin: 0 0.5rem 0 1rem;
+  text-align:left;
+  font-size: 0.8rem;
+  color: ${darkGrey};
+`;
 export const FilledBar = styled.div`
   height: 100%;
-  background-color: #666;
+  background-color: ${darkGrey};
   width: ${(props) => props.$percentage}%;
 `;
 
 export const BarSpot = styled.div`
-  height: 100%;
-  background-color: #666;
-  width: 0.5rem;
+  width: 0.1rem;
+  font-size: 0.8rem;
+  background: transparent;
+  margin-top: -0.3rem;
   margin-left: ${(props) => props.$percentage}%;
+  position: relative;
+  z-index: 2;
 `;
-
 export const StarWrapper = styled.span`
   display: inline-block;
   position: relative;
   font-size: ${(props) => props.size || '1rem'};
-  color: #666;
-
-  &.full {
-    color: #f80;
-  }
+  color: ${themeColor};
 
   &.partial::after {
     content: '★';
@@ -249,7 +347,7 @@ export const StarWrapper = styled.span`
     top: 0;
     width: ${(props) => props.width || '0%'};
     overflow: hidden;
-    color: #f80;
+    color: ${themeColor};
     z-index: 0;
   }
 `;
@@ -257,7 +355,7 @@ export const StarWrapper = styled.span`
 export const RadioButtonBox = styled.div`
   max-width: 60rem;
   margin: 0 auto 0.6rem;
-  background: #f3f3f3;
+  background: ${whiteBackground};
 `;
 
 export const RadioButton = styled.div`
@@ -335,4 +433,31 @@ export const ReviewBodyBox = styled(BlankEntry)`
     width: 39rem;
     padding: 0.4rem 0.5rem 4rem 0.5rem;
   }
+`;
+
+export const StyledDropdown = styled.div`
+  padding: 0.3rem;
+  margin-left: 0.5rem;
+  border: 1px solid #ccc;
+  font-size: 0.8rem;
+  background-color: #ffffff;
+  appearance: none;
+  outline: none;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.3s;
+
+  select {
+    border: none;
+    color: ${darkGrey};
+  }
+
+  &:hover {
+    border-color: ${darkGrey};
+  }
+
+ &:focus {
+  border-color: ${themeColor};
+  box-shadow: 0 0 5px rgba(0,120,212,0.3);
+ }
 `;

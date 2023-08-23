@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, {
+  useState, useEffect, useContext, useMemo,
+} from 'react';
 import axios from 'axios';
 import AppContext from '../AppContext';
 import {
@@ -13,10 +15,11 @@ import WriteReview from './WriteReview';
 import Loading from './Loading';
 
 function ReviewMain() {
-  const { productID } = useContext(AppContext);
+  const { productID, totalRatings } = useContext(AppContext);
   const [reviews, setReviews] = useState([]);
   const [reviewMeta, setReviewMeta] = useState({});
   const [displayedReviewsCount, setDisplayedReviewsCount] = useState(2);
+  const [activeFilter, setActiveFilter] = useState(null);
 
   function convertToNumbers(data) {
     const convertedRatings = Object.fromEntries(
@@ -60,7 +63,12 @@ function ReviewMain() {
       .catch((error) => {
         console.error(error);
       });
+    setActiveFilter(null);
   }, [productID]);
+
+  const filteredReviews = useMemo(() => reviews.filter(
+    (review) => !activeFilter || review.rating === activeFilter,
+  ), [reviews, activeFilter]);
 
   const handleLoadMoreReviews = () => {
     setDisplayedReviewsCount((prevCount) => prevCount + 2);
@@ -87,34 +95,54 @@ function ReviewMain() {
     setReviews(sortedReviews);
   };
 
+  const toggleStarFilter = (star) => {
+    if (activeFilter === star) {
+      setActiveFilter(null);
+    } else {
+      setActiveFilter(star);
+    }
+  };
+
   return (
     <div>
       {reviewMeta.ratings
       && reviewMeta.recommended
       && reviewMeta.characteristics ? (
         <ReviewWrapper id="Reviews">
+          <div id="review-header">
+            REVIEWS
+            &#40;
+            {totalRatings}
+            &#41;
+          </div>
           <RatingSummary
             ratings={reviewMeta.ratings}
             recommended={reviewMeta.recommended}
             characteristics={reviewMeta.characteristics}
+            toggleStarFilter={toggleStarFilter}
+            activeFilter={activeFilter}
           />
           <SortReviews>
             <p>
               {'There are '}
-              {reviews.length}
+              {filteredReviews.length}
               {' reviews, '}
             </p>
             <p>sorted by</p>
             <Dropdown onChange={handleSortChange} />
           </SortReviews>
-          {reviews.slice(0, displayedReviewsCount).map((review) => (
-            <ReviewCard key={review.review_id} review={review} />
-          ))}
-          {reviews.length > displayedReviewsCount && (
-            <LoadMoreButton onClick={handleLoadMoreReviews}>
-              More Reviews
-            </LoadMoreButton>
-          )}
+          {reviews
+            .filter((review) => !activeFilter || review.rating === activeFilter)
+            .slice(0, displayedReviewsCount)
+            .map((review) => (
+              <ReviewCard key={review.review_id} review={review} />
+            ))}
+          <LoadMoreButton
+            onClick={handleLoadMoreReviews}
+            transparent={reviews.length <= displayedReviewsCount}
+          >
+            More Reviews
+          </LoadMoreButton>
           <WriteReview reviewMeta={reviewMeta} />
         </ReviewWrapper>
         ) : (

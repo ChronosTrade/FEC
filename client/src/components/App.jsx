@@ -1,12 +1,11 @@
-import React, {
-  useState, useEffect, useMemo, useRef,
-} from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import { GlobalStyles } from './globalStyling';
 import OverviewMain from './overview/OverviewMain';
 import ReviewMain from './reviews/ReviewMain';
 import RelatedProductsMain from './related_products/RelatedProductsMain';
 import AppContext from './AppContext';
+import Footer from './Footer';
 
 function App() {
   const [totalRatings, setTotalRatings] = useState(0);
@@ -14,18 +13,15 @@ function App() {
   const [productID, setProductID] = useState(40344);
   const [styles, setSelStyles] = useState(null);
   const [currentProduct, setCurrentProduct] = useState({});
-  const refRatings = useRef(null);
 
   useEffect(() => {
     axios.get(`/products/${productID}`)
-      .then((response) => setCurrentProduct(response.data))
+      .then((response) => { console.log('test'); setCurrentProduct(response.data); })
       .catch(() => {
-        console.log('Unable to retrieve product');
       });
     const config = {
       params: {
-        ID: 40344,
-        // ID: productID,
+        ID: productID,
       },
     };
     axios.get('/styles', config)
@@ -43,6 +39,7 @@ function App() {
       productID,
       totalRatings,
       currentProduct,
+      averageRatings,
       setProductID,
       setTotalRatings,
       setCurrentProduct,
@@ -53,6 +50,7 @@ function App() {
       productID,
       totalRatings,
       currentProduct,
+      averageRatings,
       setProductID,
       setTotalRatings,
       setCurrentProduct,
@@ -64,9 +62,10 @@ function App() {
   return (
     <AppContext.Provider value={contextValue}>
       <GlobalStyles />
-      <OverviewMain styles={styles} refRatings={refRatings} />
-      <ReviewMain refRatings={refRatings} />
+      <OverviewMain styles={styles} />
       <RelatedProductsMain />
+      <ReviewMain />
+      <Footer />
     </AppContext.Provider>
   );
 }
