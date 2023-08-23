@@ -2,7 +2,7 @@ import React, {
   useState, useEffect, useContext, useRef,
 } from 'react';
 import {
-  ListWrapper, ListCarousel, CardContainer, LeftButton, RightButton, ListTitle,
+  ListWrapper, ListCarousel, CardContainer, LeftButton, RightButton,
 } from './styles';
 import Card from '../ProductCard/Card';
 import AddToOutfit from '../ProductCard/AddToOutfit';

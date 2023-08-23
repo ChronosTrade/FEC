@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { uniq } from 'lodash';
+// import { uniq } from 'lodash';
 import axios from 'axios';
 import ProductList from './Lists/ProductList';
 import Outfit from './Lists/Outfit';
 import AppContext from '../AppContext';
 
+const uniq = require('lodash/uniq');
+
 function RelatedProductsMain() {
-  const { totalRatings, setTotalRatings } = useContext(AppContext);
   const { productID, setProductID } = useContext(AppContext);
   const [relatedProducts, setRelatedProducts] = useState([]);
 
@@ -21,7 +22,7 @@ function RelatedProductsMain() {
   useEffect(() => {
     axios.get(`/products/${productID}/related`)
       .then((response) => {
-        const uniqueIDs = _.uniq(response.data);
+        const uniqueIDs = uniq(response.data);
         const filteredIDs = uniqueIDs.filter((id) => id !== productID);
         const productsPromises = filteredIDs.map((product) => getProduct(product));
         return productsPromises;
