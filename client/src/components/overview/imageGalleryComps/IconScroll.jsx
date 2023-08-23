@@ -1,5 +1,4 @@
 import React from 'react';
-import { Photo, PhotoSelect } from '../overviewStyles';
 
 export default function IconScroll({
   index,

@@ -10,6 +10,17 @@ export default function Quantity({
   const [showOptions, setShowOptions] = useState(false);
   const [quantityOptions, setQuantityOptions] = useState([]);
 
+  const customStyles = {
+    option: (styles) => ({
+      ...styles,
+      cursor: 'pointer',
+    }),
+    control: (styles) => ({
+      ...styles,
+      cursor: 'pointer',
+    }),
+  };
+
   useEffect(() => {
     if (selSku) {
       let quantity = 0;
@@ -54,6 +65,7 @@ export default function Quantity({
         {showOptions
           ? (
             <Select
+              styles={customStyles}
               aria-label="Quantity Options"
               openMenuOnFocus
               options={quantityOptions}
@@ -62,6 +74,7 @@ export default function Quantity({
             />
           ) : (
             <Select
+              styles={customStyles}
               aria-label="Quantity Options"
               placeHolder="-"
               openMenuOnFocus

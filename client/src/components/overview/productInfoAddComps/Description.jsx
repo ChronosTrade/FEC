@@ -1,7 +1,7 @@
 import React, { useState, useEffect, forwardRef } from 'react';
-import {
-  Modal, ModalBackground, DescWrapper, ShareWrap,
-} from '../overviewStyles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { ModalBackground, DescWrapper, ShareWrap } from '../overviewStyles';
 import { useAppContext } from '../../AppContext';
 import Stars from './Stars';
 import ShareView from './ShareView';
@@ -63,16 +63,18 @@ const Description = forwardRef(({ currentProduct }, refRatings) => {
           type="button"
           onClick={clickHandler}
         >
-          Share
+          <FontAwesomeIcon
+            icon={faArrowUpFromBracket}
+            size="lg"
+          />
         </button>
       </ShareWrap>
-
       {showShare && (
         <>
           <ModalBackground onClick={closeModal} />
-          <Modal>
+          <div>
             <ShareView setShowShare={setShowShare} />
-          </Modal>
+          </div>
         </>
       )}
     </DescWrapper>

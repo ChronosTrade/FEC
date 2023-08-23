@@ -4,7 +4,7 @@ import React, {
 import AppContext from '../AppContext';
 // import { useAppContext } from '../AppContext';
 import {
-  OverviewWrapper, Container, SelectionContainer, RightColumn, ExpandedModalWrapper, ModalBackground, Wrapper
+  OverviewWrapper, Container, SelectionContainer, RightColumn, ModalBackground, Wrapper,
 } from './overviewStyles';
 import Add from './productInfoAddComps/Add';
 import Description from './productInfoAddComps/Description';

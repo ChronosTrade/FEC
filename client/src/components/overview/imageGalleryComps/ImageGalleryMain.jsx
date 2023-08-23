@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import {
   LeftColumn, LeftButton, RightButton, DefaultImageWrapper,
 } from '../overviewStyles';
@@ -62,7 +64,7 @@ export default function ImageGalleryMain({
     setIndex(0);
     setShowLeft(false);
     setShowRight(true);
-  }, [productID]);
+  }, [productID, setShowLeft, setShowRight, setIndex]);
 
   const clickHandlerL = () => {
     if (index > 0) {
@@ -109,14 +111,20 @@ export default function ImageGalleryMain({
           <LeftButton
             onClick={clickHandlerL}
           >
-            GoLeft
+            <FontAwesomeIcon
+              icon={faChevronLeft}
+              size="2x"
+            />
           </LeftButton>
         ) : null}
         {showRight ? (
           <RightButton
             onClick={clickHandlerR}
           >
-            GoRight
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              size="2x"
+            />
           </RightButton>
         ) : null}
       </DefaultImageWrapper>
