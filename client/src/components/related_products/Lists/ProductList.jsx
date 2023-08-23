@@ -29,7 +29,6 @@ function ProductList({ products }) {
 
   return (
     <ListWrapper>
-      {/* <ListTitle>Related Products</ListTitle> */}
       {scrollValue > 0 && <LeftButton onClick={() => { handleArrowClick('left'); }}>&#10094;</LeftButton>}
       <ListCarousel ref={divRef}>
         <CardContainer>
