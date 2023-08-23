@@ -47,9 +47,11 @@ export default function Description({ currentProduct }) {
 
   return (
     <DescWrapper>
-      <h2 className="title" data-testid="title">{title}</h2>
-      {showStars ? <Stars averageRatings={averageRatings} totalRatings={totalRatings} /> : null}
-      <p className="description" data-testid="description">{description}</p>
+      <div className="info">
+        <h2 className="title" data-testid="title">{title}</h2>
+        {showStars ? <Stars averageRatings={averageRatings} totalRatings={totalRatings} /> : null}
+        <p className="description" data-testid="description">{description}</p>
+      </div>
       <ShareWrap>
         <p className="category" data-testid="category">
           {category}
@@ -75,5 +77,6 @@ export default function Description({ currentProduct }) {
         </>
       )}
     </DescWrapper>
+
   );
 }

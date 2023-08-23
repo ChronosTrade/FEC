@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import {
-  LeftColumn, LeftButton, RightButton, DefaultImageWrapper,
+  LeftColumn, LeftButton, RightButton, DefaultImageWrapper, ImagesContain,
 } from '../overviewStyles';
 import ImageScroll from './ImageScroll';
 
@@ -96,10 +96,9 @@ export default function ImageGalleryMain({
       <DefaultImageWrapper>
         <img
           style={{
-            width: '100%',
-            height: '100%',
+            width: '650px',
+            height: '770px',
             objectFit: 'cover',
-            position: 'absolute',
           }}
           alt="Main View"
           data-testid="mainImage"
