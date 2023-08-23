@@ -4,6 +4,7 @@ import axios from 'axios';
 import ProductList from './Lists/ProductList';
 import Outfit from './Lists/Outfit';
 import AppContext from '../AppContext';
+import { RelatedProductsWrapper } from './styles';
 
 const uniq = require('lodash/uniq');
 
@@ -39,12 +40,12 @@ function RelatedProductsMain() {
   }, [productID]);
 
   return (
-    <div>
+    <RelatedProductsWrapper>
       <p>Related Products</p>
       <ProductList products={relatedProducts} />
       <p>Your Outfit</p>
       <Outfit />
-    </div>
+    </RelatedProductsWrapper>
   );
 }
 

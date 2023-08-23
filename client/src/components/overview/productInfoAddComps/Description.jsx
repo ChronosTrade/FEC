@@ -1,21 +1,18 @@
-import React, { useState, useEffect, forwardRef } from 'react';
-import {
-  Modal, ModalBackground, DescWrapper, ShareWrap,
-} from '../overviewStyles';
-import { useAppContext } from '../../AppContext';
+import React, { useState, useEffect, useContext } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { ModalBackground, DescWrapper, ShareWrap } from '../overviewStyles';
+import AppContext from '../../AppContext';
 import Stars from './Stars';
 import ShareView from './ShareView';
 
-const Description = forwardRef(({ currentProduct }, refRatings) => {
+export default function Description({ currentProduct }) {
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
   const [showShare, setShowShare] = useState(false);
   const [showStars, setShowStars] = useState(true);
-
-  // const { averageRatings, totalRatings } = useContext(AppContext);
-  const [averageRatings, setAverageRatings] = useState(2.5);
-  const [totalRatings, setB] = useState(4);
+  const { averageRatings, totalRatings } = useContext(AppContext);
 
   useEffect(() => {
     if (Object.keys(currentProduct).length) {
@@ -32,7 +29,7 @@ const Description = forwardRef(({ currentProduct }, refRatings) => {
   }, [showShare]);
 
   useEffect(() => {
-    if (totalRatings) {
+    if (totalRatings > 0) {
       setShowStars(true);
     } else {
       setShowStars(false);
@@ -51,7 +48,7 @@ const Description = forwardRef(({ currentProduct }, refRatings) => {
   return (
     <DescWrapper>
       <h2 className="title" data-testid="title">{title}</h2>
-      {showStars ? <Stars ref={refRatings} /> : null}
+      {showStars ? <Stars averageRatings={averageRatings} totalRatings={totalRatings} /> : null}
       <p className="description" data-testid="description">{description}</p>
       <ShareWrap>
         <p className="category" data-testid="category">
@@ -63,20 +60,20 @@ const Description = forwardRef(({ currentProduct }, refRatings) => {
           type="button"
           onClick={clickHandler}
         >
-          Share
+          <FontAwesomeIcon
+            icon={faArrowUpFromBracket}
+            size="lg"
+          />
         </button>
       </ShareWrap>
-
       {showShare && (
         <>
           <ModalBackground onClick={closeModal} />
-          <Modal>
+          <div>
             <ShareView setShowShare={setShowShare} />
-          </Modal>
+          </div>
         </>
       )}
     </DescWrapper>
   );
-});
-
-export default Description;
+}

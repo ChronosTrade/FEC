@@ -4,7 +4,7 @@ import React, {
 import AppContext from '../AppContext';
 // import { useAppContext } from '../AppContext';
 import {
-  OverviewWrapper, Container, SelectionContainer, RightColumn, ExpandedModalWrapper, ModalBackground, Wrapper
+  OverviewWrapper, Container, SelectionContainer, RightColumn, ModalBackground, Wrapper,
 } from './overviewStyles';
 import Add from './productInfoAddComps/Add';
 import Description from './productInfoAddComps/Description';
@@ -15,7 +15,7 @@ import SizeList from './selectionComps/SizeList';
 import StylesList from './selectionComps/StylesList';
 import Magnifier from './imageGalleryComps/Magnifier';
 
-const OverviewMain = forwardRef(({ styles }, refRatings) => {
+export default function OverviewMain({ styles }) {
   const [selStyle, setSelStyle] = useState({});
   const [selQuantity, setSelQuantity] = useState('-');
   const [selSku, setSelSku] = useState(null);
@@ -63,7 +63,6 @@ const OverviewMain = forwardRef(({ styles }, refRatings) => {
             <>
               <Description
                 currentProduct={currentProduct}
-                refRatings={refRatings}
               />
               <Container>
                 <ImageGalleryMain
@@ -136,6 +135,4 @@ const OverviewMain = forwardRef(({ styles }, refRatings) => {
       </OverviewWrapper>
     </div>
   );
-});
-
-export default OverviewMain;
+}

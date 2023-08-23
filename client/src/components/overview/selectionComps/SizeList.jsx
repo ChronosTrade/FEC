@@ -79,9 +79,7 @@ const Size = forwardRef(({
           ? (
             <Select
               styles={customStyles}
-              classNamePrefix="list"
               aria-labelledby="Size Options"
-              placeholder="Select Size"
               openMenuOnFocus
               options={sizesArray}
               value={optionsState}

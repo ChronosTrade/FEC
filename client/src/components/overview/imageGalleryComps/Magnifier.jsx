@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
-import { ExpandedModalWrapper, MagnifyingGlass, ExpandedImage, LeftButtonExpand, RightButtonExpand } from '../overviewStyles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleArrowRight, faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import {
+  ExpandedModalWrapper,
+  MagnifyingGlass,
+  ExpandedImage,
+  LeftButtonExpand,
+  RightButtonExpand,
+} from '../overviewStyles';
+import IconScroll from './IconScroll';
 
 export default function Magnifier({
   mainImg,
@@ -46,6 +55,11 @@ export default function Magnifier({
 
   return (
     <ExpandedModalWrapper>
+      <IconScroll
+        index={index}
+        maxIndex={maxIndex}
+        setIndex={setIndex}
+      />
       <ExpandedImage
         src={mainImg}
         data-testid="expandedImage"
@@ -59,7 +73,10 @@ export default function Magnifier({
           data-testid="expandedLeftButton"
           onClick={clickHandlerL}
         >
-          GoLeft
+          <FontAwesomeIcon
+            icon={faCircleArrowLeft}
+            size="3x"
+          />
         </LeftButtonExpand>
       ) : null}
       {showRight ? (
@@ -67,7 +84,10 @@ export default function Magnifier({
           data-testid="expandedRightButton"
           onClick={clickHandlerR}
         >
-          GoRight
+          <FontAwesomeIcon
+            icon={faCircleArrowRight}
+            size="3x"
+          />
         </RightButtonExpand>
       ) : null}
       <MagnifyingGlass x={x} y={y} showmag={showmag} mainimg={mainImg} />

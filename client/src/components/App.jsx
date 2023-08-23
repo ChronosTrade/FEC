@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, {
+  useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import { GlobalStyles } from './globalStyling';
 import OverviewMain from './overview/OverviewMain';
@@ -16,7 +17,7 @@ function App() {
 
   useEffect(() => {
     axios.get(`/products/${productID}`)
-      .then((response) => { console.log('test'); setCurrentProduct(response.data); })
+      .then((response) => {console.log('test'); setCurrentProduct(response.data)} )
       .catch(() => {
       });
     const config = {
