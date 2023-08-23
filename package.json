@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "client-dev": "webpack --watch",
     "server-dev": "nodemon server/index.js",
     "build": "webpack --mode production",
@@ -30,6 +30,7 @@
     "@babel/preset-env": "^7.22.10",
     "@babel/preset-react": "^7.22.5",
     "@testing-library/jest-dom": "^6.0.0",
+    "@testing-library/user-event": "^14.4.3",
     "@testing-library/react": "^14.0.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^29.6.2",

@@ -48,6 +48,7 @@ export default function Magnifier({
     <ExpandedModalWrapper>
       <ExpandedImage
         src={mainImg}
+        data-testid="expandedImage"
         onMouseEnter={insideHandler}
         onMouseMove={changeHandler}
         onMouseLeave={leaveHandler}
@@ -55,6 +56,7 @@ export default function Magnifier({
       />
       {showLeft ? (
         <LeftButtonExpand
+          data-testid="expandedLeftButton"
           onClick={clickHandlerL}
         >
           GoLeft
@@ -62,6 +64,7 @@ export default function Magnifier({
       ) : null}
       {showRight ? (
         <RightButtonExpand
+          data-testid="expandedRightButton"
           onClick={clickHandlerR}
         >
           GoRight
