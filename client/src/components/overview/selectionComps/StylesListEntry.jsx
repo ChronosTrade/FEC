@@ -20,24 +20,32 @@ export default function StylesLisEntry({
   };
 
   return (
-    <div className="pad">
+    <div>
       {(selStyle === style)
         ? (
-          <img
-            data-testid="stylesTestSelected"
-            className="selectedStyle"
-            alt="Style View"
-            src={photoURL}
-          />
+          <div className="pseudoSelect">
+            <img
+              data-testid="stylesTestSelected"
+              className="selectedStyle"
+              alt="Style View"
+              src={photoURL}
+            />
+          </div>
         ) : (
-          <img
-            data-testid="stylesTestOption"
-            className="unselectedStyle"
-            alt="Style View"
-            src={photoURL}
+          <div
+            className="pseudo"
+            role="button"
+            tabIndex={0}
             onClick={clickHandler}
             onKeyDown={clickHandler}
-          />
+          >
+            <img
+              data-testid="stylesTestOption"
+              className="unselectedStyle"
+              alt="Style View"
+              src={photoURL}
+            />
+          </div>
         )}
     </div>
   );
