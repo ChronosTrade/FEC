@@ -14,7 +14,6 @@ import Thumbnail from './Thumbnail';
 import StarRating from './StarRating';
 
 function ReviewCard({ review }) {
-  console.log(review);
   const [isMarkedHelpful, setIsMarkedHelpful] = useState(false);
   const [helpfulCount, setHelpfulCount] = useState(review.helpfulness);
 
@@ -26,8 +25,7 @@ function ReviewCard({ review }) {
           setIsMarkedHelpful(true);
           setHelpfulCount((prevCount) => prevCount + 1);
         })
-        .catch((err) => {
-          console.error(err);
+        .catch(() => {
         });
     }
   };
@@ -37,8 +35,7 @@ function ReviewCard({ review }) {
       .put(`/reviews/${review.review_id}/report`)
       .then(() => {
       })
-      .catch((err) => {
-        console.error(err);
+      .catch(() => {
       });
   };
 

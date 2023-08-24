@@ -139,7 +139,7 @@ function ReviewMain() {
             ))}
           <LoadMoreButton
             onClick={handleLoadMoreReviews}
-            transparent={reviews.length <= displayedReviewsCount}
+            $isHidden={reviews.length <= displayedReviewsCount}
           >
             More Reviews
           </LoadMoreButton>
