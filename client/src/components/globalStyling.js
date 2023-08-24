@@ -1,4 +1,4 @@
-import styled, { keyframes, createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 export const lightTheme = {
   darkGrey: '#666',
@@ -8,24 +8,28 @@ export const lightTheme = {
   basicFontColor: '#333',
   secFontColor: '#666',
   contrastFontColor: '#f3f3f3',
+  footer: '#eee',
 };
 
-// export const darkTheme = {
-//   darkGrey: '#666',
-//   background: '#333',
-//   basicFontColor: '#f3f3f3',
-//   secFontColor: '#333',
-//   contrastFontColor: '#fff',
-//   themeColor: '#FBF8BE',
-//   secColor: '#234E70',
-// };
+export const darkTheme = {
+  darkGrey: '#666',
+  background: '#333',
+  themeColor: '#FBF8BE',
+  secColor: '#234E70',
+  basicFontColor: '#f3f3f3',
+  secFontColor: '#aaa',
+  contrastFontColor: '#333',
+  footer: '#222',
+};
 
 export const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;800&display=swap');
     body {
       font-family: 'Nunito', sans-serif;
-      background: ${lightTheme.background};
-      color: ${lightTheme.basicFontColor};
+      background: ${(props) => props.theme.background};
+      color: ${(props) => props.theme.basicFontColor};
+      margin:0;
+    }
     }
     h1,
     h2,
@@ -34,7 +38,17 @@ export const GlobalStyles = createGlobalStyle`
       justify-content: center;
       text-align: center; 
     }
-    .input:focus{
-      border-color: ${lightTheme.themeColor};
-    }
+`;
+
+export const ThemeToggleButton = styled.button`
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: ${(props) => props.theme.background};
+  color: ${(props) => props.theme.primaryFontColor};
+  border: none;
+  border-radius: 4px;
+  &:hover {
+    background-color: ${(props) => props.theme.hoverBackground};
+  }
 `;
