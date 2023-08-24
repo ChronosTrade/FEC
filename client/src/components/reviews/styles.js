@@ -34,7 +34,7 @@ export const SummaryWrapper = styled.div`
   .leftColumn {
     flex-basis: 40%;
     p {
-      color: ${lightTheme.secFontColor};
+      color: ${(props) => props.theme.secFontColor};
     }
   }
   .rightColumn {
@@ -101,7 +101,7 @@ export const StyledReviewCard = styled.div`
   }
   .review-date {
     font-size: 0.8rem;
-    color: ${lightTheme.secFontColor};
+    color: ${(props) => props.theme.secFontColor};
    }
   .response {
     padding: 0.5rem;
@@ -150,18 +150,18 @@ const BaseButton = styled.button`
   transition: ${transitionPreset1};
   font-size: 1.5rem;
   font-weight: 600;
-  background: ${lightTheme.themeColor};
-  color: ${lightTheme.contrastFontColor};
+  background: ${(props) => props.theme.themeColor};
+  color: ${(props) => props.theme.contrastFontColor};
   border: 0.07rem solid #333;
   outline: 0;
   cursor: pointer;
   &:hover {
     background: #333;
-    color: ${lightTheme.background};
+    color: ${(props) => props.theme.background};
   }
   &:focus {
     background: #999;
-    color: ${lightTheme.background};
+    color: ${(props) => props.theme.background};
   }
 `;
 
@@ -191,7 +191,7 @@ export const LoadMoreButton = styled.button.attrs((props) => ({
   background: none;
   font-family: inherit;
   border: none;
-  color: ${lightTheme.basicFontColor};
+  color: ${(props) => props.theme.basicFontColor};
   cursor: pointer;
   text-decoration: underline;
   font-size: 0.8rem;
@@ -235,7 +235,7 @@ export const ModalContent = styled.div`
   width: 80%;
   max-width: 40rem;
   max-height:95%;
-  background-color: ${lightTheme.background};
+  background-color: ${(props) => props.theme.background};
   padding: 20px;
   border-radius: 5px;
   position: relative;
@@ -268,7 +268,7 @@ export const BarWrapper = styled.div`
     background: none;
     text-decoration: underline;
     cursor: pointer;
-    color: ${lightTheme.basicFontColor};
+    color: ${(props) => props.theme.basicFontColor};
   }
 `;
 
@@ -289,7 +289,7 @@ export const Slider = styled.div`
   flex-grow: 1;
   height: 0.3rem;
   background-color: ${veryLightGrey};
-  color: ${lightTheme.themeColor};
+  color: ${(props) => props.theme.themeColor};
   position: relative;
   margin-left: 1rem;
 
@@ -300,7 +300,7 @@ export const Slider = styled.div`
     position: absolute;
     height: 0.5rem;
     width: 0.2rem;
-    background-color: ${lightTheme.background};
+    background-color: ${(props) => props.theme.background};
     top: 50%;
     transform: translateY(-50%);
   }
@@ -320,11 +320,11 @@ export const CharLabel = styled.div`
   margin: 0 0.5rem 0 1rem;
   text-align:left;
   font-size: 0.8rem;
-  color: ${lightTheme.secFontColor};
+  color: ${(props) => props.theme.secFontColor};
 `;
 export const FilledBar = styled.div`
   height: 100%;
-  background-color: ${lightTheme.darkGrey};
+  background-color: ${(props) => props.theme.darkGrey};
   width: ${(props) => props.$percentage}%;
 `;
 
@@ -341,7 +341,7 @@ export const StarWrapper = styled.span`
   display: inline-block;
   position: relative;
   font-size: ${(props) => props.size || '1rem'};
-  color: ${lightTheme.themeColor};
+  color: ${(props) => props.theme.themeColor};
 
   &.partial::after {
     content: '★';
@@ -350,7 +350,7 @@ export const StarWrapper = styled.span`
     top: 0;
     width: ${(props) => props.width || '0%'};
     overflow: hidden;
-    color: ${lightTheme.themeColor};
+    color: ${(props) => props.theme.themeColor};
     z-index: 0;
   }
 `;
@@ -358,7 +358,7 @@ export const StarWrapper = styled.span`
 export const RadioButtonBox = styled.div`
   max-width: 60rem;
   margin: 0 auto 0.6rem;
-  background: ${lightTheme.background};
+  background: ${(props) => props.theme.background};
 `;
 
 export const RadioButton = styled.div`
@@ -388,7 +388,7 @@ export const RadioButtonSpot = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 0.5em;
-    color: ${lightTheme.darkGrey};
+    color: ${(props) => props.theme.darkGrey};
   } 
 `;
 
@@ -443,25 +443,25 @@ export const StyledDropdown = styled.div`
   margin-left: 0.5rem;
   font-size: 0.8rem;
   border-bottom: 0.07rem solid #ccc;
-  background-color: ${lightTheme.background};
+  background-color: ${(props) => props.theme.background};
   appearance: none;
-  color: ${lightTheme.darkGrey};
+  color: ${(props) => props.theme.darkGrey};
   cursor: pointer;
   transition: border-color 0.3s;
 
   select {
     border: none;
     outline: none;
-    background-color: ${lightTheme.background};
-    color: ${lightTheme.darkGrey};
+    background-color: ${(props) => props.theme.background};
+    color: ${(props) => props.theme.darkGrey};
   }
 
   &:hover {
-    border-color: ${lightTheme.darkGrey};
+    border-color: ${(props) => props.theme.darkGrey};
   }
 
  &:focus {
-  border-color: ${lightTheme.themeColor};
+  border-color: ${(props) => props.theme.themeColor};
   box-shadow: 0 0 5px rgba(0,120,212,0.3);
  }
 `;
