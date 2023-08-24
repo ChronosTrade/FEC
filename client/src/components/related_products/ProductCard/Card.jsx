@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { createPortal } from 'react-dom';
 import axios from 'axios';
 import AppContext from '../../AppContext';
+import imgError from '../../../assets/imgError.jpeg';
 import {
   ActionButton, CardWrapper, ProductName, ProductCategory, ProductContainer, ProductPrice, OldPrice,
   ImageContainer, ProductImage, RemoveButton,
@@ -60,7 +61,7 @@ function Card({product, type, remove}) {
   return (
     <CardWrapper>
       <ImageContainer>
-        {type === 'product' && <ActionButton onClick={() => setShowModal(true)}>&#9734;</ActionButton>}
+        {type === 'product' && <ActionButton onClick={() => setShowModal(true)}>★</ActionButton>}
         {type === 'outfit' && <RemoveButton onClick={handleRemoveClick}><span>&#120;</span></RemoveButton>}
         {showModal && createPortal(<Comparison
           name={product.name}
@@ -68,7 +69,7 @@ function Card({product, type, remove}) {
           onClose={() => setShowModal(false)}
         />, document.body)}
 
-        <ProductImage src={imageUrl} />
+        <ProductImage src={!imageUrl ? imgError : imageUrl} />
       </ImageContainer>
       <ProductContainer onClick={handleProductClick}>
         <ProductCategory>{product.category}</ProductCategory>

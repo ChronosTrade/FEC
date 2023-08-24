@@ -26,20 +26,29 @@ export const CardContainer = styled.div`
 `;
 
 export const RightButton = styled.button`
-  background: none;
+  background: linear-gradient(to right, rgba(243,243,243,0), rgba(243,243,243,1));
   border: none;
   cursor: pointer;
-  &:hover {
+  transform: translateX(-3rem);
+  width: 3.5rem;
+  z-index:999;
 
+  &:hover {
+    color:#FFFFFF;
+    border-color:#FFFFFF;
   }
  `;
 
 export const LeftButton = styled.button`
-  background: none;
+  background: linear-gradient(to left, rgba(243,243,243,0), rgba(243,243,243,1));
   border: none;
   cursor: pointer;
+  transform: translateX(3.2rem);
+  width: 3.5rem;
+  z-index:999;
   &:hover {
-
+    color:#FFFFFF;
+    border-color:#FFFFFF;
   }
  `;
 
