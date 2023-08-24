@@ -6,12 +6,13 @@ import AppContext from '../../AppContext';
 import Stars from './Stars';
 import ShareView from './ShareView';
 
-export default function Description({ currentProduct }) {
+export default function Description({ currentProduct, photos, setModalOpen }) {
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
-  const [showShare, setShowShare] = useState(false);
   const [showStars, setShowStars] = useState(true);
+  const [scrollShow, setScrollShow] = useState('false');
+  const [showShare, setShowShare] = useState(false);
   const { averageRatings, totalRatings } = useContext(AppContext);
 
   useEffect(() => {
@@ -21,6 +22,14 @@ export default function Description({ currentProduct }) {
       setTitle(currentProduct.name);
     }
   }, [currentProduct]);
+
+  useEffect(() => {
+    if (photos.length > 7) {
+      setScrollShow('true');
+    } else {
+      setScrollShow('false');
+    }
+  }, [setScrollShow, photos]);
 
   useEffect(() => {
     if (showShare === false) {
@@ -38,15 +47,17 @@ export default function Description({ currentProduct }) {
 
   const clickHandler = () => {
     setShowShare(true);
+    setModalOpen('true');
     document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setShowShare(false);
+    setModalOpen('false');
   };
 
   return (
-    <DescWrapper>
+    <DescWrapper scrollshow={scrollShow}>
       <div className="info">
         <h2 className="title" data-testid="title">{title}</h2>
         {showStars ? <Stars averageRatings={averageRatings} totalRatings={totalRatings} /> : null}
@@ -72,7 +83,7 @@ export default function Description({ currentProduct }) {
         <>
           <ModalBackground onClick={closeModal} />
           <div>
-            <ShareView setShowShare={setShowShare} />
+            <ShareView setShowShare={setShowShare} setModalOpen={setModalOpen} />
           </div>
         </>
       )}

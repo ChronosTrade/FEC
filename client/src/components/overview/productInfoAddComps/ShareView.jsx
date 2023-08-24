@@ -6,8 +6,9 @@ import {
   Close, Modal, Icons, ModalCancel,
 } from '../overviewStyles';
 
-export default function ShareView({ setShowShare }) {
+export default function ShareView({ setShowShare, setModalOpen }) {
   const cancelHandler = () => {
+    setModalOpen('false');
     setShowShare(false);
   };
   return (

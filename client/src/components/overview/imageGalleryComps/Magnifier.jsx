@@ -38,7 +38,7 @@ export default function Magnifier({
     const elem = e.currentTarget;
     const { width, height } = elem.getBoundingClientRect();
     setSize([width, height]);
-    setTimeout(() => { setShowMag('true'); }, 50);
+    setTimeout(() => { setShowMag('true'); }, 150);
   };
 
   const clickHandlerL = () => {

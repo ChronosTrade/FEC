@@ -20,7 +20,7 @@ export default function StylesLisEntry({
   };
 
   return (
-    <div>
+    <div className="pad">
       {(selStyle === style)
         ? (
           <img
