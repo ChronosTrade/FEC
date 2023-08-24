@@ -10,7 +10,6 @@ export const CardWrapper = styled.div`
   border-radius: 5px;
   box-shadow: 0 0 20px rgba(0, 0, 0, .05), 0 0px 40px rgba(0, 0, 0, .08);
   box-sizing: border-box;
-  cursor: pointer;
 `;
 
 export const ProductContainer = styled.div`
@@ -18,6 +17,7 @@ export const ProductContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   height: 35%;
+  cursor: pointer;
 `;
 
 export const ProductName = styled.h4`
@@ -59,14 +59,15 @@ export const ProductImage = styled.img`
 `;
 
 export const ActionButton = styled.button`
-  color: #000000;
+  color:  ${(props) => props.theme.themeColor};
   position: absolute;
   align-self: flex-end;
   background: none;
   border: none;
+  font-size: 18px;
   z-index: 3;
   &:hover {
-    color: #F5CB50;
+    color: #FADD39;
   }
 `;
 

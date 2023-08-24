@@ -8,10 +8,12 @@ import OverviewMain from './overview/OverviewMain';
 import ReviewMain from './reviews/ReviewMain';
 import RelatedProductsMain from './related_products/RelatedProductsMain';
 import AppContext from './AppContext';
+import Toggle from './Toggle';
 import Footer from './Footer';
 
 function App() {
   const [theme, setTheme] = useState(lightTheme);
+  const [isToggled, setIsToggled] = useState(false);
   const [totalRatings, setTotalRatings] = useState(0);
   const [averageRatings, setAverageRatings] = useState(0);
   const [productID, setProductID] = useState(40347);
@@ -71,13 +73,19 @@ function App() {
     ],
   );
 
+  const handleChange = (val) => {
+    setIsToggled(val);
+    toggleTheme();
+  };
+
   return (
     <AppContext.Provider value={contextValue}>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
-        <ThemeToggleButton onClick={toggleTheme}>
+        <Toggle id="toggle-theme" toggled={isToggled} onChange={(e) => handleChange(e.target.checked)} />
+        {/* <ThemeToggleButton onClick={toggleTheme}>
           Toggle Theme
-        </ThemeToggleButton>
+        </ThemeToggleButton> */}
         <OverviewMain styles={styles} />
         <RelatedProductsMain />
         <ReviewMain />
