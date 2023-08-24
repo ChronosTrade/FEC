@@ -59,7 +59,7 @@ export const ProductImage = styled.img`
 `;
 
 export const ActionButton = styled.button`
-  color: #FBF8BE;
+  color:  ${(props) => props.theme.themeColor};
   position: absolute;
   align-self: flex-end;
   background: none;
