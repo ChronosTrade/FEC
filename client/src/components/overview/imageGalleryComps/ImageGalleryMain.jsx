@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import {
-  LeftColumn, LeftButton, RightButton, DefaultImageWrapper, ImagesContain,
+  LeftColumn, LeftButton, RightButton, DefaultImageWrapper, ScrollContainer,
 } from '../overviewStyles';
 import ImageScroll from './ImageScroll';
 
@@ -23,6 +23,7 @@ export default function ImageGalleryMain({
   setMainImg,
   setPhotos,
   setMaxIndex,
+  setModalOpen,
 }) {
   useEffect(() => {
     if (Object.keys(selStyle).length) {
@@ -80,6 +81,7 @@ export default function ImageGalleryMain({
 
   const clickHandlerMain = () => {
     setShowExp(true);
+    setModalOpen('true');
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     document.body.style.overflow = 'hidden';
   };
@@ -87,11 +89,13 @@ export default function ImageGalleryMain({
   return (
     <>
       <LeftColumn>
-        <ImageScroll
-          selIndex={index}
-          photos={photos}
-          setIndex={setIndex}
-        />
+        <ScrollContainer>
+          <ImageScroll
+            selIndex={index}
+            photos={photos}
+            setIndex={setIndex}
+          />
+        </ScrollContainer>
       </LeftColumn>
       <DefaultImageWrapper>
         <img

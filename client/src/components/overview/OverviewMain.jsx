@@ -1,5 +1,5 @@
 import React, {
-  useState, useContext, useEffect, useRef, forwardRef,
+  useState, useContext, useEffect, useRef,
 } from 'react';
 import AppContext from '../AppContext';
 // import { useAppContext } from '../AppContext';
@@ -29,11 +29,7 @@ export default function OverviewMain({ styles }) {
   const [showExp, setShowExp] = useState(false);
   const [showLeft, setShowLeft] = useState(false);
   const [showRight, setShowRight] = useState(true);
-
-  // const [styles, setSelStyles] = useState([]);
-  // const productID = useAppContext();
-  // const currentProduct = useAppContext();
-  // const styles = useAppContext();
+  const [modalOpen, setModalOpen] = useState(0);
   const { currentProduct, productID } = useContext(AppContext);
   const ref = useRef(null);
 
@@ -52,17 +48,20 @@ export default function OverviewMain({ styles }) {
 
   const closeModal = () => {
     setShowExp(false);
+    setModalOpen('false');
     document.body.style.overflow = 'hidden';
   };
 
   return (
     <div>
-      <OverviewWrapper>
+      <OverviewWrapper modalopen={modalOpen}>
         {render1
           ? (
             <>
               <Description
                 currentProduct={currentProduct}
+                photos={photos}
+                setModalOpen={setModalOpen}
               />
               <Container>
                 <ImageGalleryMain
@@ -82,6 +81,7 @@ export default function OverviewMain({ styles }) {
                   setPhotos={setPhotos}
                   setIndex={setIndex}
                   setShowExp={setShowExp}
+                  setModalOpen={setModalOpen}
                 />
                 <RightColumn>
                   <StylesList

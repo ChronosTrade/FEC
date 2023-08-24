@@ -4,6 +4,7 @@ export const OverviewWrapper = styled.section`
 display: flex;
 flex-direction: column;
 width: 1100px;
+padding-right: ${(props) => ((props.modalopen === 'true') ? '15px' : '0px')};
 max-width: 80rem;
 margin: 0 auto 3rem;
 `;
@@ -13,8 +14,7 @@ display: flex;
 flex-direction:column;
 justify-content: left;
 margin-bottom: 0.5em;
-width: 741px;
-
+width: ${(props) => ((props.scrollshow === 'true') ? '753px' : '741px')};
 .info {
 }
 .title {
@@ -31,9 +31,6 @@ width: 741px;
 
 export const ReviewsWrap = styled.div`
 display: flex;
-  .starsContainer{
-
-  }
   .starsRatings{
     font-weight: 600;
     margin-inline-start: 0.3em;
@@ -79,31 +76,14 @@ export const Container = styled.div`
   display: flex;
 `;
 
-export const LeftColumn = styled.div`
- width: 4rem;
- margin-right: 1.5em;
- height: 200px;
- ::-webkit-scrollbar {
-   display: none;
- }
+export const ScrollContainer = styled.div`
+height: 465px;
+overflow-x: hidden;
+overflow-y: auto;
 `;
-
-// export const ListWrapper = styled.div`
-//   display: flex;
-//   width: 1000px;
-//   height: 350px;
-//   margin-bottom: 50px;
-//   ::-webkit-scrollbar {
-//     display: none;
-//   }
-// `;
-
-// export const ListCarousel = styled.div`
-//   display: flex;
-//   width: 100%;
-//   height: 100%;
-//   overflow-x: auto;
-// `;
+export const LeftColumn = styled.div`
+ margin-right: 1.5em;
+`;
 
 export const PhotosWrapper = styled.div`
   display: flex;
@@ -147,12 +127,10 @@ height: '770px',
 export const LeftButton = styled.button`
 position: absolute;
 top: 50%;
-left: 0%;
+left: 1%;
 transform: translate(0%, -50%);
 cursor: pointer;
-border-top-right-radius:10px;
-border-bottom-left-radius:10px;
-background: none;
+background: #f6f6f6;
 border: none;
 transition:all 1s;
 color: #08a4a7;
@@ -180,7 +158,6 @@ color: #08a4a7;
   border-top-right-radius:0px;
 border-bottom-left-radius:0px;
   &:before,&:after{
-
     width:100%;
     height:100%;
 }
@@ -189,45 +166,43 @@ border-bottom-left-radius:0px;
 export const RightButton = styled.button`
 position: absolute;
 top: 50%;
-left: 100%;
+left: 99%;
 transform: translate(-100%, -50%);
 cursor: pointer;
-// border-top-right-radius:0px;
-// border-bottom-left-radius:0px;
 background: none;
 border: none;
-color: #08a4a7;
+color: rgba(0, 0, 0, 0.5);
 background: #f6f6f6;
-opacity: 0.7;
 transition:all 1s;
 &:after,&:before{
   content:" ";
   width:10px;
   height:10px;
   position:absolute;
-  border :0px solid #08a4a7;
+  border :0px solid rgba(0, 0, 0, 0.5);
   transition:all 0.6s;
   }
 &:after{
   bottom:-1px;
   left:-1px;
-  border-bottom:2px solid #08a4a7;
-  border-left:2px solid #08a4a7;
+  border-bottom:2px solid rgba(0, 0, 0, 0.5);
+  border-left:2px solid rgba(0, 0, 0, 0.5);
 }
 &:before{
   top:-1px;
   right:-1px;
-  border-top:2px solid #08a4a7;
-  border-right:2px solid #08a4a7;
+  border-top:2px solid rgba(0, 0, 0, 0.5);
+  border-right:2px solid rgba(0, 0, 0, 0.5);
 }
 &:hover{
   border-top-right-radius:0px;
   border-bottom-right-radius:0px;
+  border: none;
   color:#00FFFF;
   background: rgba(0, 0, 0, 0.5);
   &:before,&:after{
-    width:100%;
-    height:100%;
+    width:95%;
+    height:95%;
 }
 `;
 
@@ -244,6 +219,14 @@ export const StylesBlock = styled.div`
 display: flex;
 flex-wrap: wrap;
 gap: 0.2em;
+
+.pseudoSelect{
+
+}
+
+.pseudo{
+
+}
 
 .selectedStyle {
   margin-right: 5px;

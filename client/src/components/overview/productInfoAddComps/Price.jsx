@@ -30,13 +30,13 @@ export default function Price({
           </PriceWrapper>
         ) : (
           <PriceWrapper>
-            <p className="priceSale">
-              $
-              {price}
-            </p>
             <p className="sale" data-testid="sale">
               $
               {sale}
+            </p>
+            <p className="priceSale">
+              $
+              {price}
             </p>
           </PriceWrapper>
         )}

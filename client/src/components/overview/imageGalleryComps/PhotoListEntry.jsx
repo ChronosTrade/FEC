@@ -20,7 +20,6 @@ export default function PhotoListEntry({
   }, [photo]);
 
   const clickHandler = (e) => {
-    console.log(e.target);
     setIndex(Number(e.target.getAttribute('i')));
   };
 
