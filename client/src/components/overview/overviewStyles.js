@@ -212,50 +212,58 @@ flex-direction: column;
 position: relative;
 top: -55px;
 left: 4%;
-max-width: 25rem;
+max-width: 21rem;
 `;
 
 export const StylesBlock = styled.div`
 display: flex;
 flex-wrap: wrap;
-gap: 0.2em;
+gap: 4px;
 
 .pseudoSelect{
-
-}
-
-.pseudo{
-
-}
-
-.selectedStyle {
-  margin-right: 5px;
-  margin-left: 5px;
-  object-fit: cover;
-  overflow: hidden;
-  width: 3.5rem;
-  height: 3.5rem;
-  padding: 0.2em;
+  width: 64px;
+  height: 64px;
   border: 0.2rem solid;
   border-color: #08a4a7;
   cursor: pointer;
 }
-.unselectedStyle {
-  margin-right: 5px;
-  margin-left: 5px;
-  width: 3.5rem;
-  height: 3.5rem;
-  padding: 0.2em;
+
+.pseudo{
+  width: 64px;
+  height: 64px;
+  cursor: pointer;
   border: 0.2rem solid;
   border-color: #f6f6f6;
+  &:hover{
+    margin: 0.12rem;
+    border: 0.1rem solid;
+    border-color: black;
+  }
+}
+
+.selectedStyle {
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-bottom: 3px;
+  margin-top: 3px;
+  border-color: grey;
+  border: 0.01rem solid;
+  object-fit: cover;
+  overflow: hidden;
+  width: 56px;
+  height: 56px;
+}
+.unselectedStyle {
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-bottom: 3px;
+  margin-top: 3px;
+  width: 56px;
+  height: 56px;
   object-fit: cover;
   overflow: hidden;
   cursor: pointer;
-  &:hover {
-    border-color: grey;
-    padding: 0.32rem;
-    border: 0.1rem solid;
-  }
+  border: 0.01rem solid grey;
 }
 `;
 
