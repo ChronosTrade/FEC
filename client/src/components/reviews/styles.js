@@ -1,8 +1,6 @@
 // styles.js
 import styled from 'styled-components';
-import {
-  darkGrey, whiteBackground, themeColor, secColor,
-} from '../globalStyling';
+import { lightTheme } from '../globalStyling';
 
 const transitionPreset1 = 'all 0.15s ease-in-out';
 const veryLightGrey = '#ddd';
@@ -36,7 +34,7 @@ export const SummaryWrapper = styled.div`
   .leftColumn {
     flex-basis: 40%;
     p {
-      color: ${darkGrey};
+      color: ${lightTheme.secFontColor};
     }
   }
   .rightColumn {
@@ -103,7 +101,7 @@ export const StyledReviewCard = styled.div`
   }
   .review-date {
     font-size: 0.8rem;
-    color: ${darkGrey};
+    color: ${lightTheme.secFontColor};
    }
   .response {
     padding: 0.5rem;
@@ -116,8 +114,9 @@ export const StyledReviewCard = styled.div`
 `;
 
 export const ThumbnailImage = styled.img`
-  border: 0.07rem solid;
-  border-color: #ccc;
+  border: 0.2rem solid;
+  border-color: rgba(35, 78, 112, 0.5);
+  padding: 0.4rem;
   width: 6rem;
   height: 6rem;
   object-fit: cover;
@@ -151,18 +150,18 @@ const BaseButton = styled.button`
   transition: ${transitionPreset1};
   font-size: 1.5rem;
   font-weight: 600;
-  background: ${themeColor};
-  color: white;
+  background: ${lightTheme.themeColor};
+  color: ${lightTheme.contrastFontColor};
   border: 0.07rem solid #333;
   outline: 0;
   cursor: pointer;
   &:hover {
     background: #333;
-    color: #fff;
+    color: ${lightTheme.background};
   }
   &:focus {
     background: #999;
-    color: #fff;
+    color: ${lightTheme.background};
   }
 `;
 
@@ -186,16 +185,19 @@ export const SubmitButton = styled(BaseButton)`
   margin: 1rem auto 1rem;
 `;
 
-export const LoadMoreButton = styled.button`
+export const LoadMoreButton = styled.button.attrs((props) => ({
+  children: props.ishidden ? '' : 'More Reviews',
+}))`
   background: none;
   font-family: inherit;
   border: none;
+  color: ${lightTheme.basicFontColor};
   cursor: pointer;
   text-decoration: underline;
   font-size: 0.8rem;
   border-width: 0.06rem;
   margin: 1rem auto 0;
-  opacity: ${(props) => (props.transparent ? '0' : '1')}; 
+  visibility: ${({ $isHidden }) => ($isHidden ? 'hidden' : 'visible')}; 
   &:hover {
     text-decoration: none;
   }
@@ -233,7 +235,7 @@ export const ModalContent = styled.div`
   width: 80%;
   max-width: 40rem;
   max-height:95%;
-  background-color: ${whiteBackground};
+  background-color: ${lightTheme.background};
   padding: 20px;
   border-radius: 5px;
   position: relative;
@@ -266,6 +268,7 @@ export const BarWrapper = styled.div`
     background: none;
     text-decoration: underline;
     cursor: pointer;
+    color: ${lightTheme.basicFontColor};
   }
 `;
 
@@ -286,7 +289,7 @@ export const Slider = styled.div`
   flex-grow: 1;
   height: 0.3rem;
   background-color: ${veryLightGrey};
-  color: ${themeColor};
+  color: ${lightTheme.themeColor};
   position: relative;
   margin-left: 1rem;
 
@@ -297,7 +300,7 @@ export const Slider = styled.div`
     position: absolute;
     height: 0.5rem;
     width: 0.2rem;
-    background-color: ${whiteBackground};
+    background-color: ${lightTheme.background};
     top: 50%;
     transform: translateY(-50%);
   }
@@ -317,11 +320,11 @@ export const CharLabel = styled.div`
   margin: 0 0.5rem 0 1rem;
   text-align:left;
   font-size: 0.8rem;
-  color: ${darkGrey};
+  color: ${lightTheme.secFontColor};
 `;
 export const FilledBar = styled.div`
   height: 100%;
-  background-color: ${darkGrey};
+  background-color: ${lightTheme.darkGrey};
   width: ${(props) => props.$percentage}%;
 `;
 
@@ -338,7 +341,7 @@ export const StarWrapper = styled.span`
   display: inline-block;
   position: relative;
   font-size: ${(props) => props.size || '1rem'};
-  color: ${themeColor};
+  color: ${lightTheme.themeColor};
 
   &.partial::after {
     content: '★';
@@ -347,7 +350,7 @@ export const StarWrapper = styled.span`
     top: 0;
     width: ${(props) => props.width || '0%'};
     overflow: hidden;
-    color: ${themeColor};
+    color: ${lightTheme.themeColor};
     z-index: 0;
   }
 `;
@@ -355,7 +358,7 @@ export const StarWrapper = styled.span`
 export const RadioButtonBox = styled.div`
   max-width: 60rem;
   margin: 0 auto 0.6rem;
-  background: ${whiteBackground};
+  background: ${lightTheme.background};
 `;
 
 export const RadioButton = styled.div`
@@ -375,7 +378,7 @@ export const RadioButtonSpot = styled.div`
 
   border-radius: 100%;
   border: 0.1rem solid;
-  border-color: ${(props) => (props.active ? '#990030' : '#333')};
+  border-color: ${(props) => (props.active ? lightTheme.themeColor : '#333')};
   cursor: pointer;
   transition: ease 0.5s;
 
@@ -385,7 +388,7 @@ export const RadioButtonSpot = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 0.5em;
-    color: #333;
+    color: ${lightTheme.darkGrey};
   } 
 `;
 
@@ -438,26 +441,27 @@ export const ReviewBodyBox = styled(BlankEntry)`
 export const StyledDropdown = styled.div`
   padding: 0.3rem;
   margin-left: 0.5rem;
-  border: 1px solid #ccc;
   font-size: 0.8rem;
-  background-color: #ffffff;
+  border-bottom: 0.07rem solid #ccc;
+  background-color: ${lightTheme.background};
   appearance: none;
-  outline: none;
-  color: #333;
+  color: ${lightTheme.darkGrey};
   cursor: pointer;
   transition: border-color 0.3s;
 
   select {
     border: none;
-    color: ${darkGrey};
+    outline: none;
+    background-color: ${lightTheme.background};
+    color: ${lightTheme.darkGrey};
   }
 
   &:hover {
-    border-color: ${darkGrey};
+    border-color: ${lightTheme.darkGrey};
   }
 
  &:focus {
-  border-color: ${themeColor};
+  border-color: ${lightTheme.themeColor};
   box-shadow: 0 0 5px rgba(0,120,212,0.3);
  }
 `;
