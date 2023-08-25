@@ -16,7 +16,7 @@ function App() {
   const [isToggled, setIsToggled] = useState(false);
   const [totalRatings, setTotalRatings] = useState(0);
   const [averageRatings, setAverageRatings] = useState(0);
-  const [productID, setProductID] = useState(40347);
+  const [productID, setProductID] = useState(40351);
   const [styles, setSelStyles] = useState(null);
   const [currentProduct, setCurrentProduct] = useState({});
 
