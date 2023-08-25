@@ -75,7 +75,7 @@ function Card({product, type, remove}) {
           onClose={() => setShowModal(false)}
         />, document.body)}
 
-        <ProductImage src={!imageUrl ? imgError : imageUrl} alt={!imageUrl ? 'Image Not Found' : 'Product Image'} />
+        <ProductImage src={!imageUrl ? imgError : imageUrl} alt={!imageUrl ? 'Image Not Found' : product.name} />
       </ImageContainer>
       <ProductContainer onClick={handleProductClick}>
         <ProductCategory>{product.category}</ProductCategory>
