@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
@@ -11,6 +11,7 @@ export default function ImageGalleryMain({
   selStyle,
   productID,
   index,
+  photos,
   mainImg,
   maxIndex,
   showLeft,
@@ -20,32 +21,24 @@ export default function ImageGalleryMain({
   setShowLeft,
   setShowRight,
   setMainImg,
+  setPhotos,
   setMaxIndex,
   setModalOpen,
 }) {
-  const [prePhotos, setPrePhotos] = useState([]);
-
   useEffect(() => {
     if (Object.keys(selStyle).length) {
       setMaxIndex(selStyle.photos.length - 1);
+      setPhotos(selStyle.photos);
     }
-    const tempPhotos = [];
-    selStyle.photos.forEach((photo) => {
-      const img = new Image();
-      img.src = photo.url;
-      tempPhotos.push(img);
-    });
-    setMainImg(tempPhotos[0].src);
-    setPrePhotos(tempPhotos);
-  }, [selStyle, setMaxIndex, setMainImg]);
+  }, [selStyle]);
 
   useEffect(() => {
-    if (prePhotos.length > 0) {
+    if (photos.length > 0) {
       if (maxIndex === 0) {
         setShowLeft(false);
         setShowRight(false);
         setIndex(0);
-        setMainImg(prePhotos[0].src);
+        setMainImg(photos[0].url);
       }
       if (index > maxIndex) {
         setIndex(maxIndex);
@@ -62,11 +55,11 @@ export default function ImageGalleryMain({
       if (index < maxIndex) {
         setShowRight(true);
       }
-      if (prePhotos[index]) {
-        setMainImg(prePhotos[index].src);
+      if (photos[index]) {
+        setMainImg(photos[index].url);
       }
     }
-  }, [index, maxIndex, prePhotos, setIndex, setMainImg, setShowRight, setShowLeft]);
+  }, [index, maxIndex, photos, setIndex, setMainImg, setShowRight, setShowLeft]);
 
   useEffect(() => {
     setIndex(0);
@@ -95,6 +88,7 @@ export default function ImageGalleryMain({
 
   const keyHandlerMain = (event) => {
     if (event.charCode === 13 || event.charCode === 32) {
+      console.log('hello');
       setShowExp(true);
       setModalOpen('true');
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -108,7 +102,7 @@ export default function ImageGalleryMain({
         <ScrollContainer>
           <ImageScroll
             selIndex={index}
-            photos={prePhotos}
+            photos={photos}
             setIndex={setIndex}
           />
         </ScrollContainer>
@@ -156,3 +150,16 @@ export default function ImageGalleryMain({
     </>
   );
 }
+
+// ImageGalleryMain.propTypes = {
+//   // selStyle: PropTypes.shape({
+//   //   default: PropTypes.boolean,
+//   //   name: PropTypes.string,
+//   //   // original_price: PropTypes.string,
+//   //   // photos Array of
+//   //   // sale_price: PropTypes.string,
+//   //   // skus:
+//   //   // style_id: PropTypes.integer
+//   // }),
+//   productID: PropTypes.shape.isRequired,
+// };
