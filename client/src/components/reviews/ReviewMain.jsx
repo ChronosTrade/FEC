@@ -7,6 +7,7 @@ import {
   ReviewWrapper,
   LoadMoreButton,
   SortReviews,
+  SearchBox,
 } from './styles';
 import ReviewCard from './ReviewCard';
 import RatingSummary from './RatingSummary';
@@ -20,6 +21,8 @@ function ReviewMain() {
   const [reviewMeta, setReviewMeta] = useState({});
   const [displayedReviewsCount, setDisplayedReviewsCount] = useState(2);
   const [activeFilter, setActiveFilter] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredBySearchTerm, setFilteredBySearchTerm] = useState([]);
 
   function convertToNumbers(data) {
     const convertedRatings = Object.fromEntries(
@@ -50,8 +53,7 @@ function ReviewMain() {
     axios
       .get(`/reviews?product_id=${productID}`)
       .then((response) => setReviews(response.data.results))
-      .catch((error) => {
-        console.error(error);
+      .catch(() => {
       });
 
     axios
@@ -60,15 +62,25 @@ function ReviewMain() {
         const modifiedData = convertToNumbers(response.data);
         setReviewMeta(modifiedData);
       })
-      .catch((error) => {
-        console.error(error);
+      .catch(() => {
       });
     setActiveFilter(null);
   }, [productID]);
 
-  const filteredReviews = useMemo(() => reviews.filter(
+  useEffect(() => {
+    if (searchTerm.length >= 3) {
+      const filtered = reviews.filter(
+        (review) => review.body.toLowerCase().includes(searchTerm.toLowerCase()),
+      );
+      setFilteredBySearchTerm(filtered);
+    } else {
+      setFilteredBySearchTerm(reviews);
+    }
+  }, [reviews, searchTerm]);
+
+  const filteredReviews = useMemo(() => filteredBySearchTerm.filter(
     (review) => !activeFilter || review.rating === activeFilter,
-  ), [reviews, activeFilter]);
+  ), [filteredBySearchTerm, activeFilter]);
 
   const handleLoadMoreReviews = () => {
     setDisplayedReviewsCount((prevCount) => prevCount + 2);
@@ -131,12 +143,20 @@ function ReviewMain() {
             <p>sorted by</p>
             <Dropdown onChange={handleSortChange} />
           </SortReviews>
-          {reviews
-            .filter((review) => !activeFilter || review.rating === activeFilter)
+          <SearchBox>
+            <input
+              type="text"
+              placeholder="Search reviews..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </SearchBox>
+          {filteredReviews
             .slice(0, displayedReviewsCount)
             .map((review) => (
               <ReviewCard key={review.review_id} review={review} />
             ))}
+
           <LoadMoreButton
             onClick={handleLoadMoreReviews}
             $isHidden={reviews.length <= displayedReviewsCount}

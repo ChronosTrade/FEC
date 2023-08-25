@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 import { lightTheme } from '../globalStyling';
 
-const transitionPreset1 = 'all 0.15s ease-in-out';
+const transitionPreset1 = 'all 0.3s ease-in-out';
 const veryLightGrey = '#ddd';
 
 export const ReviewWrapper = styled.div`
@@ -22,6 +22,16 @@ export const ReviewWrapper = styled.div`
     width: 90%;
     margin: 0 auto;
   }
+  input, textarea {
+    outline: none;
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid #DDDDDD;
+    &:focus {
+      box-shadow: 0 0 5px ${(props) => props.theme.themeColor};
+      border: 1px solid ${(props) => props.theme.themeColor};
+      transition: ${transitionPreset1};
+    }
 `;
 
 export const SummaryWrapper = styled.div`
@@ -113,6 +123,15 @@ export const StyledReviewCard = styled.div`
   }
 `;
 
+export const SearchBox = styled.div`
+margin-top: -2.8rem;
+display: flex;
+justify-content: flex-end;
+input {
+  height: 1.5rem;
+  margin-right: 5rem;
+}
+`;
 export const ThumbnailImage = styled.img`
   border: 0.2rem solid;
   border-color: rgba(35, 78, 112, 0.5);
@@ -185,9 +204,7 @@ export const SubmitButton = styled(BaseButton)`
   margin: 1rem auto 1rem;
 `;
 
-export const LoadMoreButton = styled.button.attrs((props) => ({
-  children: props.ishidden ? '' : 'More Reviews',
-}))`
+const TextButton = styled.button`
   background: none;
   font-family: inherit;
   border: none;
@@ -196,15 +213,21 @@ export const LoadMoreButton = styled.button.attrs((props) => ({
   text-decoration: underline;
   font-size: 0.8rem;
   border-width: 0.06rem;
-  margin: 1rem auto 0;
-  visibility: ${({ $isHidden }) => ($isHidden ? 'hidden' : 'visible')}; 
+  transition: ${transitionPreset1};
+
   &:hover {
     text-decoration: none;
   }
 `;
 
-export const ReportButton = styled(LoadMoreButton)`
-  
+export const LoadMoreButton = styled(TextButton).attrs((props) => ({
+  children: props.$isHidden ? '' : 'More Reviews',
+}))`
+  margin: 1rem auto 0;
+  visibility: ${({ $isHidden }) => ($isHidden ? 'hidden' : 'visible')};
+`;
+
+export const ReportButton = styled(TextButton)`
   margin: 0 1rem;
 `;
 
@@ -242,6 +265,26 @@ export const ModalContent = styled.div`
   overflow-y: auto;
   h3 {
     text-align: center;
+  }
+  .formNote {
+    margin: -1rem 0 0;
+    color: ${(props) => props.theme.secFontColor};
+    font-size: 0.7rem;
+  }
+  ul {
+    color: red;
+    font-size: 0.7rem;  
+  }
+  input, textarea {
+    outline: none;
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid #DDDDDD;
+    &:focus {
+      box-shadow: 0 0 5px ${(props) => props.theme.themeColor};
+      border: 1px solid ${(props) => props.theme.themeColor};
+      transition: ${transitionPreset1};
+    }
   }
 `;
 
@@ -380,7 +423,7 @@ export const RadioButtonSpot = styled.div`
   border: 0.1rem solid;
   border-color: ${(props) => (props.active ? lightTheme.themeColor : '#333')};
   cursor: pointer;
-  transition: ease 0.5s;
+  transition: ${transitionPreset1};
 
   & span {
     position: absolute;
@@ -435,6 +478,7 @@ export const ReviewBodyBox = styled(BlankEntry)`
     font-family: inherit;
     width: 39rem;
     padding: 0.4rem 0.5rem 4rem 0.5rem;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -458,9 +502,11 @@ export const StyledDropdown = styled.div`
 
   &:hover {
     border-color: ${(props) => props.theme.darkGrey};
+    transition: ${transitionPreset1};
   }
 
  &:focus {
+  transition: ${transitionPreset1};
   border-color: ${(props) => props.theme.themeColor};
   box-shadow: 0 0 5px rgba(0,120,212,0.3);
  }

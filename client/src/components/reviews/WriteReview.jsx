@@ -13,9 +13,12 @@ import {
   ReviewBodyBox,
 } from './styles';
 
-function FormEntry({ value, onChange, placeholder }) {
+function FormEntry({
+  label, value, onChange, placeholder,
+}) {
   return (
     <BlankEntry className="form-entry">
+      <label>{label}</label>
       <input
         type="text"
         value={value}
@@ -27,6 +30,7 @@ function FormEntry({ value, onChange, placeholder }) {
 }
 
 FormEntry.propTypes = {
+  label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
@@ -47,6 +51,33 @@ function WriteReview({ reviewMeta }) {
   const [email, setEmail] = useState('');
   const [photos, setPhotos] = useState([]);
   const [characteristics, setCharacteristics] = useState({});
+  const [error, setError] = useState('');
+
+  const validateForm = () => {
+    const errors = [];
+
+    if (!rating) {
+      errors.push('Overall rating is mandatory');
+    }
+    if (!recommend) {
+      errors.push('Recommendation is mandatory');
+    }
+    if (Object.keys(characteristics).length === 0) {
+      errors.push('Characteristics are mandatory');
+    }
+    if (body.length < 50) {
+      errors.push('Review body must be over 50 characters');
+    }
+    if (!name) {
+      errors.push('Nickname is mandatory');
+    }
+    if (!email || !email.includes('@')) {
+      errors.push('A valid email is mandatory');
+    }
+
+    setError(errors);
+    return errors.length === 0;
+  };
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -58,6 +89,10 @@ function WriteReview({ reviewMeta }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
 
     const data = {
       product_id: productID,
@@ -91,65 +126,80 @@ function WriteReview({ reviewMeta }) {
             <h3>TELL US WHAT YOU THINK</h3>
 
             <form onSubmit={handleSubmit}>
-              <StarRatingInput onChange={(value) => setRating(value)} />
+              <StarRatingInput onChange={(value) => setRating(value)} required />
 
               <div>
                 <span>Do you recommend this product?</span>
-                <label>
-                  <input
-                    type="radio"
-                    value="yes"
-                    name="recommend"
-                    checked={recommend === 'yes'}
-                    onChange={(e) => setRecommend(e.target.value)}
-                  />
-                  Yes
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    value="no"
-                    name="recommend"
-                    checked={recommend === 'no'}
-                    onChange={(e) => setRecommend(e.target.value)}
-                  />
-                  No
-                </label>
+                <input
+                  type="radio"
+                  value="yes"
+                  name="recommend"
+                  checked={recommend === 'yes'}
+                  onChange={(e) => setRecommend(e.target.value)}
+                />
+                Yes
+                <input
+                  type="radio"
+                  value="no"
+                  name="recommend"
+                  checked={recommend === 'no'}
+                  onChange={(e) => setRecommend(e.target.value)}
+                />
+                No
               </div>
               <FormEntry
+                label="Name"
                 value={name}
                 onChange={setName}
-                placeholder="Name"
+                placeholder="Example: jackson11!"
               />
+              <p className="formNote">For privacy reasons, do not use your full name or email address</p>
+
               <FormEntry
+                label="Email"
                 value={email}
                 onChange={setEmail}
-                placeholder="Email"
+                placeholder="Example: jackson11@email.com"
               />
+              <p className="formNote">For authentication reasons, you will not be emailed</p>
               <FormEntry
+                label="Summary"
                 value={summary}
                 onChange={setSummary}
                 placeholder="Enter the review summary"
               />
               <ReviewBodyBox className="form-entry">
+                <label>Write your review here...</label>
                 <textarea
                   type="text"
                   value={body}
                   onChange={(e) => setBody(e.target.value)}
-                  placeholder="Write your review here"
+                  placeholder="Why did you like the product or not?"
+                  required
                 />
+                {body.length < 50 ? (
+                  <p className="formNote">
+                    Minimum required characters left:
+                    {' '}
+                    {50 - body.length}
+                  </p>
+                ) : (
+                  <p className="formNote">Minimum reached</p>
+                )}
               </ReviewBodyBox>
               <div>
-                <span>Upload Photos:</span>
-                <input
-                  type="file"
-                  multiple
-                  onChange={(e) => {
-                    const uploadedFiles = Array.from(e.target.files);
-                    const photosURLs = uploadedFiles.map((file) => URL.createObjectURL(file));
-                    setPhotos(photosURLs);
-                  }}
-                />
+                <p>
+                  Upload Photos:
+                  <input
+                    type="file"
+                    multiple
+                    onChange={(e) => {
+                      const uploadedFiles = Array.from(e.target.files);
+                      const photosURLs = uploadedFiles.map((file) => URL.createObjectURL(file));
+                      setPhotos(photosURLs);
+                    }}
+                  />
+                </p>
               </div>
               {reviewMeta
               && Object.entries(reviewMeta.characteristics).map(([charName, charData]) => (
@@ -164,6 +214,16 @@ function WriteReview({ reviewMeta }) {
                   }))}
                 />
               ))}
+              {error.length > 0 && (
+              <div>
+                <p>You must enter the following:</p>
+                <ul>
+                  {error.map((err, idx) => (
+                    <li key={idx}>{err}</li>
+                  ))}
+                </ul>
+              </div>
+              )}
               <SubmitButton type="submit">Submit Review</SubmitButton>
             </form>
           </ModalContent>
