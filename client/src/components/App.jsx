@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import { ThemeProvider } from 'styled-components';
 import {
-  GlobalStyles, lightTheme, darkTheme, ThemeToggleButton,
+  GlobalStyles, lightTheme, darkTheme,
 } from './globalStyling';
 import OverviewMain from './overview/OverviewMain';
 import ReviewMain from './reviews/ReviewMain';
