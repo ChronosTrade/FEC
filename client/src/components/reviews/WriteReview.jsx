@@ -40,7 +40,7 @@ FormEntry.defaultProps = {
   placeholder: '',
 };
 
-function WriteReview({ reviewMeta }) {
+function WriteReview({ reviewMeta, updateReviews }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { productID } = useContext(AppContext);
   const [rating, setRating] = useState(null);
@@ -110,9 +110,15 @@ function WriteReview({ reviewMeta }) {
       .post('/reviews', data)
       .then(() => {
         closeModal();
+        axios.get(`/reviews?product_id=${productID}`)
+          .then((response) => {
+            updateReviews(response.data.results);
+            console.log(response.data.results);
+          })
+          .catch(() => {
+          });
       })
-      .catch((error) => {
-        console.error(error);
+      .catch(() => {
       });
   };
 
@@ -262,6 +268,7 @@ WriteReview.propTypes = {
       }),
     ).isRequired,
   }).isRequired,
+  updateReviews: PropTypes.func.isRequired,
 };
 
 export default WriteReview;
