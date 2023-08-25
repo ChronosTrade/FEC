@@ -60,7 +60,6 @@ export default function OverviewMain({ styles }) {
             <>
               <Description
                 currentProduct={currentProduct}
-                photos={photos}
                 setModalOpen={setModalOpen}
               />
               <Container>

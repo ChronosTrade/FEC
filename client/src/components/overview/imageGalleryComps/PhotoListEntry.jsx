@@ -23,27 +23,42 @@ export default function PhotoListEntry({
     setIndex(Number(e.target.getAttribute('i')));
   };
 
+  const keyHandler = (event) => {
+    if (event.charCode === 13 || event.charCode === 32) {
+      setIndex(Number(event.target.getAttribute('i')));
+    }
+  };
+
   return (
     <div>
       {(photos[selIndex] === photo)
         ? (
-          <img
-            className="selected"
-            data-testid="photoTestSelected"
-            src={photoURL}
-            alt="View of Style"
-            i={i}
-          />
+          <div className="pseudoSelect">
+            <img
+              className="selected"
+              data-testid="photoTestSelected"
+              src={photoURL}
+              alt="View of Style"
+              i={i}
+            />
+          </div>
         ) : (
-          <img
-            className="unselected"
-            data-testid="photoTestOption"
-            src={photoURL}
-            i={i}
-            alt="View of Style"
+          <div
+            className="pseudo"
+            tabIndex={0}
+            role="button"
             onClick={clickHandler}
-            onKeyDown={clickHandler}
-          />
+            onKeyPress={keyHandler}
+            i={i}
+          >
+            <img
+              className="unselected"
+              data-testid="photoTestOption"
+              src={photoURL}
+              i={i}
+              alt="View of Style"
+            />
+          </div>
         )}
     </div>
   );

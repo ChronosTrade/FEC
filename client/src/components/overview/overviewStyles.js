@@ -1,4 +1,16 @@
 import styled from 'styled-components';
+import { lightTheme } from '../globalStyling';
+
+// export const lightTheme = {
+//   darkGrey: '#666',
+//   background: '#f3f3f3',
+//   themeColor: '#234E70',
+//   secColor: '#FBF8BE',
+//   basicFontColor: '#333',
+//   secFontColor: '#666',
+//   contrastFontColor: '#f3f3f3',
+//   footer: '#eee',
+// };${(props) => props.theme.themeColor};
 
 export const OverviewWrapper = styled.section`
 display: flex;
@@ -14,7 +26,7 @@ display: flex;
 flex-direction:column;
 justify-content: left;
 margin-bottom: 0.5em;
-width: ${(props) => ((props.scrollshow === 'true') ? '753px' : '741px')};
+width: 747px;
 .info {
 }
 .title {
@@ -31,6 +43,7 @@ width: ${(props) => ((props.scrollshow === 'true') ? '753px' : '741px')};
 
 export const ReviewsWrap = styled.div`
 display: flex;
+color: ${(props) => props.theme.basicFontColor};
   .starsRatings{
     font-weight: 600;
     margin-inline-start: 0.3em;
@@ -46,6 +59,7 @@ export const SeeReviewsButton = styled.button`
   cursor: pointer;
   text-decoration: underline;
   font-size: 1rem;
+  color: ${(props) => props.theme.basicFontColor};
   border-width: 0.06rem;
   &:hover {
     text-decoration: none;
@@ -58,6 +72,7 @@ justify-content: space-between;
 
 .share {
   justify-content: end;
+  color: ${(props) => props.theme.basicFontColor};
   align-items: flex-end;
   cursor: pointer;
   background: none;
@@ -71,202 +86,6 @@ justify-content: space-between;
   margin-block-end: 0.5em;
 }
 `;
-
-export const Container = styled.div`
-  display: flex;
-`;
-
-export const ScrollContainer = styled.div`
-height: 465px;
-overflow-x: hidden;
-overflow-y: auto;
-`;
-export const LeftColumn = styled.div`
- margin-right: 1.5em;
-`;
-
-export const PhotosWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  .selected {
-    width: 3rem;
-    height: 3rem;
-    padding: 0.2em;
-    border: 0.2rem solid;
-    border-color: #08a4a7;
-    object-fit: cover;
-    overflow: hidden;
-    cursor: pointer;
-  }
-  .unselected {
-    width: 3rem;
-    height: 3em;
-    padding: 0.2em;
-    border: 0.2rem solid;
-    border-color: #f6f6f6;
-    object-fit: cover;
-    overflow: hidden;
-    cursor: pointer;
-    &:hover {
-      border-color: grey;
-      padding: 0.32rem;
-      border: 0.1rem solid;
-    }
-  }
-`;
-
-export const DefaultImageWrapper = styled.div`
-position: relative;
-object-fit: cover;
-cursor: pointer;
-width: '650px',
-height: '770px',
-`;
-
-export const LeftButton = styled.button`
-position: absolute;
-top: 50%;
-left: 1%;
-transform: translate(0%, -50%);
-cursor: pointer;
-background: #f6f6f6;
-border: none;
-transition:all 1s;
-color: #08a4a7;
-&:after,&:before{
-  content:" ";
-  width:10px;
-  height:10px;
-  position:absolute;
-  border :0px solid #08a4a7;
-  transition:all 1s;
-  }
-&:after{
-  top:-1px;
-  left:-1px;
-  border-top:2px solid #08a4a7;
-  border-left:2px solid #08a4a7;
-}
-&:before{
-  bottom:-1px;
-  right:-1px;
-  border-bottom:2px solid #08a4a7;
-  border-right:2px solid #08a4a7;
-}
-&:hover{
-  border-top-right-radius:0px;
-border-bottom-left-radius:0px;
-  &:before,&:after{
-    width:100%;
-    height:100%;
-}
-`;
-
-export const RightButton = styled.button`
-position: absolute;
-top: 50%;
-left: 99%;
-transform: translate(-100%, -50%);
-cursor: pointer;
-background: none;
-border: none;
-color: rgba(0, 0, 0, 0.5);
-background: #f6f6f6;
-transition:all 1s;
-&:after,&:before{
-  content:" ";
-  width:10px;
-  height:10px;
-  position:absolute;
-  border :0px solid rgba(0, 0, 0, 0.5);
-  transition:all 0.6s;
-  }
-&:after{
-  bottom:-1px;
-  left:-1px;
-  border-bottom:2px solid rgba(0, 0, 0, 0.5);
-  border-left:2px solid rgba(0, 0, 0, 0.5);
-}
-&:before{
-  top:-1px;
-  right:-1px;
-  border-top:2px solid rgba(0, 0, 0, 0.5);
-  border-right:2px solid rgba(0, 0, 0, 0.5);
-}
-&:hover{
-  border-top-right-radius:0px;
-  border-bottom-right-radius:0px;
-  border: none;
-  color:#00FFFF;
-  background: rgba(0, 0, 0, 0.5);
-  &:before,&:after{
-    width:95%;
-    height:95%;
-}
-`;
-
-export const RightColumn = styled.div`
-display: flex;
-flex-direction: column;
-position: relative;
-top: -55px;
-left: 4%;
-max-width: 21rem;
-`;
-
-export const StylesBlock = styled.div`
-display: flex;
-flex-wrap: wrap;
-gap: 4px;
-
-.pseudoSelect{
-  width: 64px;
-  height: 64px;
-  border: 0.2rem solid;
-  border-color: #08a4a7;
-  cursor: pointer;
-}
-
-.pseudo{
-  width: 64px;
-  height: 64px;
-  cursor: pointer;
-  border: 0.2rem solid;
-  border-color: #f6f6f6;
-  &:hover{
-    margin: 0.12rem;
-    border: 0.1rem solid;
-    border-color: black;
-  }
-}
-
-.selectedStyle {
-  margin-left: 3px;
-  margin-right: 3px;
-  margin-bottom: 3px;
-  margin-top: 3px;
-  border-color: grey;
-  border: 0.01rem solid;
-  object-fit: cover;
-  overflow: hidden;
-  width: 56px;
-  height: 56px;
-}
-.unselectedStyle {
-  margin-left: 3px;
-  margin-right: 3px;
-  margin-bottom: 3px;
-  margin-top: 3px;
-  width: 56px;
-  height: 56px;
-  object-fit: cover;
-  overflow: hidden;
-  cursor: pointer;
-  border: 0.01rem solid grey;
-}
-`;
-
 export const SeeReviews = styled.div`
 display: inherit;
 margin-left: 1em;
@@ -278,19 +97,18 @@ export const StarWrap = styled.span`
   display: inline-block;
   position: relative;
   font-size: 1rem;
-  color: #08a4a7;
+  color: ${(props) => props.theme.themeColor};
   &.full {
-    color: #08a4a7;
+    color: ${(props) => props.theme.themeColor};
   }
   &.partial::after {
     content: '★';
     position: absolute;
-    color: #08a4a7;
+    color: ${(props) => props.theme.themeColor};
     left: 0;
     top: 0;
     width: ${(props) => props.width || '0%'};
     overflow: hidden;
-    color: #08a4a7;
     z-index: 0;
   }
 `;
@@ -300,7 +118,7 @@ export const Modal = styled.div`
   left: 50%;
   top: 50%;
   font-family: 'Nunito', sans-serif;
-  background: #f6f6f6;
+  background: ${(props) => props.theme.background};
   width: 35rem;
   height: 17rem;
   display: flex;
@@ -340,15 +158,155 @@ export const Close = styled.div`
   .closeCornerText {
     font-size: 12px;
     font-weight: 400;
-    padding-left: 0.2rem;
+    padding-left: 0.25rem;
     margin-block-start: 0em;
     margin-block-end: 0;
   }
   .close {
     background: none;
     border:none;
+    color: ${(props) => props.theme.basicFontColor};
     cursor: pointer;
   }
+`;
+
+export const ModalCancel = styled.button`
+  position: relative;
+  top: 1.2rem;
+  width: 250px;
+  height: 50px;
+  color: ${(props) => props.theme.basicFontColor};
+  background-color: ${(props) => props.theme.background};
+  border-color: ${(props) => props.theme.basicFontColor};
+  border-width: thin;
+  cursor: pointer;
+  font-size: 14px;
+`;
+
+export const Container = styled.div`
+  display: flex;
+`;
+
+export const ScrollContainer = styled.div`
+height: 468px;
+overflow-x: hidden;
+overflow-y: auto;
+`;
+export const LeftColumn = styled.div`
+ width: 82px;
+ margin-right: 0.5em;
+
+`;
+
+export const PhotosWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  overflow-y: auto;
+  scrollbar-color: red;
+
+  .selected {
+    width: 48px;
+    height: 48px;
+    padding: 3px;
+    border: 2.5px solid ${(props) => props.theme.themeColor};
+    object-fit: cover;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .unselected {
+    padding: 3px;
+    width: 48px;
+    height: 48px;
+    border: 2.5px solid ${(props) => props.theme.background};
+    object-fit: cover;
+    overflow: hidden;
+    cursor: pointer;
+    &:hover{
+      padding: 3px;
+      border: 2.5px solid;
+      border-color: ${(props) => props.theme.FontColor};
+    }
+  }
+`;
+
+export const DefaultImageWrapper = styled.div`
+position: relative;
+object-fit: cover;
+cursor: pointer;
+width: '650px',
+height: '770px',
+`;
+
+export const LeftButton = styled.button`
+position: absolute;
+top: 50%;
+left: 1%;
+transform: translate(0%, -50%);
+cursor: pointer;
+transition:all 1s;
+font-size: 1em;
+color: ${lightTheme.themeColor};
+&:hover{
+  color:${lightTheme.secColor};
+  background: rgba(0, 0, 0, 0.5);
+}
+`;
+
+export const RightButton = styled.button`
+position: absolute;
+top: 50%;
+left: 99%;
+font-size:1em;
+transform: translate(-100%, -50%);
+cursor: pointer;
+color: ${lightTheme.themeColor};
+transition:all 1s;
+&:hover{
+  color:${lightTheme.secColor};
+  background: rgba(0, 0, 0, 0.5);
+}
+`;
+
+export const RightColumn = styled.div`
+display: flex;
+flex-direction: column;
+position: relative;
+top: -55px;
+left: 4%;
+max-width: 21rem;
+`;
+
+export const StylesBlock = styled.div`
+display: flex;
+flex-wrap: wrap;
+gap: 4px;
+
+.selectedStyle {
+  border-radius: 50%;
+  border: 2px solid ${(props) => props.theme.themeColor};
+  object-fit: cover;
+  overflow: hidden;
+  width: 56px;
+  height: 56px;
+  padding: 3px;
+}
+
+.unselectedStyle {
+  border-radius: 50%;
+  padding: 3px;
+  border: 2px solid ${(props) => props.theme.background};
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  overflow: hidden;
+  cursor: pointer;
+  &:hover{
+    padding: 3px;
+    border: 2px solid ${(props) => props.theme.FontColor};
+  }
+}
 `;
 
 export const Icons = styled.div`
@@ -375,24 +333,12 @@ export const IconsWrap = styled.span`
   }
 `;
 
-export const ModalCancel = styled.button`
-  position: relative;
-  top: 1.2rem;
-  width: 250px;
-  height: 50px;
-  background-color: #f6f6f6;
-  border-color: black;
-  border-width: thin;
-  cursor: pointer;
-  font-size: 14px;
-`;
-
 export const Wrapper = styled.div`
 position: absolute;
 left: 50%;
 top: 50%;
 font-family: 'Nunito', sans-serif;
-background: #f6f6f6;
+background: ${(props) => props.theme.background};
 width: 900px;
 height: 1000px;
 display: flex;
@@ -438,7 +384,7 @@ top: 50%;
 left: -5%;
 transform: translate(0%, -50%);
 cursor: pointer;
-color: #00FFFF;
+color: ${(props) => props.theme.themeColor};
 &:hover{
   color: #08a4a7;
   transition:all 0.7s;
@@ -454,7 +400,7 @@ top: 50%;
 left: 105%;
 transform: translate(-100%, -50%);
 cursor: pointer;
-color: #00FFFF;
+color: ${(props) => props.theme.themeColor};
 z-index: 4;
 &:hover{
   color: #08a4a7;
@@ -519,10 +465,10 @@ export const AddToCart = styled.button`
   width: 300px;
   height: 50px;
   border: none;
-  color: black;
+  color: ${(props) => props.theme.contrastFontColor};
   font-size: 16px;
   font-weight: 600;
-  background-color: #00FFFF;
+  background-color: ${(props) => props.theme.themeColor};
   cursor: pointer;
 `;
 
@@ -538,7 +484,7 @@ display: flex;
 }
 .priceSale{
   position: absolute;
-  color: #08a4a7;
+  color: ${(props) => props.theme.themeColor};
   text-decoration: line-through;
   top: 235px;
   font-size: 26px;
@@ -554,5 +500,4 @@ display: flex;
   font-weight: 600;
   margin-block-start: 0;
   margin-block-end: 0;
-}
-`;
+}`;

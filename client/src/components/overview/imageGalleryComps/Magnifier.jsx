@@ -53,6 +53,22 @@ export default function Magnifier({
     }
   };
 
+  const keyHandlerL = (event) => {
+    if (event.charCode === 13 || event.charCode === 32) {
+      if (index > 0) {
+        setIndex(index - 1);
+      }
+    }
+  };
+
+  const keyHandlerR = (event) => {
+    if (event.charCode === 13 || event.charCode === 32) {
+      if (index < maxIndex) {
+        setIndex(index + 1);
+      }
+    }
+  };
+
   return (
     <ExpandedModalWrapper>
       <IconScroll
@@ -71,7 +87,9 @@ export default function Magnifier({
       {showLeft ? (
         <LeftButtonExpand
           data-testid="expandedLeftButton"
+          tabIndex={0}
           onClick={clickHandlerL}
+          onKeyDown={keyHandlerL}
         >
           <FontAwesomeIcon
             icon={faCircleArrowLeft}
@@ -83,6 +101,8 @@ export default function Magnifier({
         <RightButtonExpand
           data-testid="expandedRightButton"
           onClick={clickHandlerR}
+          tabIndex={0}
+          onKeyDown={keyHandlerR}
         >
           <FontAwesomeIcon
             icon={faCircleArrowRight}

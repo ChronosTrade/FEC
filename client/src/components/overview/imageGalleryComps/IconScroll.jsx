@@ -20,7 +20,6 @@ export default function IconScroll({
     } else {
       setIcon(faBox);
     }
-    // }
   }, [currentProduct]);
 
   return (
@@ -51,6 +50,15 @@ function Icons({
       setIndex(Number(e.target.getAttribute('i')));
     }
   };
+
+  const keyHandler = (event) => {
+    if (event.charCode === 13 || event.charCode === 32) {
+      if (event.target.getAttribute('i')) {
+        setIndex(Number(event.target.getAttribute('i')));
+      }
+    }
+  };
+
   return (
     <div>
       {(index === i)
@@ -69,9 +77,9 @@ function Icons({
             className="unselectedIcon"
             i={i}
             role="button"
-            tabIndex="0"
+            tabIndex={0}
             onClick={clickHandler}
-            onKeyDown={clickHandler}
+            onKeyPress={keyHandler}
           >
             <FontAwesomeIcon
               icon={icon}

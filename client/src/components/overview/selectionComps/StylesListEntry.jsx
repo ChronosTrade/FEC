@@ -19,6 +19,14 @@ export default function StylesLisEntry({
     setTitle(`Color: ${style.name}`);
   };
 
+  const keyHandler = (event) => {
+    if (event.charCode === 13 || event.charCode === 32) {
+      setSelStyle(style);
+      setSizeNotice(false);
+      setTitle(`Color: ${style.name}`);
+    }
+  };
+
   return (
     <div>
       {(selStyle === style)
@@ -37,7 +45,7 @@ export default function StylesLisEntry({
             role="button"
             tabIndex={0}
             onClick={clickHandler}
-            onKeyDown={clickHandler}
+            onKeyPress={keyHandler}
           >
             <img
               data-testid="stylesTestOption"

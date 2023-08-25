@@ -18,10 +18,12 @@ const Size = forwardRef(({
     option: (styles) => ({
       ...styles,
       cursor: 'pointer',
+      color: 'black',
     }),
     control: (styles) => ({
       ...styles,
       cursor: 'pointer',
+      color: 'black',
     }),
   };
 

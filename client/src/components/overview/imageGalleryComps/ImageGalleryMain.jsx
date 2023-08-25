@@ -86,6 +86,16 @@ export default function ImageGalleryMain({
     document.body.style.overflow = 'hidden';
   };
 
+  const keyHandlerMain = (event) => {
+    if (event.charCode === 13 || event.charCode === 32) {
+      console.log('hello');
+      setShowExp(true);
+      setModalOpen('true');
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
   return (
     <>
       <LeftColumn>
@@ -98,26 +108,31 @@ export default function ImageGalleryMain({
         </ScrollContainer>
       </LeftColumn>
       <DefaultImageWrapper>
-        <img
-          style={{
-            width: '650px',
-            height: '770px',
-            objectFit: 'cover',
-          }}
-          alt="Main View"
-          data-testid="mainImage"
-          className="mainImg"
-          src={mainImg}
+        <div
+          tabIndex={0}
+          role="button"
           onClick={clickHandlerMain}
-          onKeyDown={clickHandlerMain}
-        />
+          onKeyPress={keyHandlerMain}
+        >
+          <img
+            style={{
+              width: '650px',
+              height: '770px',
+              objectFit: 'cover',
+            }}
+            alt="Main View"
+            data-testid="mainImage"
+            className="mainImg"
+            src={mainImg}
+          />
+        </div>
         {showLeft ? (
           <LeftButton
             onClick={clickHandlerL}
           >
             <FontAwesomeIcon
               icon={faChevronLeft}
-              size="2x"
+              size="1x"
             />
           </LeftButton>
         ) : null}
@@ -127,7 +142,7 @@ export default function ImageGalleryMain({
           >
             <FontAwesomeIcon
               icon={faChevronRight}
-              size="2x"
+              size="1x"
             />
           </RightButton>
         ) : null}
