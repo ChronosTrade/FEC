@@ -37,6 +37,7 @@ export const ReviewWrapper = styled.div`
 
 export const SummaryWrapper = styled.div`
   width: 100%;
+  min-width:70rem;
   display: flex;
   text-align: left;
   justify-content: space-between;
@@ -63,7 +64,7 @@ export const RatingContainer = styled.div`
   margin-left: 0;
 `;
 export const SortReviews = styled.div`
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -73,6 +74,7 @@ export const SortReviews = styled.div`
 
 export const StyledReviewCard = styled.div`
   width: 100%;
+  min-width:70rem;
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
@@ -129,8 +131,9 @@ margin-top: -2.8rem;
 display: flex;
 justify-content: flex-end;
 input {
+  width: 10rem;
   height: 1.5rem;
-  margin-right: 5rem;
+  margin-right: 0;
 }
 `;
 export const ThumbnailImage = styled.img`
@@ -338,7 +341,6 @@ export const Slider = styled.div`
   position: relative;
   margin-left: 1rem;
 
-
   &:before, &:after {
     content: ''; 
     display: block;
@@ -488,7 +490,7 @@ export const StyledDropdown = styled.div`
   padding: 0.3rem;
   margin-left: 0.5rem;
   font-size: 0.8rem;
-  border-bottom: 0.07rem solid #ccc;
+  border-bottom: 0.07rem solid ${(props) => props.theme.themeColor};
   background-color: ${(props) => props.theme.background};
   appearance: none;
   color: ${(props) => props.theme.darkGrey};
@@ -496,10 +498,13 @@ export const StyledDropdown = styled.div`
   z-index: 10;
 
   select {
+    width: 6rem;
     border: none;
     outline: none;
     background-color: ${(props) => props.theme.background};
     color: ${(props) => props.theme.darkGrey};
+    cursor: pointer;
+
   }
 
   &:hover {

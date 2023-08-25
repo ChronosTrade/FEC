@@ -5,7 +5,7 @@ import { StyledDropdown } from './styles';
 function Dropdown({ onChange }) {
   return (
     <StyledDropdown>
-      <select onChange={(e) => onChange(e.target.value)}>
+      <select aria-label="reviews filter" onChange={(e) => onChange(e.target.value)}>
         <option value="relevant">Relevant</option>
         <option value="newest">Newest</option>
         <option value="helpful">Helpful</option>
