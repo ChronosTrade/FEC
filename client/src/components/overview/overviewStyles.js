@@ -124,7 +124,7 @@ export const Modal = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 3;
+  z-index: 1005;
   transform: translate(-50%, -50%);
   .border {
     border-top: 0.07rem solid #ccc;
@@ -384,7 +384,7 @@ top: 50%;
 left: -5%;
 transform: translate(0%, -50%);
 cursor: pointer;
-color: ${(props) => props.theme.themeColor};
+color: ${lightTheme.secColor};
 &:hover{
   color: #08a4a7;
   transition:all 0.7s;
@@ -400,7 +400,7 @@ top: 50%;
 left: 105%;
 transform: translate(-100%, -50%);
 cursor: pointer;
-color: ${(props) => props.theme.themeColor};
+color: ${lightTheme.secColor};
 z-index: 4;
 &:hover{
   color: #08a4a7;
