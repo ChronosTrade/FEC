@@ -1,7 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faYoutube,
   faFacebook,
   faGithub,
   faTwitter,
@@ -16,15 +15,15 @@ function Footer() {
 
   return (
     <FooterContainer>
-      <h3>ChronosTrade</h3>
+      <p>ChronosTrade</p>
       <div>
-        <button type="button">
+        <button type="button" name="facebook-link">
           <FontAwesomeIcon icon={faFacebook} />
         </button>
-        <button type="button">
+        <button type="button" name="twitter-link">
           <FontAwesomeIcon icon={faTwitter} />
         </button>
-        <a href="https://github.com/ChronosTrade" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/ChronosTrade" aria-label="a link to ChronosTrade Github" name="github-link" target="_blank" rel="noopener noreferrer">
           <FontAwesomeIcon icon={faGithub} />
         </a>
       </div>

@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faCartShopping,
   faUser,
   faBagShopping,
 } from '@fortawesome/free-solid-svg-icons';
@@ -17,10 +16,18 @@ const NavHeader = styled.header`
   z-index: 50;
   background: ${(props) => props.theme.navBar};
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
   z-index: 1000;
+  
+`;
+
+const HeaderContent = styled.div`
+  width: 70rem;
+  margin: 0 auto;  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const LogoBox = styled.div`
@@ -83,26 +90,28 @@ const Favicon = styled.img`
 function Navbar({ toggled, onChange }) {
   return (
     <NavHeader>
-      <NavWrapper>
-        <LogoBox>Piraeus</LogoBox>
-        <LinkContainer>
-          <NavLink>New</NavLink>
-          <NavLink>Women</NavLink>
-          <NavLink>Men</NavLink>
-          <NavLink>Sale</NavLink>
-        </LinkContainer>
-      </NavWrapper>
-      <ToggleContainer>
-        <IconContainer>
-          <FontAwesomeIcon icon={faBagShopping} />
-        </IconContainer>
-        <IconContainer>
-          <FontAwesomeIcon icon={faUser} />
-        </IconContainer>
-        <Toggle id="toggle-theme" toggled={toggled} onChange={onChange} />
-        {/* <Favicon src={} alt="Favicon 1" />
+      <HeaderContent>
+        <NavWrapper>
+          <LogoBox>Piraeus</LogoBox>
+          <LinkContainer>
+            <NavLink>New</NavLink>
+            <NavLink>Women</NavLink>
+            <NavLink>Men</NavLink>
+            <NavLink>Sale</NavLink>
+          </LinkContainer>
+        </NavWrapper>
+        <ToggleContainer>
+          <IconContainer>
+            <FontAwesomeIcon icon={faBagShopping} />
+          </IconContainer>
+          <IconContainer>
+            <FontAwesomeIcon icon={faUser} />
+          </IconContainer>
+          <Toggle id="toggle-theme" toggled={toggled} onChange={onChange} />
+          {/* <Favicon src={} alt="Favicon 1" />
         <Favicon src={} alt="Favicon 2" /> */}
-      </ToggleContainer>
+        </ToggleContainer>
+      </HeaderContent>
     </NavHeader>
   );
 }

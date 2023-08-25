@@ -30,8 +30,8 @@ export const GlobalStyles = createGlobalStyle`
       font-family: 'Nunito', sans-serif;
       background: ${(props) => props.theme.background};
       color: ${(props) => props.theme.basicFontColor};
-      margin:0;
-      padding-top: 5%;
+      margin:0 auto;
+      padding-top: 3rem;
     }
     }
     h1,

@@ -165,7 +165,7 @@ function ReviewMain() {
           <SearchBox>
             <input
               type="text"
-              placeholder="Search reviews..."
+              placeholder="Search for reviews..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -178,7 +178,7 @@ function ReviewMain() {
 
           <LoadMoreButton
             onClick={handleLoadMoreReviews}
-            $isHidden={reviews.length <= displayedReviewsCount}
+            $isHidden={filteredReviews.length <= displayedReviewsCount}
           >
             More Reviews
           </LoadMoreButton>
