@@ -8,7 +8,8 @@ export const lightTheme = {
   basicFontColor: '#333',
   secFontColor: '#666',
   contrastFontColor: '#f3f3f3',
-  footer: '#eee',
+  footer: '#d5d5d5',
+  navBar: '#234E70',
 };
 
 export const darkTheme = {
@@ -19,16 +20,18 @@ export const darkTheme = {
   basicFontColor: '#f3f3f3',
   secFontColor: '#aaa',
   contrastFontColor: '#333',
-  footer: '#222',
+  footer: '#393E46',
+  navBar: '#393E46',
 };
 
 export const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;800&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Jura&family=Ysabeau+SC:wght@700&display=swap');    body {
-      font-family: 'Nunito', 'Ysabeau SC', sans-serif;
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;800&family=Ysabeau+SC:wght@1;100;200;300;400;500;600;700&display=swap');  
+  body {
+      font-family: 'Nunito', sans-serif;
       background: ${(props) => props.theme.background};
       color: ${(props) => props.theme.basicFontColor};
       margin:0;
+      padding-top: 5%;
     }
     }
     h1,

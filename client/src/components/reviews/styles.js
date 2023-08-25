@@ -18,9 +18,10 @@ export const ReviewWrapper = styled.div`
     width:100px;
   }
   #review-header {
-    font-size: 1.5rem;
-    width: 90%;
-    margin: 0 auto;
+    font-weight: 500;
+    font-size: 30px;
+    margin-bottom: 0.1em;
+    margin-top; 0.2em;
   }
   input, textarea {
     outline: none;
@@ -35,7 +36,7 @@ export const ReviewWrapper = styled.div`
 `;
 
 export const SummaryWrapper = styled.div`
-  width: 90%;
+  width: 100%;
   display: flex;
   text-align: left;
   justify-content: space-between;
@@ -71,7 +72,7 @@ export const SortReviews = styled.div`
 `;
 
 export const StyledReviewCard = styled.div`
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
@@ -134,8 +135,8 @@ input {
 `;
 export const ThumbnailImage = styled.img`
   border: 0.2rem solid;
-  border-color: rgba(35, 78, 112, 0.5);
-  padding: 0.4rem;
+  border-color: ${(props) => props.theme.themeColor};
+  padding: 0.3rem;
   width: 6rem;
   height: 6rem;
   object-fit: cover;
@@ -250,7 +251,7 @@ export const ModalOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10;
+  z-index: 1001;
 `;
 
 // review form
@@ -331,8 +332,9 @@ export const Bar = styled.div`
 export const Slider = styled.div`
   flex-grow: 1;
   height: 0.3rem;
-  background-color: ${veryLightGrey};
-  color: ${(props) => props.theme.themeColor};
+  background-color: ${(props) => props.theme.themeColor};
+  color: ${(props) => props.theme.secColor};
+  text-shadow: 0.1rem 0.1rem 0.2rem ${(props) => props.theme.themeColor};
   position: relative;
   margin-left: 1rem;
 
@@ -367,7 +369,7 @@ export const CharLabel = styled.div`
 `;
 export const FilledBar = styled.div`
   height: 100%;
-  background-color: ${(props) => props.theme.darkGrey};
+  background-color: ${(props) => props.theme.themeColor};
   width: ${(props) => props.$percentage}%;
 `;
 
@@ -491,6 +493,7 @@ export const StyledDropdown = styled.div`
   appearance: none;
   color: ${(props) => props.theme.darkGrey};
   cursor: pointer;
+  z-index: 10;
 
   select {
     border: none;
