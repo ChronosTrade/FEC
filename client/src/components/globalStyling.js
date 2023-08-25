@@ -2,7 +2,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 export const lightTheme = {
   darkGrey: '#666',
-  background: '#f3f3f3',
+  background: '#EEEEEE',
   themeColor: '#234E70',
   secColor: '#FBF8BE',
   basicFontColor: '#333',
@@ -13,7 +13,7 @@ export const lightTheme = {
 
 export const darkTheme = {
   darkGrey: '#666',
-  background: '#333',
+  background: '#222831',
   themeColor: '#FBF8BE',
   secColor: '#234E70',
   basicFontColor: '#f3f3f3',
@@ -36,7 +36,7 @@ export const GlobalStyles = createGlobalStyle`
     h3,
     h4 {
       justify-content: center;
-      text-align: center; 
+      text-align: center;
     }
 `;
 

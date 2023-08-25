@@ -9,6 +9,7 @@ import ReviewMain from './reviews/ReviewMain';
 import RelatedProductsMain from './related_products/RelatedProductsMain';
 import AppContext from './AppContext';
 import Toggle from './Toggle';
+import Navbar from './Navbar';
 import Footer from './Footer';
 
 function App() {
@@ -82,10 +83,8 @@ function App() {
     <AppContext.Provider value={contextValue}>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
+        <Navbar />
         <Toggle id="toggle-theme" toggled={isToggled} onChange={(e) => handleChange(e.target.checked)} />
-        {/* <ThemeToggleButton onClick={toggleTheme}>
-          Toggle Theme
-        </ThemeToggleButton> */}
         <OverviewMain styles={styles} />
         <RelatedProductsMain />
         <ReviewMain />
