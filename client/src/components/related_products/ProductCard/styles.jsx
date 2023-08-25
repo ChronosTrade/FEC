@@ -138,6 +138,7 @@ export const AddButtomImage = styled.img`
   height: 100%;
   width: 100%;
   object-fit: contain;
+  cursor: pointer;
 `;
 
 export const AddButtonText = styled.span`

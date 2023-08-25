@@ -22,6 +22,12 @@ function Card({product, type, remove}) {
     remove(product.id);
   };
 
+  if (showModal === true) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'unset';
+  }
+
   const handleProductClick = () => {
     if (imageUrl === null) {
       alert('Product is unavailable');
@@ -69,7 +75,7 @@ function Card({product, type, remove}) {
           onClose={() => setShowModal(false)}
         />, document.body)}
 
-        <ProductImage src={!imageUrl ? imgError : imageUrl} />
+        <ProductImage src={!imageUrl ? imgError : imageUrl} alt={!imageUrl ? 'Image Not Found' : product.name} />
       </ImageContainer>
       <ProductContainer onClick={handleProductClick}>
         <ProductCategory>{product.category}</ProductCategory>
