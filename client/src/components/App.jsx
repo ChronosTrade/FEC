@@ -83,7 +83,7 @@ function App() {
     <AppContext.Provider value={contextValue}>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
-        <Navbar />
+        {/* <Navbar /> */}
         <Toggle id="toggle-theme" toggled={isToggled} onChange={(e) => handleChange(e.target.checked)} />
         <OverviewMain styles={styles} />
         <RelatedProductsMain />
