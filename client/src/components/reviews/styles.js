@@ -20,10 +20,12 @@ export const ReviewWrapper = styled.div`
     width:100px;
   }
   #review-header {
+    width:100%;
+    text-align: left;
     font-weight: 500;
     font-size: 30px;
-    margin-bottom: 0.1em;
-    margin-top; 0.2em;
+    margin-bottom: 0.1rem;
+    margin-top: 0.2rem;
   }
   input, textarea {
     outline: none;
