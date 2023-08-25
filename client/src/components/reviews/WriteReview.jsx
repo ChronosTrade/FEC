@@ -52,6 +52,7 @@ function WriteReview({ reviewMeta }) {
   const [photos, setPhotos] = useState([]);
   const [characteristics, setCharacteristics] = useState({});
   const [error, setError] = useState('');
+  const [photoNames, setPhotoNames] = useState([]);
 
   const validateForm = () => {
     const errors = [];
@@ -115,6 +116,15 @@ function WriteReview({ reviewMeta }) {
       });
   };
 
+  const handleRemovePhoto = (index) => {
+    const newPhotos = [...photos];
+    const newPhotoNames = [...photoNames];
+    newPhotos.splice(index, 1);
+    newPhotoNames.splice(index, 1);
+    setPhotos(newPhotos);
+    setPhotoNames(newPhotoNames);
+  };
+
   return (
     <div>
       <SubmitButton onClick={openModal}>Write a Review</SubmitButton>
@@ -130,6 +140,7 @@ function WriteReview({ reviewMeta }) {
 
               <div>
                 <span>Do you recommend this product?</span>
+                {' '}
                 <input
                   type="radio"
                   value="yes"
@@ -138,6 +149,7 @@ function WriteReview({ reviewMeta }) {
                   onChange={(e) => setRecommend(e.target.value)}
                 />
                 Yes
+                {' '}
                 <input
                   type="radio"
                   value="no"
@@ -195,11 +207,20 @@ function WriteReview({ reviewMeta }) {
                     multiple
                     onChange={(e) => {
                       const uploadedFiles = Array.from(e.target.files);
-                      const photosURLs = uploadedFiles.map((file) => URL.createObjectURL(file));
-                      setPhotos(photosURLs);
+                      const newPhotosURLs = uploadedFiles.map((file) => URL.createObjectURL(file));
+                      const newUploadedFileNames = uploadedFiles.map((file) => file.name);
+                      setPhotos((prevPhotos) => [...prevPhotos, ...newPhotosURLs]);
+                      setPhotoNames((prevNames) => [...prevNames, ...newUploadedFileNames]);
                     }}
                   />
                 </p>
+                {photoNames.map((photoname, index) => (
+                  <div key={index} className="photoName">
+                    {photoname}
+                    {' '}
+                    <button type="button" onClick={() => handleRemovePhoto(index)}>{' X '}</button>
+                  </div>
+                ))}
               </div>
               {reviewMeta
               && Object.entries(reviewMeta.characteristics).map(([charName, charData]) => (

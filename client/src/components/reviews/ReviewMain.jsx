@@ -50,6 +50,7 @@ function ReviewMain() {
   }
 
   useEffect(() => {
+    setDisplayedReviewsCount(2);
     axios
       .get(`/reviews?product_id=${productID}`)
       .then((response) => setReviews(response.data.results))
@@ -88,7 +89,11 @@ function ReviewMain() {
 
   const handleSortChange = (order) => {
     let sortedReviews;
-
+    const weights = {
+      recency: 0.3,
+      helpfulness: 0.4,
+      recommendation: 0.3,
+    };
     switch (order) {
       case 'newest':
         sortedReviews = [...reviews].sort(
@@ -99,6 +104,20 @@ function ReviewMain() {
         sortedReviews = [...reviews].sort(
           (a, b) => b.helpfulness - a.helpfulness,
         );
+        break;
+      case 'relevant':
+
+        sortedReviews = [...reviews].sort((a, b) => {
+          const aScore = weights.recency * new Date(a.date).getTime()
+                          + weights.helpfulness * a.helpfulness
+                          + weights.recommendation * (a.recommend ? 1 : 0);
+
+          const bScore = weights.recency * new Date(b.date).getTime()
+                          + weights.helpfulness * b.helpfulness
+                          + weights.recommendation * (b.recommend ? 1 : 0);
+
+          return bScore - aScore; // sort in descending order
+        });
         break;
       default:
         sortedReviews = reviews;
