@@ -39,7 +39,7 @@ const SwitchButton = styled.span`
   ${SwitchInput}:checked + ${SwitchLabel} & {
     left: calc(100% - 2px);
     transform: translateX(-100%);
-    box-shadow: inset -10px 0px 0px 0px;
+    box-shadow: inset -12px 0px 0px 0px;
     background: black;
   }
 

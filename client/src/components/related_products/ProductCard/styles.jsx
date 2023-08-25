@@ -85,7 +85,7 @@ export const ModalContent = styled.table`
   height: 40%;
   min-width: 400px;
   margin: 10% auto auto auto;
-  background-color: white;
+  background-color: ${(props) => props.theme.background};
   border: 1px solid black;
 `;
 
@@ -99,9 +99,11 @@ export const ProductHeader = styled.th`
   }
   &.left-product {
     text-align: start;
+    width: 25%;
   }
   &.right-product {
     text-align: end;
+    width: 25%;
   }
 `;
 
