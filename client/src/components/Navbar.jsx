@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import companyLogo from '../assets/favicon.png';
-import Toggle from './Toggle'; // Import the Toggle component
+import Toggle from './Toggle';
 
 const NavHeader = styled.header`
   width: 100%;
