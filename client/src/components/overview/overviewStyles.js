@@ -356,6 +356,7 @@ export const ExpandedImage = styled.img`
 height: 1010px;
 width: 900px;
 cursor: zoom-in;
+z-index:9999;
 `;
 
 export const MagnifyingGlass = styled.div`

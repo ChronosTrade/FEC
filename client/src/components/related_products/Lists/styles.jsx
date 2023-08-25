@@ -31,7 +31,7 @@ export const RightButton = styled.button`
   cursor: pointer;
   transform: translateX(-3rem);
   width: 3.5rem;
-  z-index:999;
+  z-index:99;
 
   &:hover {
     color:#FFFFFF;
@@ -45,7 +45,7 @@ export const LeftButton = styled.button`
   cursor: pointer;
   transform: translateX(3.2rem);
   width: 3.5rem;
-  z-index:999;
+  z-index:99;
   &:hover {
     color:#FFFFFF;
     border-color:#FFFFFF;
