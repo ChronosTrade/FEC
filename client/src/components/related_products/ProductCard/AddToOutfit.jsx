@@ -19,7 +19,7 @@ function AddToOutfit({ add, outfit }) {
   return (
     <CardWrapper>
       <AddButtonContainer onClick={handleClick}>
-        <AddButtomImage src={plusButton} />
+        <AddButtomImage src={plusButton} alt="plus sign" />
       </AddButtonContainer>
       <AddButtonText>Add to Outfit</AddButtonText>
     </CardWrapper>
