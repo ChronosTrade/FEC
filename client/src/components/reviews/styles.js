@@ -10,10 +10,12 @@ export const ReviewWrapper = styled.div`
     font-weight: 400;
   }
   max-width: 70rem;
+  min-height: 70rem;
   display: flex;
-  flex-direction: column; // Stack children vertically
-  justify-content: center; // Center children horizontally
-  margin: 0 auto 3rem; // Center the component itself horizontally
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto 3rem;
   select {
     width:100px;
   }
@@ -41,6 +43,7 @@ export const SummaryWrapper = styled.div`
   display: flex;
   text-align: left;
   justify-content: space-between;
+  top:0;
   margin: 0 auto;
 
   .leftColumn {
@@ -130,6 +133,8 @@ export const SearchBox = styled.div`
 margin-top: -2.8rem;
 display: flex;
 justify-content: flex-end;
+align-items: flex-end; 
+width:100%;
 input {
   width: 10rem;
   height: 1.5rem;

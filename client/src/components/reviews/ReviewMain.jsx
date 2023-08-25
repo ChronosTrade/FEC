@@ -182,7 +182,7 @@ function ReviewMain() {
           >
             More Reviews
           </LoadMoreButton>
-          <WriteReview reviewMeta={reviewMeta} />
+          <WriteReview reviewMeta={reviewMeta} updateReviews={setReviews} />
         </ReviewWrapper>
         ) : (
           <Loading />
