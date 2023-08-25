@@ -20,6 +20,13 @@ export default function Stars({averageRatings, totalRatings}) {
     section.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
+  const keyHandler = (event) => {
+    if (event.charCode === 13 || event.charCode === 32) {
+      const section = document.querySelector('#Reviews');
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <ReviewsWrap>
       <div className="starsContainer">
@@ -45,11 +52,10 @@ export default function Stars({averageRatings, totalRatings}) {
       <SeeReviewsButton
         tabIndex={0}
         onClick={clickHandler}
-        onKeyDown={clickHandler}
+        onKeyDown={keyHandler}
       >
         {message}
       </SeeReviewsButton>
     </ReviewsWrap>
   );
 }
-
