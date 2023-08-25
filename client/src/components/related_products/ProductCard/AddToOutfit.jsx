@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 // import { some, isEqual } from 'lodash';
-import { CardWrapper, AddButtonContainer, AddButtomImage } from './styles';
+import { CardWrapper, AddButtonContainer, AddButtomImage, AddButtonText } from './styles';
 import AppContext from '../../AppContext';
+import plusButton from '../../../assets/Plus_symbol.svg.png';
 
 const isEqual = require('lodash/isEqual');
 const some = require('lodash/some');
@@ -18,9 +19,9 @@ function AddToOutfit({ add, outfit }) {
   return (
     <CardWrapper>
       <AddButtonContainer onClick={handleClick}>
-        <AddButtomImage src="https://cdn.iconscout.com/icon/free/png-512/free-plus-93-434116.png?f=avif&w=256" />
+        <AddButtomImage src={plusButton} />
       </AddButtonContainer>
-      <span>Add to Outfit</span>
+      <AddButtonText>Add to Outfit</AddButtonText>
     </CardWrapper>
   );
 }
