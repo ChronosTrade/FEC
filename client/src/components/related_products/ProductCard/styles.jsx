@@ -66,6 +66,7 @@ export const ActionButton = styled.button`
   border: none;
   font-size: 18px;
   z-index: 3;
+  cursor: pointer;
   &:hover {
     color: #FADD39;
   }
@@ -98,11 +99,11 @@ export const ProductHeader = styled.th`
     font-weight: normal;
   }
   &.left-product {
-    text-align: start;
+    text-align: center;
     width: 25%;
   }
   &.right-product {
-    text-align: end;
+    text-align: center;
     width: 25%;
   }
 `;
@@ -112,7 +113,7 @@ export const CompareRow = styled.tr`
 
 export const RowElement = styled.td`
   &.left-value {
-    text-align: start;
+    text-align: center;
     font-weight: bold;
     font-size: 20px;
   }
@@ -120,23 +121,28 @@ export const RowElement = styled.td`
     text-align: center;
   }
   &.right-value {
-    text-align: end;
+    text-align: center;
     font-weight: bold;
     font-size: 20px;
   }
 `;
 
 export const AddButtonContainer = styled.div`
-display: flex;
-flex-direction: column;
-position: relative;
-height: 85%
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 85%
 `;
 
 export const AddButtomImage = styled.img`
-height: 100%;
-width: 100%;
-object-fit: contain;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+`;
+
+export const AddButtonText = styled.span`
+  text-align: center;
+  font-size: 24px;
 `;
 
 export const RemoveButton = styled.button`
