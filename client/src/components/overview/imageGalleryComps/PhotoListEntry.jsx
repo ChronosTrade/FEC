@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 export default function PhotoListEntry({
   photo,
@@ -7,18 +7,6 @@ export default function PhotoListEntry({
   i,
   setIndex,
 }) {
-  const [photoURL, setPhotoURL] = useState('');
-
-  useEffect(() => {
-    const checkPhoto = photo.url.split('&fit');
-    const checkPhotoThumb = photo.thumbnail_url.split('&fit');
-    if (checkPhotoThumb[0] !== checkPhoto[0]) {
-      setPhotoURL(photo.url);
-    } else {
-      setPhotoURL(photo.thumbnail_url);
-    }
-  }, [photo]);
-
   const clickHandler = (e) => {
     setIndex(Number(e.target.getAttribute('i')));
   };
@@ -37,7 +25,7 @@ export default function PhotoListEntry({
             <img
               className="selected"
               data-testid="photoTestSelected"
-              src={photoURL}
+              src={photo.src}
               alt="View of Style"
               i={i}
             />
@@ -54,7 +42,7 @@ export default function PhotoListEntry({
             <img
               className="unselected"
               data-testid="photoTestOption"
-              src={photoURL}
+              src={photo.src}
               i={i}
               alt="View of Style"
             />

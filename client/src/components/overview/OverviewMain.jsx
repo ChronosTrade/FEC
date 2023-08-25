@@ -2,7 +2,6 @@ import React, {
   useState, useContext, useEffect, useRef,
 } from 'react';
 import AppContext from '../AppContext';
-// import { useAppContext } from '../AppContext';
 import {
   OverviewWrapper, Container, SelectionContainer, RightColumn, ModalBackground, Wrapper,
 } from './overviewStyles';
@@ -25,7 +24,6 @@ export default function OverviewMain({ styles }) {
   const [index, setIndex] = useState(0);
   const [mainImg, setMainImg] = useState('');
   const [maxIndex, setMaxIndex] = useState(0);
-  const [photos, setPhotos] = useState([]);
   const [showExp, setShowExp] = useState(false);
   const [showLeft, setShowLeft] = useState(false);
   const [showRight, setShowRight] = useState(true);
@@ -71,13 +69,11 @@ export default function OverviewMain({ styles }) {
                   maxIndex={maxIndex}
                   showLeft={showLeft}
                   showRight={showRight}
-                  photos={photos}
                   showExp={showExp}
                   setMaxIndex={setMaxIndex}
                   setShowLeft={setShowLeft}
                   setShowRight={setShowRight}
                   setMainImg={setMainImg}
-                  setPhotos={setPhotos}
                   setIndex={setIndex}
                   setShowExp={setShowExp}
                   setModalOpen={setModalOpen}
