@@ -24,8 +24,8 @@ export const darkTheme = {
 
 export const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;800&display=swap');
-    body {
-      font-family: 'Nunito', sans-serif;
+  @import url('https://fonts.googleapis.com/css2?family=Jura&family=Ysabeau+SC:wght@700&display=swap');    body {
+      font-family: 'Nunito', 'Ysabeau SC', sans-serif;
       background: ${(props) => props.theme.background};
       color: ${(props) => props.theme.basicFontColor};
       margin:0;
