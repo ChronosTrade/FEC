@@ -491,7 +491,6 @@ export const StyledDropdown = styled.div`
   appearance: none;
   color: ${(props) => props.theme.darkGrey};
   cursor: pointer;
-  transition: border-color 0.3s;
 
   select {
     border: none;
@@ -506,7 +505,6 @@ export const StyledDropdown = styled.div`
   }
 
  &:focus {
-  transition: ${transitionPreset1};
   border-color: ${(props) => props.theme.themeColor};
   box-shadow: 0 0 5px rgba(0,120,212,0.3);
  }

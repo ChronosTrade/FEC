@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import companyLogo from '../assets/favicon.png';
+import Toggle from './Toggle'; // Import the Toggle component
 
 const NavHeader = styled.header`
   width: 100%;
@@ -8,51 +9,82 @@ const NavHeader = styled.header`
   left: 0;
   position: fixed;
   z-index: 50;
-  background: #666;
+  background: ${(props) => props.theme.themeColor};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+
+  p {
+    font-family: 'Ysabeau SC';
+    color: white;
+    font-size: 1.5rem;
+  }
 `;
 
 const IconContainer = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 const NavWrapper = styled.div`
   display: flex;
-  height: 75px;
-  justify-content: space-between
+  align-items: center;
 `;
 
 const LinkContainer = styled.div`
   display: flex;
-  alight-items: center;
-  padding: 1rem 0.75rem;
-  position: relative;
+  align-items: center;
+  margin-left: 1rem;
 `;
 
 const ToggleContainer = styled.div`
   display: flex;
+  align-items: center;
 `;
 
-const NavLink = styled.span`
+const NavLink = styled.button`
   text-transform: uppercase;
+  background: none;
+  border: none;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  color: white;
+  font-size: 1rem;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const Img = styled.img`
-`
+  height: 50px;
+`;
 
-function Navbar() {
+const Favicon = styled.img`
+  width: 20px;
+  margin-left: 0.5rem;
+`;
+
+function Navbar({ toggled, onChange }) {
   return (
     <NavHeader>
       <NavWrapper>
-        <IconContainer>
-          <Img src={companyLogo} />
-        </IconContainer>
+        <p>PIRAEUS</p>
+        {/* <IconContainer>
+          <Img src={companyLogo} alt="Company Logo" />
+        </IconContainer> */}
         <LinkContainer>
-          <NavLink>Men</NavLink>
+          <NavLink>New</NavLink>
           <NavLink>Women</NavLink>
-          <NavLink>Kids</NavLink>
+          <NavLink>Men</NavLink>
+          <NavLink>Sale</NavLink>
         </LinkContainer>
-        <ToggleContainer />
       </NavWrapper>
+      <ToggleContainer>
+        <Toggle id="toggle-theme" toggled={toggled} onChange={onChange} />
+        {/* <Favicon src={} alt="Favicon 1" />
+        <Favicon src={} alt="Favicon 2" /> */}
+      </ToggleContainer>
     </NavHeader>
   );
 }
