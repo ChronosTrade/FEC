@@ -11,7 +11,23 @@ With the provided wireframe layout, our trio of software engineers was tasked wi
 1. Product Overview
 1. Related Products
 1. Ratings & Reviews
-   
+
+## Product Overview
+
+## Related Products
+#### Features
+
+- View product cards of items related to the current product on display inside a carousel
+- Scroll through products when the list is full
+- Click on a product to change the current product
+- Save products to Your Outfit by clicking the Add to Outfit Button
+- Compare features between current product and a related product
+
+![gif of related products](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXd0eTA1c2xyMnFnaDcxdHllYm5qZmR5cDV6bm1iMDVrMm1nc2xldSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/95Z9frdbI3oxzJLkEP/giphy.gif)
+
+## Ratings & Reviews
+
+
 ## Usage
 
 1. **Install the required dependencies**:
@@ -47,17 +63,17 @@ With the provided wireframe layout, our trio of software engineers was tasked wi
     ├── ...
     ├── client/src
     │   ├── assets
-    │   ├── components    
+    │   ├── components
     │   │   ├──  App.jsx  # main page
     │   │   ├──  ...      # other components
-    │   ├── index.jsx 
+    │   ├── index.jsx
     ├── client/build
     ├── server
     │   ├── index.js      # server entry
     │   ├── ...
     ├──  package.json
     ├──  README.md
-    ├──  webpack.config.js  
+    ├──  webpack.config.js
     ├── .eslintrc.js      # eslint config
     │ ...
 
