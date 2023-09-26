@@ -26,7 +26,12 @@ With the provided wireframe layout, our trio of software engineers was tasked wi
 ![gif of related products](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXd0eTA1c2xyMnFnaDcxdHllYm5qZmR5cDV6bm1iMDVrMm1nc2xldSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/95Z9frdbI3oxzJLkEP/giphy.gif)
 
 ## Ratings & Reviews
-
+- Browse user-generated reviews for the current product displayed, enhancing trust and product clarity.
+- Utilize a dynamic filtering system to display reviews based on user-selected criteria such as rating or date.
+- Add a new review complete with ratings, photos, and textual feedback, allowing for increased user engagement and contribution.
+- Easily sort reviews by relevance, helpfulness, or newest, catering to user preference in review perusal.
+- Interact by marking reviews as helpful or reporting inappropriate content, ensuring a curated and user-friendly review platform.
+<img width="320" alt="image" src="https://github.com/ChronosTrade/FEC/assets/11202096/18194d90-58af-424c-9a1b-8cb99580fe7c">
 
 ## Usage
 
